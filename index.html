@@ -297,7 +297,7 @@
             
             <!-- Cloudflare Turnstile (Teste de Bot) -->
             <!-- COLE SUA SITE KEY ABAIXO EM data-sitekey -->
-				<div class="cf-turnstile mt-4 flex justify-center" data-sitekey="COLE_SUA_SITE_KEY_AQUI"></div>
+				<!-- <div class="cf-turnstile mt-4 flex justify-center" data-sitekey="COLE_SUA_SITE_KEY_AQUI"></div> -->
 				<p id="erroBot" class="hidden text-red-400 text-xs mt-1 text-center">Por favor, complete a verificação de segurança.</p>
 
 				<button type="submit" id="btnEnviarDepoimento" class="w-full py-4 bg-brand hover:bg-brand-light text-slate-900 font-bold rounded-lg shadow-lg shadow-brand/30 transition-all mt-4 flex justify-center items-center">
@@ -459,11 +459,11 @@
 			e.preventDefault();
 			
 			// Verifica o Teste de Bot (Turnstile)
-			const tokenBot = new FormData(this).get('cf-turnstile-response');
-			if (!tokenBot) {
-				document.getElementById('erroBot').classList.remove('hidden');
-				return;
-			}
+			<!-- const tokenBot = new FormData(this).get('cf-turnstile-response'); -->
+			<!-- if (!tokenBot) { -->
+				<!-- document.getElementById('erroBot').classList.remove('hidden'); -->
+				<!-- return; -->
+			<!-- } -->
 			
 			document.getElementById('erroBot').classList.add('hidden');
 			const btn = document.getElementById('btnEnviarDepoimento');
