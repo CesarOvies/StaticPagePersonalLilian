@@ -38,8 +38,7 @@ Este documento contem as diretrizes e regras essenciais de desenvolvimento para 
 
 ---
 
-## 🛠️ Modificações e Fluxos de Trabalho
-
 - **Adicionar Novas Seções**: Manter padrão semântico `<section id="..." class="py-24 bg-slate-900">` (ou `bg-slate-800`).
 - **Modificar Edge Functions**: Trabalhar dentro de `/functions/`, exportando `onRequestGet` ou `onRequestPost`.
-- **Testar Localmente**: Executar `npx wrangler pages dev .`.
+- **Componentes Compartilhados**: Utilizar Web Components nativos em `assets/` (ex: `assets/site-footer.js` para `<site-footer>`) ao criar elementos que repetem em múltiplas páginas.
+- **Validação Pré-Commit (OBRIGATÓRIA)**: NUNCA commitar ou fazer push sem validar a sintaxe (`node --check`) e testar localmente com `npx wrangler pages dev .` para garantir zero regressões.

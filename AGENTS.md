@@ -22,10 +22,11 @@ O projeto é uma **Landing Page de Alta Conversão** e portfólio profissional p
 
 ```text
 StaticPagePersonalLilian/
-├── assets/                     # Recursos visuais (fotos, background hero)
+├── assets/                     # Recursos visuais e componentes
 │   ├── foto-sobre-mim.jpeg     # Foto de alta resolução na seção 'Sobre'
 │   ├── hero-bg.webp            # Background otimizado da seção Hero
-│   └── perfil-lilian.jpeg      # Foto circular de perfil na Hero
+│   ├── perfil-lilian.jpeg      # Foto circular de perfil na Hero
+│   └── site-footer.js          # Web Component do rodapé unificado com créditos
 ├── functions/                  # APIs Serverless (Cloudflare Pages Functions)
 │   ├── depoimentos.js          # Proxy GET (listar) e POST (criar) depoimentos
 │   └── validar-senha.js        # Autenticação server-side de senha para a anamnese
@@ -52,8 +53,9 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
 
 ### 3.2 Componentes e Modais
 1. **Header Fixo**: Deve manter `backdrop-blur-md` e transição ao rolar a tela (`window.addEventListener('scroll')`).
-2. **Modais**: Modais de Senha (`#senhaModal`) e Depoimento (`#depoimentoModal`) utilizam `backdrop-blur-sm` e overlay escuro (`bg-slate-950/80`).
-3. **Botões CTA**: Todos os botões do WhatsApp devem abrir em nova aba (`target="_blank" rel="noopener noreferrer"`) e conter mensagens pré-formatadas (`wa.me/5513996660817?text=...`).
+2. **Rodapé Unificado (`<site-footer>`)**: Definido em `assets/site-footer.js`. Todas as páginas devem importar este script e usar a tag `<site-footer></site-footer>` para garantir consistência visual e créditos atualizados em um único lugar.
+3. **Modais**: Modais de Senha (`#senhaModal`) e Depoimento (`#depoimentoModal`) utilizam `backdrop-blur-sm` e overlay escuro (`bg-slate-950/80`).
+4. **Botões CTA**: Todos os botões do WhatsApp devem abrir em nova aba (`target="_blank" rel="noopener noreferrer"`) e conter mensagens pré-formatadas (`wa.me/5513996660817?text=...`).
 
 ---
 
@@ -97,16 +99,29 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
 
 ---
 
-## 🧪 6. Como Executar e Validar Alterações
+## 🧪 6. Como Executar e Validar Alterações (Regra de Ouro Pré-Commit)
 
-1. **Execução Local com Serverless Functions**:
+> [!CAUTION]
+> **PROIBIDO COMMITAR SEM TESTAR ANTES**  
+> O agente NUNCA deve realizar `git commit` ou `git push` sem antes validar localmente e comprovar empiricamente que as alterações funcionam e não quebraram nada existente.
+
+### 1. Protocolo Obrigatorio de Teste Pré-Commit:
+1. **Validação de Sintaxe JS**:
+   ```bash
+   node --check assets/site-footer.js
+   node --check functions/depoimentos.js
+   node --check functions/validar-senha.js
+   ```
+2. **Execução e Teste no Servidor Local**:
    ```bash
    npx wrangler pages dev .
    ```
-   *Isso levantará o servidor local interpretando as rotas `/validar-senha` e `/depoimentos` usando as variáveis do arquivo `.dev.vars`.*
+   *Subir o servidor local e validar via requisições/HTTP se todas as páginas (`/`, `/politica-de-privacidade.html`, `/termos-de-uso.html`) e rotas serverless estão respondendo sem erros.*
 
-2. **Checklist Pré-Commit**:
-   - [ ] As alterações mantêm o tema visual responsivo em mobile e desktop?
-   - [ ] As chamadas de API continuam apontando para as Cloudflare Functions serverless?
-   - [ ] Nenhuma chave ou URL restrita foi exposta no HTML/JS público?
-   - [ ] Os links de política de privacidade e termos de uso permanecem funcionais no footer?
+3. **Checklist Pré-Commit**:
+   - [ ] **Testes Executados com Sucesso**: Todas as alterações foram testadas em ambiente local antes do commit?
+   - [ ] **Nenhuma Quebra de Regressão**: As funcionalidades existentes (formulário de anamnese, modal de depoimentos, carregamento de depoimentos) continuam operantes?
+   - [ ] **Componentização Reutilizável**: Elementos comuns entre páginas (ex: rodapé `<site-footer>`) usam Web Components em `assets/`?
+   - [ ] **Design e Responsividade**: Tema visual mantido (`slate-900/800/950` + `brand`) responsivo em mobile e desktop?
+   - [ ] **Segurança de Credenciais**: Nenhuma chave, URL restrita ou senha exposta no HTML/JS público?
+
