@@ -42,3 +42,4 @@ Este documento contem as diretrizes e regras essenciais de desenvolvimento para 
 - **Modificar Edge Functions**: Trabalhar dentro de `/functions/`, exportando `onRequestGet` ou `onRequestPost`.
 - **Componentes Compartilhados**: Utilizar Web Components nativos em `assets/` (ex: `assets/site-footer.js` para `<site-footer>`) ao criar elementos que repetem em múltiplas páginas.
 - **Validação Pré-Commit (OBRIGATÓRIA)**: NUNCA commitar ou fazer push sem validar a sintaxe (`node --check`) e testar localmente com `npx wrangler pages dev .` para garantir zero regressões.
+- **Encerramento de Processos de Teste**: Finalizar e matar obrigatoriamente qualquer servidor local (`wrangler pages dev`), daemon ou processo de fundo iniciado durante os testes antes de concluir a tarefa.

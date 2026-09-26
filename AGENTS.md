@@ -120,6 +120,7 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
 
 3. **Checklist Pré-Commit**:
    - [ ] **Testes Executados com Sucesso**: Todas as alterações foram testadas em ambiente local antes do commit?
+   - [ ] **Encerramento de Servidores de Teste**: Servidores locais (`wrangler pages dev`), daemons ou processos iniciados durante os testes foram finalizados/encerrados após a validação?
    - [ ] **Nenhuma Quebra de Regressão**: As funcionalidades existentes (formulário de anamnese, modal de depoimentos, carregamento de depoimentos) continuam operantes?
    - [ ] **Componentização Reutilizável**: Elementos comuns entre páginas (ex: rodapé `<site-footer>`) usam Web Components em `assets/`?
    - [ ] **Design e Responsividade**: Tema visual mantido (`slate-900/800/950` + `brand`) responsivo em mobile e desktop?
