@@ -295,9 +295,8 @@
                           class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors resize-none"></textarea>
 				</div>
             
-            <!-- Cloudflare Turnstile (Teste de Bot) -->
-            <!-- COLE SUA SITE KEY ABAIXO EM data-sitekey -->
-				<!-- <div class="cf-turnstile mt-4 flex justify-center" data-sitekey="COLE_SUA_SITE_KEY_AQUI"></div> -->
+            <!-- Cloudflare Turnstile -->
+				<div class="cf-turnstile mt-4 flex justify-center" data-sitekey="0x4AAAAAAFD8jSpDJzGLlYk0"></div>
 				<p id="erroBot" class="hidden text-red-400 text-xs mt-1 text-center">Por favor, complete a verificação de segurança.</p>
 
 				<button type="submit" id="btnEnviarDepoimento" class="w-full py-4 bg-brand hover:bg-brand-light text-slate-900 font-bold rounded-lg shadow-lg shadow-brand/30 transition-all mt-4 flex justify-center items-center">
@@ -358,6 +357,7 @@
     </footer>
 
     <script>
+        // Navbar scroll
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 20) {
@@ -367,6 +367,9 @@
             }
         });
 
+        // ==========================================
+        // LÓGICA DO MODAL DE SENHA (ANAMNESE)
+        // ==========================================
         const modalSenha = document.getElementById('senhaModal');
         const erroSenha = document.getElementById('erroSenha');
         const inputSenha = document.getElementById('senhaInput');
@@ -387,152 +390,161 @@
             modalSenha.classList.add('hidden');
         }
 
-        document.getElementById('formSenha').addEventListener('submit', function(event) {
+        document.getElementById('formSenha').addEventListener('submit', async function(event) {
             event.preventDefault(); 
             
             if (bloqueado) return;
 
-            const senhaDigitada = inputSenha.value.trim().toUpperCase();
-            const hashDigitado = btoa(senhaDigitada);
+            const senhaDigitada = inputSenha.value;
+            const btnTextoOriginal = btnSubmit.innerHTML;
             
-            const hashCorreto = "VFJFSU5PMjAyNg=="; 
-            const urlOculta = "aHR0cHM6Ly9mb3Jtcy5nbGUvZWlVS0s3TUZIOENuQnFZNDY=";
-            
-            if (hashDigitado === hashCorreto) {
-                tentativas = 0;
-                window.location.href = atob(urlOculta);
-            } else {
-                tentativas++;
-                
-                if (tentativas >= 3) {
-                    bloqueado = true;
-                    inputSenha.disabled = true;
-                    btnSubmit.disabled = true;
-                    btnSubmit.classList.add('opacity-50', 'cursor-not-allowed');
-                    
-                    let tempoRestante = 60;
-                    erroSenha.classList.remove('hidden');
-                    erroSenha.textContent = `Acesso bloqueado. Tente novamente em ${tempoRestante}s.`;
-                    
-                    const timer = setInterval(() => {
-                        tempoRestante--;
-                        erroSenha.textContent = `Acesso bloqueado. Tente novamente em ${tempoRestante}s.`;
-                        
-                        if (tempoRestante <= 0) {
-                            clearInterval(timer);
-                            bloqueado = false;
-                            tentativas = 0;
-                            inputSenha.disabled = false;
-                            btnSubmit.disabled = false;
-                            btnSubmit.classList.remove('opacity-50', 'cursor-not-allowed');
-                            erroSenha.textContent = 'Senha incorreta. Tente novamente.';
-                            erroSenha.classList.add('hidden');
-                        }
-                    }, 1000);
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Verificando...';
+
+            try {
+                const resposta = await fetch('/validar-senha', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ senha: senhaDigitada })
+                });
+
+                const dados = await resposta.json();
+
+                if (dados.sucesso) {
+                    tentativas = 0;
+                    window.location.href = dados.url;
                 } else {
-                    erroSenha.classList.remove('hidden');
-                    erroSenha.textContent = `Senha incorreta. Tentativa ${tentativas} de 3.`;
+                    tentativas++;
+                    lidarComErroSenha();
                 }
+            } catch (e) {
+                alert("Erro ao validar senha. Tente novamente.");
+            } finally {
+                btnSubmit.disabled = false;
+                btnSubmit.innerHTML = btnTextoOriginal;
             }
         });
-		
-		// ==========================================
-		// LÓGICA DOS DEPOIMENTOS (Totalmente Segura)
-		// ==========================================
 
-		const modalDepoimento = document.getElementById('depoimentoModal');
-		const URL_API_OFUSCADA = "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5dkZJS2tiOWFBNmtsVVFOSXpZMmZjZHJiRkxtZEtXTTU0RFhIMUo3UGd5dmxLN3hsTjAtMVV0clFyeG93Q2lHM1FTZy9leGVj"; 
-		const TOKEN_OFUSCADO = "QUtmeWNieXZGSUtrYjlhQTZrbFVRTkl6WTJmY2RyYkZMbWRLV001NERYSDFKN1BneXZsSzd4bE4wLTFVdHJRcnhvd0NpRzNRU2c=";
+        function lidarComErroSenha() {
+            if (tentativas >= 3) {
+                bloqueado = true;
+                inputSenha.disabled = true;
+                btnSubmit.disabled = true;
+                btnSubmit.classList.add('opacity-50', 'cursor-not-allowed');
+                
+                let tempoRestante = 60;
+                erroSenha.classList.remove('hidden');
+                erroSenha.textContent = `Acesso bloqueado. Tente novamente em ${tempoRestante}s.`;
+                
+                const timer = setInterval(() => {
+                    tempoRestante--;
+                    erroSenha.textContent = `Acesso bloqueado. Tente novamente em ${tempoRestante}s.`;
+                    
+                    if (tempoRestante <= 0) {
+                        clearInterval(timer);
+                        bloqueado = false;
+                        tentativas = 0;
+                        inputSenha.disabled = false;
+                        btnSubmit.disabled = false;
+                        btnSubmit.classList.remove('opacity-50', 'cursor-not-allowed');
+                        erroSenha.textContent = 'Senha incorreta. Tente novamente.';
+                        erroSenha.classList.add('hidden');
+                    }
+                }, 1000);
+            } else {
+                erroSenha.classList.remove('hidden');
+                erroSenha.textContent = `Senha incorreta. Tentativa ${tentativas} de 3.`;
+            }
+        }
 
-		function abrirModalDepoimento() {
-			modalDepoimento.classList.remove('hidden');
-			if (typeof turnstile !== 'undefined') { turnstile.reset(); }
-		}
+        // ==========================================
+        // LÓGICA DOS DEPOIMENTOS
+        // ==========================================
+        const modalDepoimento = document.getElementById('depoimentoModal');
 
-		function fecharModalDepoimento() {
-			modalDepoimento.classList.add('hidden');
-			document.getElementById('formDepoimento').reset();
-		}
+        function abrirModalDepoimento() {
+            modalDepoimento.classList.remove('hidden');
+            if (typeof turnstile !== 'undefined') { 
+                turnstile.reset(); 
+            }
+        }
 
-		// 1. Enviar Depoimento (POST)
-		document.getElementById('formDepoimento').addEventListener('submit', async function(e) {
-			e.preventDefault();
-			
-			// Verifica o Teste de Bot (Turnstile)
-			<!-- const tokenBot = new FormData(this).get('cf-turnstile-response'); -->
-			<!-- if (!tokenBot) { -->
-				<!-- document.getElementById('erroBot').classList.remove('hidden'); -->
-				<!-- return; -->
-			<!-- } -->
-			
-			document.getElementById('erroBot').classList.add('hidden');
-			const btn = document.getElementById('btnEnviarDepoimento');
-			const conteudoOriginalBtn = btn.innerHTML;
-			
-			// Estado de "Enviando"
-			btn.disabled = true;
-			btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
-			btn.classList.add('opacity-70', 'cursor-not-allowed');
+        function fecharModalDepoimento() {
+            modalDepoimento.classList.add('hidden');
+            document.getElementById('formDepoimento').reset();
+        }
 
-			const payload = {
-				token: atob(TOKEN_OFUSCADO),
-				nome: document.getElementById('nomeDepoimento').value,
-				mensagem: document.getElementById('textoDepoimento').value
-			};
+        document.getElementById('formDepoimento').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const tokenBot = new FormData(this).get('cf-turnstile-response'); 
+            if (!tokenBot) { 
+                document.getElementById('erroBot').classList.remove('hidden'); 
+                return; 
+            } 
+            
+            document.getElementById('erroBot').classList.add('hidden');
+            const btn = document.getElementById('btnEnviarDepoimento');
+            const conteudoOriginalBtn = btn.innerHTML;
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+            btn.classList.add('opacity-70', 'cursor-not-allowed');
 
-			try {
-				await fetch(atob(URL_API_OFUSCADA), {
-					method: 'POST',
-					body: JSON.stringify(payload)
-				});
-				
-				// Sucesso
-				alert("Obrigado! Seu depoimento foi enviado e será avaliado pela Lilian.");
-				fecharModalDepoimento();
-			} catch (error) {
-				alert("Houve um erro de conexão. Tente novamente mais tarde.");
-			} finally {
-				// Restaura botão
-				btn.disabled = false;
-				btn.innerHTML = conteudoOriginalBtn;
-				btn.classList.remove('opacity-70', 'cursor-not-allowed');
-			}
-		});
+            const payload = {
+                nome: document.getElementById('nomeDepoimento').value,
+                mensagem: document.getElementById('textoDepoimento').value
+            };
 
-		// 2. Carregar Depoimentos (GET) ao abrir a página
-		async function carregarDepoimentos() {
-			const lista = document.getElementById('listaDepoimentos');
-			try {
-				const urlComToken = `${atob(URL_API_OFUSCADA)}?token=${atob(TOKEN_OFUSCADO)}`;
-				const resposta = await fetch(urlComToken);
-				const depoimentos = await resposta.json();
-				
-				if (depoimentos.length === 0) {
-					lista.innerHTML = '<p class="text-slate-400 text-sm col-span-3 text-center py-10">Ainda não há depoimentos publicados. Seja o primeiro!</p>';
-					return;
-				}
+            try {
+                await fetch('/depoimentos', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                alert("Obrigado! Seu depoimento foi enviado e será avaliado pela Lilian.");
+                fecharModalDepoimento();
+            } catch (error) {
+                alert("Houve um erro de conexão. Tente novamente mais tarde.");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = conteudoOriginalBtn;
+                btn.classList.remove('opacity-70', 'cursor-not-allowed');
+            }
+        });
 
-				// Limpa a mensagem de carregando e injeta o HTML dos cards aprovados
-				lista.innerHTML = '';
-				depoimentos.forEach(dep => {
-					lista.innerHTML += `
-						<div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-700 relative">
-							<i class="fa-solid fa-quote-left text-3xl text-brand/20 absolute top-4 left-4"></i>
-							<p class="text-slate-300 relative z-10 italic text-sm mb-6 mt-4">"${dep.mensagem}"</p>
-							<div class="border-t border-slate-800 pt-4 flex items-center justify-between">
-								<span class="font-bold text-white text-sm">${dep.nome}</span>
-								<span class="text-xs text-brand-light font-medium"><i class="fa-solid fa-star text-amber-400 mr-1"></i> Aluno</span>
-							</div>
-						</div>
-					`;
-				});
-			} catch (error) {
-				lista.innerHTML = '<p class="text-red-400 text-sm col-span-3 text-center py-10">Não foi possível carregar os depoimentos no momento.</p>';
-			}
-		}
+        // Carregar Depoimentos ao abrir a página
+        async function carregarDepoimentos() {
+            const lista = document.getElementById('listaDepoimentos');
+            try {
+                const resposta = await fetch('/depoimentos');
+                const depoimentos = await resposta.json();
+                
+                if (depoimentos.length === 0) {
+                    lista.innerHTML = '<p class="text-slate-400 text-sm col-span-3 text-center py-10">Ainda não há depoimentos publicados.</p>';
+                    return;
+                }
 
-		// Dispara a busca assim que o arquivo carregar
-		carregarDepoimentos();
+                lista.innerHTML = '';
+                depoimentos.forEach(dep => {
+                    lista.innerHTML += `
+                        <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-700 relative">
+                            <i class="fa-solid fa-quote-left text-3xl text-brand/20 absolute top-4 left-4"></i>
+                            <p class="text-slate-300 relative z-10 italic text-sm mb-6 mt-4">"${dep.mensagem}"</p>
+                            <div class="border-t border-slate-800 pt-4 flex items-center justify-between">
+                                <span class="font-bold text-white text-sm">${dep.nome}</span>
+                                <span class="text-xs text-brand-light font-medium"><i class="fa-solid fa-star text-amber-400 mr-1"></i> Aluno</span>
+                            </div>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                lista.innerHTML = '<p class="text-red-400 text-sm col-span-3 text-center py-10">Não foi possível carregar os depoimentos no momento.</p>';
+            }
+        }
+
+        carregarDepoimentos();
     </script>
 </body>
 </html>
