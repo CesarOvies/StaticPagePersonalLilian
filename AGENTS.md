@@ -29,6 +29,7 @@ StaticPagePersonalLilian/
 │   └── site-footer.js          # Web Component do rodapé unificado com créditos
 ├── functions/                  # APIs Serverless (Cloudflare Pages Functions)
 │   ├── depoimentos.js          # Proxy GET (listar) e POST (criar) depoimentos
+│   ├── instagram.js            # Proxy do feed do Instagram (filtro anti-reels e cache Edge de 24h)
 │   └── validar-senha.js        # Autenticação server-side de senha para a anamnese
 ├── .dev.vars                   # Variáveis de ambiente para desenvolvimento local (Wrangler)
 ├── index.html                  # Landing Page principal (Estrutura, Estilos Tailwind e JS Vanilla)
@@ -56,14 +57,15 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
 2. **Rodapé Unificado (`<site-footer>`)**: Definido em `assets/site-footer.js`. Todas as páginas devem importar este script e usar a tag `<site-footer></site-footer>` para garantir consistência visual e créditos atualizados em um único lugar.
 3. **Modais**: Modais de Senha (`#senhaModal`) e Depoimento (`#depoimentoModal`) utilizam `backdrop-blur-sm` e overlay escuro (`bg-slate-950/80`).
 4. **Botões CTA**: Todos os botões do WhatsApp devem abrir em nova aba (`target="_blank" rel="noopener noreferrer"`) e conter mensagens pré-formatadas (`wa.me/5513996660817?text=...`).
+5. **Feed do Instagram**: O grid utiliza 3 colunas (`lg:grid-cols-3`) centralizadas. Apenas postagens permanentes (`/p/...`) são renderizadas, ignorando Reels que expiram ou redirecionam.
 
 ---
 
 ## 🔐 4. Regras Críticas de Segurança e Performance
 
-1. **PROIBIDO Expor Credenciais no Client-side**:
-   * Senhas (como a senha da Anamnese), URLs do Google Forms e tokens do Google Apps Script **NUNCA** devem ser inseridos no `index.html` ou arquivos JS do front-end.
-   * Toda validação sensitiva DEVE passar pelas Cloudflare Functions em `/functions/`.
+1. **PROIBIDO Expor Credenciais ou Endpoints Restritos no Client-side**:
+   * Senhas (como a senha da Anamnese), URLs do Google Forms, tokens do Apps Script e URLs de endpoints de API de terceiros (como feeds do Behold) **NUNCA** devem ser inseridos diretamente no `index.html` ou em arquivos JS públicos.
+   * Toda consulta sensitiva ou integrada a APIs externas DEVE passar pelas Cloudflare Functions em `/functions/`.
 
 2. **Nomes de Variáveis de Ambiente (`.dev.vars` / Cloudflare Dashboard)**:
    * Mantidos por compatibilidade com a infraestrutura existente:
@@ -71,11 +73,20 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
      - `API_GOOLE_SCRIPTS_TOKEN`: Token de autenticação da planilha (preservar a grafia original).
      - `ANANMESE_KEY`: Senha de acesso ao formulário (preservar a grafia original).
      - `URL_FORMS`: Link final do Google Forms.
+     - `INSTAGRAM_FEED_URL`: Endpoint do conector Behold.so (lido exclusivamente pelo backend `/functions/instagram.js`).
 
-3. **Verificação Anti-bot (Turnstile)**:
+3. **Política de Cache Estrito para o Instagram (Economia de Quota Behold)**:
+   * O conector Behold possui cota mensal limitada (1.200 requisições no plano gratuito).
+   * A rota `/functions/instagram.js` DEVE manter cache de **24 horas** no Edge (`s-maxage=86400`) e no cliente (`localStorage`), garantindo no máximo 1 requisição diária (~30/mês, < 2.5% da cota).
+   * A chave do Edge Cache deve ser versionada para permitir invalidação imediata quando necessário.
+
+4. **Filtro Anti-Reels no Feed do Instagram**:
+   * Instagram Reels expiram e mudam de rota frequentemente. Por definição arquitetural, a integração filtra e descarta itens de vídeo (`mediaType === 'VIDEO'`, `is_video` e URLs contendo `/reel/`), exibindo exclusivamente posts estáticos e carrosséis permanentes (`/p/...`).
+
+5. **Verificação Anti-bot (Turnstile)**:
    * Ao modificar o formulário de depoimentos, garanta que o token `cf-turnstile-response` seja validado no envio (`new FormData(this).get('cf-turnstile-response')`).
 
-4. **Bloqueio por Força Bruta no Client-side**:
+6. **Bloqueio por Força Bruta no Client-side**:
    * O formulário de senha limita a 3 tentativas incorretas consecutivas com temporizador de 60 segundos antes de permitir novas tentativas.
 
 ---
@@ -85,7 +96,7 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
 ### HTML & Tailwind
 * Mantenha código semântico e limpo.
 * Preserve a acessibilidade (`alt` nas imagens, `aria-labels` se necessário).
-* Mantenha seletores de ID usados pelos scripts intactos: `#navbar`, `#listaDepoimentos`, `#senhaModal`, `#depoimentoModal`, `#formSenha`, `#formDepoimento`, `#senhaInput`, `#erroSenha`, `#nomeDepoimento`, `#textoDepoimento`.
+* Mantenha seletores de ID usados pelos scripts intactos: `#navbar`, `#listaDepoimentos`, `#gridInstagram`, `#senhaModal`, `#depoimentoModal`, `#formSenha`, `#formDepoimento`, `#senhaInput`, `#erroSenha`, `#nomeDepoimento`, `#textoDepoimento`.
 
 ### JavaScript Vanilla
 * Utilize `async/await` para todas as requisições assíncronas (`fetch`).
@@ -111,17 +122,18 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
    node --check assets/site-footer.js
    node --check functions/depoimentos.js
    node --check functions/validar-senha.js
+   node --check functions/instagram.js
    ```
 2. **Execução e Teste no Servidor Local**:
    ```bash
    npx wrangler pages dev .
    ```
-   *Subir o servidor local e validar via requisições/HTTP se todas as páginas (`/`, `/politica-de-privacidade.html`, `/termos-de-uso.html`) e rotas serverless estão respondendo sem erros.*
+   *Subir o servidor local e validar via requisições/HTTP se todas as páginas (`/`, `/politica-de-privacidade.html`, `/termos-de-uso.html`) e rotas serverless (`/depoimentos`, `/instagram`) estão respondendo sem erros.*
 
 3. **Checklist Pré-Commit**:
    - [ ] **Testes Executados com Sucesso**: Todas as alterações foram testadas em ambiente local antes do commit?
    - [ ] **Encerramento de Servidores de Teste**: Servidores locais (`wrangler pages dev`), daemons ou processos iniciados durante os testes foram finalizados/encerrados após a validação?
-   - [ ] **Nenhuma Quebra de Regressão**: As funcionalidades existentes (formulário de anamnese, modal de depoimentos, carregamento de depoimentos) continuam operantes?
+   - [ ] **Nenhuma Quebra de Regressão**: As funcionalidades existentes (anamnese, depoimentos, feed instagram) continuam operantes?
    - [ ] **Componentização Reutilizável**: Elementos comuns entre páginas (ex: rodapé `<site-footer>`) usam Web Components em `assets/`?
    - [ ] **Design e Responsividade**: Tema visual mantido (`slate-900/800/950` + `brand`) responsivo em mobile e desktop?
    - [ ] **Segurança de Credenciais**: Nenhuma chave, URL restrita ou senha exposta no HTML/JS público?
