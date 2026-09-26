@@ -89,6 +89,15 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
 6. **Bloqueio por Força Bruta no Client-side**:
    * O formulário de senha limita a 3 tentativas incorretas consecutivas com temporizador de 60 segundos antes de permitir novas tentativas.
 
+7. **Proteção contra Injeção de Fórmulas (CSV/Formula Injection)**:
+   * No backend (`/functions/depoimentos.js`) e no Google Apps Script (`scriptDepoimentos.gs`), qualquer entrada que comece com `=`, `+`, `-`, `@`, `\t` ou `\r` DEVE ser neutralizada adicionando o apóstrofo prefixo (`'`) para garantir que o Google Sheets trate o valor como texto puro e não execute chamadas externas (`=IMPORTXML`, `=IMAGE`, etc.).
+
+8. **Proteção contra Cross-Site Scripting (XSS) e Limites de Dados**:
+   * Todos os dados dinâmicos injetados no DOM no frontend (`dep.nome`, `dep.mensagem`, `perfil`) DEVEM ser escapados via `escapeHtml()`.
+   * O campo `nome` limita-se estritamente a **30 caracteres**.
+   * O campo `mensagem` limita-se estritamente a **300 caracteres**.
+   * O campo `perfil_social` limita-se a **30 caracteres** alfanuméricos com pontos e underscores.
+
 ---
 
 ## 🛠️ 5. Convenções de Código (Code Style Guidelines)
@@ -96,7 +105,7 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
 ### HTML & Tailwind
 * Mantenha código semântico e limpo.
 * Preserve a acessibilidade (`alt` nas imagens, `aria-labels` se necessário).
-* Mantenha seletores de ID usados pelos scripts intactos: `#navbar`, `#listaDepoimentos`, `#gridInstagram`, `#senhaModal`, `#depoimentoModal`, `#formSenha`, `#formDepoimento`, `#senhaInput`, `#erroSenha`, `#nomeDepoimento`, `#textoDepoimento`.
+* Mantenha seletores de ID usados pelos scripts intactos: `#navbar`, `#listaDepoimentos`, `#navDepoimentos`, `#btnPrevDepoimento`, `#btnNextDepoimento`, `#containerCarregarMais`, `#gridInstagram`, `#senhaModal`, `#depoimentoModal`, `#formSenha`, `#formDepoimento`, `#senhaInput`, `#erroSenha`, `#nomeDepoimento`, `#papelDepoimento`, `#redeSocialDepoimento`, `#perfilSocialDepoimento`, `#prefixoRedeSocial`, `#textoDepoimento`, `#contadorTextoDepoimento`.
 
 ### JavaScript Vanilla
 * Utilize `async/await` para todas as requisições assíncronas (`fetch`).
