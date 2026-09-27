@@ -11,6 +11,9 @@ class SiteFooter extends HTMLElement {
                     <p class="text-slate-400 text-sm max-w-xs">
                         Treinamento físico estruturado e natação especializada para transformar sua vida através do movimento.
                     </p>
+                    <p class="text-xs text-brand-light font-semibold mt-2.5 flex items-center gap-1.5">
+                        <i class="fa-solid fa-id-card"></i> CREF 177118-G/SP
+                    </p>
                 </div>
                 
                 <div class="text-center md:text-right">
@@ -34,7 +37,7 @@ class SiteFooter extends HTMLElement {
             
             <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 text-center md:text-left">
                 <div class="space-y-2">
-                    <p>&copy; 2026 Lilian Moreira Farias. Todos os direitos reservados.</p>
+                    <p>&copy; 2026 Lilian Moreira Farias • CREF 177118-G/SP. Todos os direitos reservados.</p>
                     <p>
                         Feito com <i class="fa-solid fa-heart text-red-500 mx-1"></i> por 
                         <a href="https://linkedin.com/in/cesarovies" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-brand transition-colors font-semibold">
