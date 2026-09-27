@@ -11,11 +11,15 @@ class SiteFooter extends HTMLElement {
                     <p class="text-slate-400 text-sm max-w-xs">
                         Treinamento físico estruturado e natação especializada para transformar sua vida através do movimento.
                     </p>
+                    <p class="text-xs text-brand-light font-semibold mt-2.5 flex items-center gap-1.5">
+                        <i class="fa-solid fa-id-card"></i> CREF 177118-G/SP
+                    </p>
                 </div>
                 
                 <div class="text-center md:text-right">
                     <h4 class="text-white font-bold mb-4">Contatos</h4>
                     <div class="space-y-2 text-slate-400 text-sm">
+                        <p><i class="fa-solid fa-location-dot mr-2 text-brand"></i> Atendimento em Santos & São Vicente - SP</p>
                         <p><i class="fa-regular fa-envelope mr-2"></i> lilianmoreira2@icloud.com</p>
                         <p><a href="https://wa.me/5513996660817?text=Ol%C3%A1,%20vim%20atrav%C3%A9s%20do%20seu%20site%20para%20bater%20um%20papo%20sobre%20treinamento%20particular." target="_blank" rel="noopener noreferrer" class="hover:text-brand transition-colors"><i class="fa-brands fa-whatsapp mr-2"></i> Agendar pelo WhatsApp</a></p>
                     </div>
@@ -33,7 +37,7 @@ class SiteFooter extends HTMLElement {
             
             <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 text-center md:text-left">
                 <div class="space-y-2">
-                    <p>&copy; 2026 Lilian Moreira Farias. Todos os direitos reservados.</p>
+                    <p>&copy; 2026 Lilian Moreira Farias • CREF 177118-G/SP. Todos os direitos reservados.</p>
                     <p>
                         Feito com <i class="fa-solid fa-heart text-red-500 mx-1"></i> por 
                         <a href="https://linkedin.com/in/cesarovies" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-brand transition-colors font-semibold">

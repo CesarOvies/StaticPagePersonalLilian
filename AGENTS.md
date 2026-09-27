@@ -32,9 +32,11 @@ StaticPagePersonalLilian/
 │   ├── instagram.js            # Proxy do feed do Instagram (filtro anti-reels e cache Edge de 24h)
 │   └── validar-senha.js        # Autenticação server-side de senha para a anamnese
 ├── .dev.vars                   # Variáveis de ambiente para desenvolvimento local (Wrangler)
-├── index.html                  # Landing Page principal (Estrutura, Estilos Tailwind e JS Vanilla)
+├── index.html                  # Landing Page principal (Estrutura, Estilos Tailwind, Schema.org e FAQ)
 ├── politica-de-privacidade.html# Página legal de conformidade com LGPD
 ├── termos-de-uso.html          # Termos de Uso da plataforma e serviços
+├── robots.txt                  # Diretivas de rastreamento para robôs de busca (Googlebot)
+├── sitemap.xml                 # Mapa do site com URLs canônicas das páginas públicas
 ├── AGENTS.md                   # Diretrizes operacionais e treinamento do agente (Este arquivo)
 └── README.md                   # Documentação pública do repositório
 ```
@@ -98,6 +100,12 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
    * O campo `mensagem` limita-se estritamente a **300 caracteres**.
    * O campo `perfil_social` limita-se a **30 caracteres** alfanuméricos com pontos e underscores.
 
+9. **Diretrizes de SEO Local e Indexação Orgânica**:
+   * **Praça de Atendimento Restrita**: As cidades oficiais e exclusivas de atendimento presencial são **Santos** e **São Vicente** (Baixada Santista/SP). Qualquer nova chamada, modalidade ou texto institucional DEVE respeitar e reforçar essa delimitação geográfica para garantir alta relevância no algoritmo do Google.
+   * **Manutenção do Schema.org (`JSON-LD`)**: O bloco `<script type="application/ld+json">` em `index.html` deve manter sincronia entre os serviços ofertados e as entidades estruturadas `LocalBusiness`, `SportsActivityLocation`, `Person` e `FAQPage`. A sintaxe deve permanecer sempre JSON estrito e válido.
+   * **Seção de FAQ Nativa e Acessível**: O acordeão de dúvidas (`#faq`) deve ser mantido com elementos HTML5 nativos (`<details name="faq-accordion">` e `<summary>`). Não substituir por bibliotecas JS externas ou estilos com `display: none` que possam prejudicar o rastreamento do Googlebot ou a navegação acessível.
+   * **Arquivos de Rastreamento (`robots.txt` e `sitemap.xml`)**: Novas páginas públicas devem ser adicionadas ao `sitemap.xml` com suas URLs limpas e canônicas, e as diretivas de permissão do `robots.txt` devem ser preservadas.
+
 ---
 
 ## 🛠️ 5. Convenções de Código (Code Style Guidelines)
@@ -137,13 +145,15 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
    ```bash
    npx wrangler pages dev .
    ```
-   *Subir o servidor local e validar via requisições/HTTP se todas as páginas (`/`, `/politica-de-privacidade.html`, `/termos-de-uso.html`) e rotas serverless (`/depoimentos`, `/instagram`) estão respondendo sem erros.*
+   *Subir o servidor local e validar via requisições/HTTP se todas as páginas (`/`, `/politica-de-privacidade`, `/termos-de-uso`), rotas de indexação (`/robots.txt`, `/sitemap.xml`) e rotas serverless (`/depoimentos`, `/instagram`) estão respondendo sem erros.*
 
 3. **Checklist Pré-Commit**:
    - [ ] **Testes Executados com Sucesso**: Todas as alterações foram testadas em ambiente local antes do commit?
+   - [ ] **Validação de Dados Estruturados**: O Schema.org (JSON-LD) foi parseado e validado sem erros de sintaxe JSON?
    - [ ] **Encerramento de Servidores de Teste**: Servidores locais (`wrangler pages dev`), daemons ou processos iniciados durante os testes foram finalizados/encerrados após a validação?
-   - [ ] **Nenhuma Quebra de Regressão**: As funcionalidades existentes (anamnese, depoimentos, feed instagram) continuam operantes?
+   - [ ] **Nenhuma Quebra de Regressão**: As funcionalidades existentes (anamnese, depoimentos, feed instagram, FAQ) continuam operantes?
    - [ ] **Componentização Reutilizável**: Elementos comuns entre páginas (ex: rodapé `<site-footer>`) usam Web Components em `assets/`?
    - [ ] **Design e Responsividade**: Tema visual mantido (`slate-900/800/950` + `brand`) responsivo em mobile e desktop?
    - [ ] **Segurança de Credenciais**: Nenhuma chave, URL restrita ou senha exposta no HTML/JS público?
+
 
