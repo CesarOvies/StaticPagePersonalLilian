@@ -14,7 +14,7 @@ O projeto é uma **Landing Page de Alta Conversão** e portfólio profissional p
 * **Tema Visual**: **Dark Theme** elegante com paleta baseada em `slate-900/800/950` e destaques em verde esmeralda (`brand`: `#10b981`, `brand-light`: `#2dd4bf`, `brand-dark`: `#047857`).
 * **Backend Serverless**: **Cloudflare Pages Functions** (diretório `/functions`).
 * **Proteção & Segurança**: **Cloudflare Turnstile** (anti-bot) + Validação Server-side de senhas para formulário de anamnese.
-* **Métricas & Rastreamento**: **Google Tag (gtag.js)** com ID `AW-18479219428` para mensuração de tráfego e conversões do Google Ads (cliques no WhatsApp).
+* **Métricas & Rastreamento**: **Google Tag (gtag.js)** com ID `G-9VTPWXQYHF` (Google Analytics 4) para mensuração básica de tráfego e pageviews. ⚠️ Rastreamento de conversões do Google Ads (cliques no WhatsApp) ainda **não configurado** — a ser implementado futuramente com um ID `AW-`.
 * **Persistência de Dados**: Integração externa com Google Apps Script e Google Sheets.
 
 ---
