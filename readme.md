@@ -14,13 +14,16 @@ O objetivo principal desta landing page é servir como um hub central de convers
 - **Integração com WhatsApp:** Botões de CTA com mensagens pré-configuradas para agilizar o contato.
 - **Feed Dinâmico do Instagram:** Sincronização diária de postagens oficiais via conector Behold/Cloudflare Function (`/functions/instagram.js`), com filtro anti-reels (apenas publicações permanentes), layout responsivo em Dark Mode e cache inteligente de 24 horas no Edge e no cliente.
 - **Sistema de Depoimentos Seguro & Carrossel:** Listagem em carrossel horizontal responsivo (com até 3 cards simultâneos no desktop e setas de navegação suave), ordenação pelos mais recentes e suporte a paginação inteligente (ativada automaticamente se ultrapassar 100 itens). O envio conta com seleção de relação (*Aluno(a)* vs *Pai, Mãe ou Responsável*), link para perfil público (*Instagram* ou *Facebook*), verificação anti-bot (Cloudflare Turnstile), limites estritos (30 letras para nome, 300 para mensagem com contador dinâmico) e arquitetura de segurança em camadas com sanitização contra Cross-Site Scripting (XSS) e injeção de fórmulas (CSV/Formula Injection) no Google Sheets.
+- **SEO Local Avançado & Descoberta Orgânica:** Otimização estratégica para buscas orgânicas no Google focadas em **Santos e São Vicente** (Baixada Santista). Conta com metadados geo-localizados (`geo.region`, `geo.placename`, coordenadas), Open Graph/Twitter Cards com prévias ricas, marcação de dados estruturados **Schema.org (JSON-LD)** para `LocalBusiness`, `Person` e `FAQPage`, além de arquivos de rastreamento oficiais (`robots.txt` e `sitemap.xml`).
+- **Seção de Perguntas Frequentes (FAQ Nativo):** Accordion interativo implementado com elementos HTML5 nativos (`<details name="faq-accordion">` e `<summary>`), 100% acessível e rastreável pelo Googlebot sem necessidade de scripts externos, cobrindo dúvidas sobre modalidades, locais de atendimento e agendamento.
 - **Acesso Restrito Server-side (Anamnese):** Validação segura de senha e redirecionamento para o Google Forms processados no Edge (Cloudflare Pages Functions), sem expor senhas nem links no código do navegador.
-- **Adequação à LGPD:** Páginas dedicadas de "Política de Privacidade" e "Termos de Uso".
+- **Adequação à LGPD:** Páginas dedicadas de "Política de Privacidade" e "Termos de Uso" com URLs limpas e tags canônicas configuradas.
 
 ## 💻 Tecnologias Utilizadas
 
-- **HTML5 & Vanilla JavaScript:** Estrutura semântica e interatividade nativa.
-- **Tailwind CSS (via CDN):** Estilização utilitária com identidade visual personalizada.
+- **HTML5 & Vanilla JavaScript:** Estrutura semântica, acessibilidade e interatividade nativa.
+- **Tailwind CSS (via CDN):** Estilização utilitária com identidade visual personalizada (Dark Mode).
+- **SEO & Dados Estruturados:** Schema.org (JSON-LD), Open Graph, Geo-targeting, XML Sitemap e Robots.txt.
 - **Cloudflare Pages & Functions:** Hospedagem, CI/CD automático, Edge Cache e funções serverless.
 - **Cloudflare Turnstile:** Verificação inteligente anti-bot para envio de formulários.
 - **Google Apps Script:** Backend serverless integrado a planilhas para armazenamento e moderação dos depoimentos.
@@ -36,8 +39,11 @@ O objetivo principal desta landing page é servir como um hub central de convers
 │   ├── instagram.js            # Proxy do feed do Instagram com cache Edge de 24h e filtro anti-reels
 │   └── validar-senha.js        # Validação server-side de senha para a anamnese
 ├── .dev.vars                   # Variáveis de ambiente para teste local (ignorado no Git)
-├── index.html                  # Landing Page principal
+├── index.html                  # Landing Page principal com Schema.org JSON-LD e FAQ
 ├── politica-de-privacidade.html# Política de Privacidade (LGPD)
 ├── termos-de-uso.html          # Termos de Uso do serviço
+├── robots.txt                  # Diretivas de rastreamento para robôs de busca
+├── sitemap.xml                 # Mapa do site oficial para indexação de páginas públicas
+├── AGENTS.md                   # Diretrizes operacionais e treinamento do agente
 └── README.md                   # Documentação do projeto
 ```
