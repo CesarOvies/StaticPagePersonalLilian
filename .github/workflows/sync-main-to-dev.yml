@@ -1,0 +1,43 @@
+name: Sincronizar Main para Dev
+
+on:
+  push:
+    branches:
+      - main
+
+# Permissão necessária para o token do GitHub Actions realizar push na branch dev
+permissions:
+  contents: write
+
+jobs:
+  sync-branches:
+    name: Sincronizar Main -> Dev
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Repositório (Histórico Completo)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configurar Identidade do Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Sincronizar Branch Dev
+        run: |
+          # Alterna para a branch dev
+          git checkout dev
+          
+          # Tenta fast-forward; se houver histórico divergente, realiza merge seguro
+          if git merge --ff-only main; then
+            echo "Branch dev sincronizada com sucesso via Fast-Forward."
+          else
+            echo "Realizando merge padrão da main na dev..."
+            git merge -m "chore(sync): sincroniza alterações da main na dev [skip ci]" main
+          fi
+          
+          # Atualiza a branch dev remota
+          git push origin dev

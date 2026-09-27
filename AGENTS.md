@@ -22,6 +22,8 @@ O projeto é uma **Landing Page de Alta Conversão** e portfólio profissional p
 
 ```text
 StaticPagePersonalLilian/
+├── .github/workflows/          # Automações de CI/CD (GitHub Actions)
+│   └── sync-main-to-dev.yml    # Sincronização automática da branch main para dev
 ├── assets/                     # Recursos visuais e componentes
 │   ├── foto-sobre-mim.jpeg     # Foto de alta resolução na seção 'Sobre'
 │   ├── hero-bg.webp            # Background otimizado da seção Hero
