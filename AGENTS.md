@@ -56,7 +56,7 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
 
 ### 3.2 Componentes e Modais
 1. **Header Fixo**: Deve manter `backdrop-blur-md` e transição ao rolar a tela (`window.addEventListener('scroll')`).
-2. **Rodapé Unificado (`<site-footer>`)**: Definido em `assets/site-footer.js`. Todas as páginas devem importar este script e usar a tag `<site-footer></site-footer>` para garantir consistência visual e créditos atualizados em um único lugar.
+2. **Rodapé Unificado (`<site-footer>`)**: Definido em `assets/site-footer.js`. Todas as páginas devem importar este script e usar a tag `<site-footer></site-footer>` para garantir consistência visual e créditos atualizados em um único lugar. O rodapé organiza-se em 3 colunas (Identidade da Marca, Contatos e Card de Avaliação no Google Maps em formato neutro com selo verificado).
 3. **Modais**: Modais de Senha (`#senhaModal`) e Depoimento (`#depoimentoModal`) utilizam `backdrop-blur-sm` e overlay escuro (`bg-slate-950/80`).
 4. **Botões CTA**: Todos os botões do WhatsApp devem abrir em nova aba (`target="_blank" rel="noopener noreferrer"`) e conter mensagens pré-formatadas (`wa.me/5513996660817?text=...`).
 5. **Feed do Instagram**: O grid utiliza 3 colunas (`lg:grid-cols-3`) centralizadas. Apenas postagens permanentes (`/p/...`) são renderizadas, ignorando Reels que expiram ou redirecionam.
@@ -104,6 +104,7 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
    * **Praça de Atendimento Restrita**: As cidades oficiais e exclusivas de atendimento presencial são **Santos** e **São Vicente** (Baixada Santista/SP). Qualquer nova chamada, modalidade ou texto institucional DEVE respeitar e reforçar essa delimitação geográfica para garantir alta relevância no algoritmo do Google.
    * **Manutenção do Schema.org (`JSON-LD`)**: O bloco `<script type="application/ld+json">` em `index.html` deve manter sincronia entre os serviços ofertados e as entidades estruturadas `LocalBusiness`, `SportsActivityLocation`, `Person` e `FAQPage`. A sintaxe deve permanecer sempre JSON estrito e válido.
    * **Seção de FAQ Nativa e Acessível**: O acordeão de dúvidas (`#faq`) deve ser mantido com elementos HTML5 nativos (`<details name="faq-accordion">` e `<summary>`). Não substituir por bibliotecas JS externas ou estilos com `display: none` que possam prejudicar o rastreamento do Googlebot ou a navegação acessível.
+   * **Integração com Google Maps e Schema.org (`hasMap` e `sameAs`)**: O link oficial da ficha no Google Maps (`https://share.google/c8XepCzhuYQiu3qbu`) deve ser preservado nos dados estruturados de `LocalBusiness` e `Person` para máxima correlação com o Knowledge Graph do Google.
    * **Arquivos de Rastreamento (`robots.txt` e `sitemap.xml`)**: Novas páginas públicas devem ser adicionadas ao `sitemap.xml` com suas URLs limpas e canônicas, e as diretivas de permissão do `robots.txt` devem ser preservadas.
 
 ---
