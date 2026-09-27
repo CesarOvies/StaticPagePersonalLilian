@@ -6,7 +6,7 @@ Um site moderno e de alta conversão desenvolvido para apresentação de portfó
 
 ## 🎯 Sobre o Projeto
 
-O objetivo principal desta landing page é servir como um hub central de conversão e relacionamento. O site apresenta as qualificações da profissional, detalha as modalidades de acompanhamento (saúde e alto rendimento), exibe depoimentos aprovados e direciona os leads para o WhatsApp ou para o formulário de anamnese.
+O objetivo principal desta landing page é servir como um hub central de conversão e relacionamento. O site apresenta as qualificações da profissional, detalha os serviços de acompanhamento (natação particular e musculação), exibe depoimentos aprovados e direciona os leads para o WhatsApp ou para o formulário de anamnese.
 
 ### 🌟 Principais Funcionalidades
 
@@ -15,7 +15,7 @@ O objetivo principal desta landing page é servir como um hub central de convers
 - **Feed Dinâmico do Instagram:** Sincronização diária de postagens oficiais via conector Behold/Cloudflare Function (`/functions/instagram.js`), com filtro anti-reels (apenas publicações permanentes), layout responsivo em Dark Mode e cache inteligente de 24 horas no Edge e no cliente.
 - **Sistema de Depoimentos Seguro & Carrossel:** Listagem em carrossel horizontal responsivo (com até 3 cards simultâneos no desktop e setas de navegação suave), ordenação pelos mais recentes e suporte a paginação inteligente (ativada automaticamente se ultrapassar 100 itens). O envio conta com seleção de relação (*Aluno(a)* vs *Pai, Mãe ou Responsável*), link para perfil público (*Instagram* ou *Facebook*), verificação anti-bot (Cloudflare Turnstile), limites estritos (30 letras para nome, 300 para mensagem com contador dinâmico) e arquitetura de segurança em camadas com sanitização contra Cross-Site Scripting (XSS) e injeção de fórmulas (CSV/Formula Injection) no Google Sheets.
 - **SEO Local Avançado & Descoberta Orgânica:** Otimização estratégica para buscas orgânicas no Google focadas em **Santos e São Vicente** (Baixada Santista). Conta com metadados geo-localizados (`geo.region`, `geo.placename`, coordenadas), Open Graph/Twitter Cards com prévias ricas, marcação de dados estruturados **Schema.org (JSON-LD)** para `LocalBusiness`, `Person` e `FAQPage`, além de arquivos de rastreamento oficiais (`robots.txt` e `sitemap.xml`).
-- **Seção de Perguntas Frequentes (FAQ Nativo):** Accordion interativo implementado com elementos HTML5 nativos (`<details name="faq-accordion">` e `<summary>`), 100% acessível e rastreável pelo Googlebot sem necessidade de scripts externos, cobrindo dúvidas sobre modalidades, locais de atendimento e agendamento.
+- **Seção de Perguntas Frequentes (FAQ Nativo):** Accordion interativo implementado com elementos HTML5 nativos (`<details name="faq-accordion">` e `<summary>`), 100% acessível e rastreável pelo Googlebot sem necessidade de scripts externos, cobrindo dúvidas sobre serviços, locais de atendimento e agendamento.
 - **Acesso Restrito Server-side (Anamnese):** Validação segura de senha e redirecionamento para o Google Forms processados no Edge (Cloudflare Pages Functions), sem expor senhas nem links no código do navegador.
 - **Adequação à LGPD:** Páginas dedicadas de "Política de Privacidade" e "Termos de Uso" com URLs limpas e tags canônicas configuradas.
 
