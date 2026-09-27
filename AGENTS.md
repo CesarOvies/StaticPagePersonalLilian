@@ -127,13 +127,17 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
 
 ---
 
-## 🧪 6. Como Executar e Validar Alterações (Regra de Ouro Pré-Commit)
+## 🧪 6. Como Executar e Validar Alterações (Regras de Ouro Pré-Commit e Pré-Push)
 
 > [!CAUTION]
-> **PROIBIDO COMMITAR SEM TESTAR ANTES**  
-> O agente NUNCA deve realizar `git commit` ou `git push` sem antes validar localmente e comprovar empiricamente que as alterações funcionam e não quebraram nada existente.
+> **1. PROIBIDO COMMITAR SEM TESTAR ANTES**  
+> O agente NUNCA deve realizar `git commit` sem antes validar localmente e comprovar empiricamente que as alterações funcionam e não quebraram nada existente.
 
-### 1. Protocolo Obrigatorio de Teste Pré-Commit:
+> [!CAUTION]
+> **2. PROIBIDO DAR GIT PUSH SEM APROVAÇÃO EXPLÍCITA DO USUÁRIO**  
+> O agente NUNCA deve executar `git push` de forma autônoma ou antecipada. O agente pode criar branches, modificar arquivos, rodar testes e realizar commits locais, mas **DEVE OBRIGATORIAMENTE** apresentar as alterações para avaliação do usuário e aguardar autorização expressa (ex: *"pode dar push"*) antes de qualquer envio ao repositório remoto.
+
+### 1. Protocolo Obrigatório de Teste Pré-Commit:
 1. **Validação de Sintaxe JS**:
    ```bash
    node --check assets/site-footer.js
@@ -147,7 +151,7 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
    ```
    *Subir o servidor local e validar via requisições/HTTP se todas as páginas (`/`, `/politica-de-privacidade`, `/termos-de-uso`), rotas de indexação (`/robots.txt`, `/sitemap.xml`) e rotas serverless (`/depoimentos`, `/instagram`) estão respondendo sem erros.*
 
-3. **Checklist Pré-Commit**:
+3. **Checklist Pré-Commit e Pré-Push**:
    - [ ] **Testes Executados com Sucesso**: Todas as alterações foram testadas em ambiente local antes do commit?
    - [ ] **Validação de Dados Estruturados**: O Schema.org (JSON-LD) foi parseado e validado sem erros de sintaxe JSON?
    - [ ] **Encerramento de Servidores de Teste**: Servidores locais (`wrangler pages dev`), daemons ou processos iniciados durante os testes foram finalizados/encerrados após a validação?
@@ -155,5 +159,7 @@ Sempre utilize as cores customizadas configuradas no script `tailwind.config` do
    - [ ] **Componentização Reutilizável**: Elementos comuns entre páginas (ex: rodapé `<site-footer>`) usam Web Components em `assets/`?
    - [ ] **Design e Responsividade**: Tema visual mantido (`slate-900/800/950` + `brand`) responsivo em mobile e desktop?
    - [ ] **Segurança de Credenciais**: Nenhuma chave, URL restrita ou senha exposta no HTML/JS público?
+   - [ ] **Aprovação Explícita para Push**: O usuário avaliou as mudanças e concedeu autorização expressa antes de qualquer `git push`?
+
 
 
