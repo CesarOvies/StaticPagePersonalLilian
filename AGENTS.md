@@ -15,7 +15,6 @@ O projeto é uma **Landing Page de Alta Conversão** e portfólio profissional p
 * **Backend Serverless**: **Cloudflare Pages Functions** (diretório `/functions`).
 * **Proteção & Segurança**: **Cloudflare Turnstile** (anti-bot) + Validação Server-side de senhas para formulário de anamnese.
 * **Métricas & Rastreamento**: Camada de dados gerenciada pelo **Google Tag Manager** (`GTM-KS4JNQR7`), com os seguintes IDs ativos via gtag.js:
-  * `G-9VTPWXQYHF` — GA4, tráfego geral e pageviews (gerenciado pelo GTM).
   * `G-2PSWTYCM5S` — GA4, conversões de cliques nos botões do WhatsApp (evento `click_whatsapp`, disparado via `send_to` no listener global de cliques).
   * `AW-18479219428` — Google Ads, rastreamento de conversões de campanhas pagas.
 * **Persistência de Dados**: Integração externa com Google Apps Script e Google Sheets.
