@@ -22,14 +22,18 @@ class SiteFooter extends HTMLElement {
                         <p><i class="fa-solid fa-location-dot mr-2 text-brand"></i> Atendimento em Santos & São Vicente - SP</p>
                         <p><i class="fa-regular fa-envelope mr-2"></i> lilianmoreira2@icloud.com</p>
                         <p><a href="https://wa.me/5513996660817?text=Ol%C3%A1,%20vim%20atrav%C3%A9s%20do%20seu%20site%20para%20bater%20um%20papo%20sobre%20treinamento%20particular." target="_blank" rel="noopener noreferrer" class="hover:text-brand transition-colors"><i class="fa-brands fa-whatsapp mr-2"></i> Agendar pelo WhatsApp</a></p>
+                        <p><a href="https://share.google/c8XepCzhuYQiu3qbu" target="_blank" rel="noopener noreferrer" class="hover:text-brand transition-colors inline-flex items-center"><i class="fa-brands fa-google mr-2 text-brand"></i> Avalie no Google Maps</a></p>
                     </div>
                     
                     <div class="flex gap-4 justify-center md:justify-end mt-6">
-                        <a href="https://www.instagram.com/lili.wp" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-brand hover:text-slate-900 transition-all">
+                        <a href="https://www.instagram.com/lili.wp" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-brand hover:text-slate-900 transition-all" title="Instagram @lili.wp" aria-label="Instagram">
                             <i class="fa-brands fa-instagram text-xl"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/lilian-moreira-farias-231123375/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-brand hover:text-slate-900 transition-all">
+                        <a href="https://www.linkedin.com/in/lilian-moreira-farias-231123375/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-brand hover:text-slate-900 transition-all" title="LinkedIn" aria-label="LinkedIn">
                             <i class="fa-brands fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="https://share.google/c8XepCzhuYQiu3qbu" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-brand hover:text-slate-900 transition-all" title="Avalie no Google Maps" aria-label="Google Maps">
+                            <i class="fa-brands fa-google text-lg"></i>
                         </a>
                     </div>
                 </div>
