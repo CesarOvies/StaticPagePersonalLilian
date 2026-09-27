@@ -62,30 +62,21 @@ class SiteFooter extends HTMLElement {
                                     </svg>
                                 </div>
                                 <div>
-                                    <span class="text-xs font-bold text-white block leading-tight">Google Avaliações</span>
+                                    <span class="text-xs font-bold text-white block leading-tight">Google Maps</span>
                                     <span class="text-[11px] text-slate-400">Perfil de Empresa</span>
                                 </div>
                             </div>
-                            <span class="text-[10px] font-semibold text-brand bg-brand/10 border border-brand/20 px-2 py-0.5 rounded-full">
-                                5.0 ★
+                            <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-brand bg-brand/10 border border-brand/20 px-2 py-0.5 rounded-full">
+                                <i class="fa-solid fa-circle-check text-[9px]"></i> Verificado
                             </span>
                         </div>
 
-                        <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <span class="text-slate-300 font-bold ml-1 text-xs">5.0</span>
-                        </div>
-
                         <p class="text-slate-400 text-xs mb-4 leading-relaxed">
-                            Já treinou com a Lilian? Deixe sua avaliação no Google Maps!
+                            Sua opinião é fundamental! Já treinou com a Lilian? Deixe sua avaliação no Google Maps.
                         </p>
 
                         <div class="inline-flex items-center justify-between w-full py-2 px-3 bg-slate-800 group-hover:bg-brand text-slate-300 group-hover:text-slate-900 border border-slate-700/80 group-hover:border-brand rounded-xl text-xs font-bold transition-all shadow-sm">
-                            <span>Avaliar no Google</span>
+                            <span>Avaliar no Google Maps</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-[10px] transition-transform group-hover:translate-x-0.5"></i>
                         </div>
                     </a>
