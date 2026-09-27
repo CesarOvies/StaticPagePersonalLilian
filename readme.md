@@ -34,6 +34,8 @@ O objetivo principal desta landing page é servir como um hub central de convers
 
 ```text
 /
+├── .github/workflows/          # Workflows de automação CI/CD (GitHub Actions)
+│   └── sync-main-to-dev.yml    # Espelhamento automático da branch main para dev
 ├── assets/                     # Imagens locais (fotos de perfil, favicons) e componentes
 ├── functions/                  # Cloudflare Pages Functions (Edge APIs)
 │   ├── depoimentos.js          # Proxy seguro para leitura e envio de depoimentos
