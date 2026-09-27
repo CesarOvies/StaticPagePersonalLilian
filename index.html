@@ -2,6 +2,16 @@
 <html lang="pt-BR" class="scroll-smooth">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18479219428"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-18479219428');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lilian Moreira | Personal Trainer & Natação em Santos e São Vicente</title>
@@ -1516,6 +1526,18 @@
             `).join('');
         }
         carregarFeedInstagram();
+
+        // Rastreamento automático de cliques nos botões do WhatsApp (Google Tag)
+        document.addEventListener('click', function (e) {
+            const linkWhatsApp = e.target.closest('a[href*="wa.me"]');
+            if (linkWhatsApp && typeof gtag === 'function') {
+                gtag('event', 'click_whatsapp', {
+                    event_category: 'engagement',
+                    event_label: linkWhatsApp.innerText.trim() || 'Botão WhatsApp',
+                    transport_type: 'beacon'
+                });
+            }
+        });
     </script>
 </body>
 

@@ -18,6 +18,7 @@ O objetivo principal desta landing page é servir como um hub central de convers
 - **Seção de Perguntas Frequentes (FAQ Nativo):** Accordion interativo implementado com elementos HTML5 nativos (`<details name="faq-accordion">` e `<summary>`), 100% acessível e rastreável pelo Googlebot sem necessidade de scripts externos, cobrindo dúvidas sobre serviços, locais de atendimento e agendamento.
 - **Integração com Google Maps & Perfil de Empresa:** Card oficial de avaliação e selo de empresa verificada integrado no rodapé unificado, com vinculação direta aos dados estruturados Schema.org (`hasMap` e `sameAs`), fortalecendo o ranqueamento orgânico em buscas locais de Santos e São Vicente.
 - **Acesso Restrito Server-side (Anamnese):** Validação segura de senha e redirecionamento para o Google Forms processados no Edge (Cloudflare Pages Functions), sem expor senhas nem links no código do navegador.
+- **Métricas & Google Tag (Google Ads):** Tag global oficial (`gtag.js` com ID `AW-18479219428`) integrada no `<head>` de todas as páginas públicas com rastreamento automático de eventos de conversão nos botões do WhatsApp.
 - **Adequação à LGPD:** Páginas dedicadas de "Política de Privacidade" e "Termos de Uso" com URLs limpas e tags canônicas configuradas.
 
 ## 💻 Tecnologias Utilizadas
