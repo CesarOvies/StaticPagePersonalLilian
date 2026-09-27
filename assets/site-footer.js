@@ -16,6 +16,7 @@ class SiteFooter extends HTMLElement {
                 <div class="text-center md:text-right">
                     <h4 class="text-white font-bold mb-4">Contatos</h4>
                     <div class="space-y-2 text-slate-400 text-sm">
+                        <p><i class="fa-solid fa-location-dot mr-2 text-brand"></i> Atendimento em Santos & São Vicente - SP</p>
                         <p><i class="fa-regular fa-envelope mr-2"></i> lilianmoreira2@icloud.com</p>
                         <p><a href="https://wa.me/5513996660817?text=Ol%C3%A1,%20vim%20atrav%C3%A9s%20do%20seu%20site%20para%20bater%20um%20papo%20sobre%20treinamento%20particular." target="_blank" rel="noopener noreferrer" class="hover:text-brand transition-colors"><i class="fa-brands fa-whatsapp mr-2"></i> Agendar pelo WhatsApp</a></p>
                     </div>

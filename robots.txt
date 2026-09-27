@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /functions/
+
+Sitemap: https://lilianmoreirapersonal.com.br/sitemap.xml
