@@ -2093,18 +2093,6 @@
       }
       carregarFeedInstagram();
 
-      // Rastreamento automático de cliques nos botões do WhatsApp (Google Tag)
-      document.addEventListener("click", function (e) {
-        const linkWhatsApp = e.target.closest('a[href*="wa.me"]');
-        if (linkWhatsApp && typeof gtag === "function") {
-          gtag("event", "click_whatsapp", {
-            send_to: "G-2PSWTYCM5S",
-            event_category: "engagement",
-            event_label: linkWhatsApp.innerText.trim() || "Botão WhatsApp",
-            transport_type: "beacon",
-          });
-        }
-      });
     </script>
   </body>
 </html>
