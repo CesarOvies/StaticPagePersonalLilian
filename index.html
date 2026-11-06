@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR" class="scroll-smooth" data-type="service" data-radius="soft" data-buttons="tonal">
   <head>
     <!-- Google Tag Manager -->
     <script>
@@ -36,6 +36,8 @@
     />
     <meta name="author" content="Lilian Moreira Farias" />
     <meta name="robots" content="index, follow" />
+    <meta name="page-type" content="service" />
+    <meta name="site-kind" content="other" />
     <link rel="canonical" href="https://lilianpersonal.com.br/" />
 
     <!-- Metadados de Geolocalização (SEO Local Santos e São Vicente) -->
@@ -235,7 +237,7 @@
 
     <link
       rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💪</text></svg>"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f6b3a'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,sans-serif' font-size='34' fill='%23fff'%3EL%3C/text%3E%3C/svg%3E"
     />
     <!-- Cloudflare Turnstile -->
     <script
@@ -251,43 +253,43 @@
           extend: {
             colors: {
               brand: {
-                light: "#2dd4bf",
-                DEFAULT: "#10b981",
-                dark: "#047857",
+                light: "#2b8a4d",
+                DEFAULT: "#1f6b3a",
+                dark: "#17542d",
               },
+              paper: "#f8f8f8",
+              surface: "#eeeeee",
+              ink: "#0a0a0a",
+              muted: "#6a6a6a",
+              line: "rgb(10 10 10 / 0.12)",
+            },
+            fontFamily: {
+              sans: ["Figtree", "system-ui", "sans-serif"],
+              display: ['"Bricolage Grotesque"', "system-ui", "sans-serif"],
             },
           },
         },
       };
     </script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Figtree:wght@400..600&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link rel="stylesheet" href="./assets/site.css" />
     <script src="./assets/site-footer.js" defer></script>
 
     <style>
-      body {
-        font-family: "Inter", sans-serif;
-      }
-
-      .hero-bg {
-        background-image:
-          linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)),
-          url("./assets/hero-bg.webp");
-        background-size: cover;
-        background-position: center;
-      }
-
-      /* Scrollbar suave para o carrossel de depoimentos */
+      /* Scrollbar discreta para o carrossel de depoimentos */
       #listaDepoimentos {
         scrollbar-width: thin;
-        scrollbar-color: rgba(51, 65, 85, 0.7) transparent;
+        scrollbar-color: rgb(10 10 10 / 0.25) transparent;
       }
 
       #listaDepoimentos::-webkit-scrollbar {
@@ -295,17 +297,40 @@
       }
 
       #listaDepoimentos::-webkit-scrollbar-track {
-        background: rgba(15, 23, 42, 0.5);
-        border-radius: 9999px;
+        background: transparent;
       }
 
       #listaDepoimentos::-webkit-scrollbar-thumb {
-        background: rgba(51, 65, 85, 0.8);
+        background: rgb(10 10 10 / 0.25);
         border-radius: 9999px;
       }
 
-      #listaDepoimentos::-webkit-scrollbar-thumb:hover {
-        background: #10b981;
+      /* Ícone + / − do FAQ */
+      .faq-icon {
+        position: relative;
+        width: 24px;
+        height: 24px;
+        flex: none;
+      }
+
+      .faq-icon::before,
+      .faq-icon::after {
+        content: "";
+        position: absolute;
+        left: 4px;
+        right: 4px;
+        top: 11px;
+        height: 2px;
+        background: currentColor;
+        transition: transform 200ms ease;
+      }
+
+      .faq-icon::after {
+        transform: rotate(90deg);
+      }
+
+      details[open] .faq-icon::after {
+        transform: rotate(0deg);
       }
 
       img {
@@ -318,9 +343,7 @@
     </style>
   </head>
 
-  <body
-    class="bg-slate-900 text-slate-200 antialiased selection:bg-brand selection:text-white"
-  >
+  <body class="bg-paper text-ink antialiased">
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe
@@ -332,253 +355,302 @@
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+    <!--
+      taste-skill deal: kind service · palette mint-pink-accounts · type bricolage
+      hero split (film/photo dealt, sem filme nem foto 1920+) · nav-split · close-type (sem foto livre para close-photo)
+      footer-columns · rhythm surface-pairs · buttons tonal · radius soft
+    -->
+
     <!-- Header -->
     <header
-      class="fixed w-full top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 transition-all duration-300"
       id="navbar"
+      class="fixed inset-x-0 top-0 z-50 h-[72px] bg-paper border-b border-line"
     >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
+      <div class="wrap h-full flex items-center justify-between gap-6">
+        <a href="#conteudo" class="skip">Pular para o conteúdo</a>
+
+        <nav
+          class="hidden xl:flex flex-1 items-center gap-7 text-[15px] font-medium"
+          aria-label="Principal"
+        >
+          <a href="#servicos" class="hover:text-brand transition-colors">Serviços</a>
+          <a href="#depoimentos" class="hover:text-brand transition-colors">Depoimentos</a>
+          <a href="#sobre" class="hover:text-brand transition-colors">Sobre</a>
+          <a href="#comeceagora" class="hover:text-brand transition-colors">Anamnese</a>
+          <a href="#instagram" class="hover:text-brand transition-colors">Instagram</a>
+          <a href="#faq" class="hover:text-brand transition-colors">Dúvidas</a>
+        </nav>
+
+        <a
+          href="#top"
+          class="font-display text-[22px] leading-none tracking-tight whitespace-nowrap"
+          >Lilian Moreira</a
+        >
+
+        <div class="flex flex-1 items-center justify-end gap-3">
           <a
-            href="#"
-            class="text-2xl font-extrabold text-white tracking-tighter"
+            href="https://wa.me/5513996660817?text=Ol%C3%A1,%20vim%20atrav%C3%A9s%20do%20seu%20site%20para%20bater%20um%20papo%20sobre%20treinamento%20particular."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn--primary hidden sm:inline-flex"
           >
-            LILIAN<span class="text-brand">MOREIRA</span>
+            <i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i>
+            Agendar avaliação
           </a>
-
-          <nav class="hidden md:flex space-x-8">
-            <a
-              href="#servicos"
-              class="text-sm font-medium text-slate-300 hover:text-brand transition-colors"
-              >Serviços</a
-            >
-            <a
-              href="#sobre"
-              class="text-sm font-medium text-slate-300 hover:text-brand transition-colors"
-              >Sobre Mim</a
-            >
-            <a
-              href="#depoimentos"
-              class="text-sm font-medium text-slate-300 hover:text-brand transition-colors"
-              >Depoimentos</a
-            >
-            <a
-              href="#comeceagora"
-              class="text-sm font-medium text-slate-300 hover:text-brand transition-colors"
-              >Comece Agora</a
-            >
-            <a
-              href="#faq"
-              class="text-sm font-medium text-slate-300 hover:text-brand transition-colors"
-              >Dúvidas</a
-            >
-            <a
-              href="#instagram"
-              class="text-sm font-medium text-slate-300 hover:text-brand transition-colors"
-              >Instagram</a
-            >
-          </nav>
-
-          <div class="hidden md:flex">
-            <a
-              href="https://wa.me/5513996660817?text=Ol%C3%A1,%20vim%20atrav%C3%A9s%20do%20seu%20site%20para%20bater%20um%20papo%20sobre%20treinamento%20particular."
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm font-medium text-white hover:bg-slate-700 hover:border-slate-600 transition-all"
-            >
-              <i class="fa-brands fa-whatsapp text-brand mr-2"></i> Contato
-              Rápido
-            </a>
-          </div>
+          <button
+            id="btnMenu"
+            type="button"
+            class="btn btn--secondary xl:hidden w-12 px-0"
+            aria-expanded="false"
+            aria-controls="menuMobile"
+            aria-label="Abrir menu"
+          >
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </button>
         </div>
+      </div>
+
+      <!-- Menu mobile (tela cheia) -->
+      <div
+        id="menuMobile"
+        class="hidden xl:hidden fixed inset-x-0 top-[72px] bottom-0 bg-paper overflow-y-auto"
+      >
+        <nav class="wrap pt-4 pb-10 flex flex-col" aria-label="Menu mobile">
+          <a href="#servicos" class="h-14 flex items-center border-b border-line text-lg">Serviços</a>
+          <a href="#depoimentos" class="h-14 flex items-center border-b border-line text-lg">Depoimentos</a>
+          <a href="#sobre" class="h-14 flex items-center border-b border-line text-lg">Sobre</a>
+          <a href="#comeceagora" class="h-14 flex items-center border-b border-line text-lg">Anamnese</a>
+          <a href="#instagram" class="h-14 flex items-center border-b border-line text-lg">Instagram</a>
+          <a href="#faq" class="h-14 flex items-center border-b border-line text-lg">Dúvidas</a>
+          <a
+            href="https://wa.me/5513996660817?text=Ol%C3%A1,%20vim%20atrav%C3%A9s%20do%20seu%20site%20para%20bater%20um%20papo%20sobre%20treinamento%20particular."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn--primary w-full mt-8"
+          >
+            <i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i>
+            Agendar avaliação
+          </a>
+        </nav>
       </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-bg min-h-screen flex items-center pt-20">
-      <div
-        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full flex flex-col md:flex-row items-center"
-      >
-        <div class="md:w-3/5 text-center md:text-left">
-          <span
-            class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-brand/10 text-brand font-semibold text-xs sm:text-sm mb-4 border border-brand/20"
-          >
-            <i class="fa-solid fa-location-dot"></i> Santos & São Vicente •
-            Personal Trainer & Natação
-          </span>
-          <h1
-            class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6"
-          >
-            Treinamento que respeita seu corpo e
-            <span
-              class="text-brand text-transparent bg-clip-text bg-gradient-to-r from-brand to-brand-light"
-              >transforma seus resultados.</span
+    <main id="conteudo">
+      <!-- Hero Section -->
+      <section id="top" class="pt-[72px] lg:min-h-[100svh] flex">
+        <div
+          class="wrap grid lg:grid-cols-12 lg:grid-rows-1 gap-10 lg:gap-6 pt-10 pb-12 lg:pt-4 lg:pb-16"
+        >
+          <div class="lg:col-span-6 flex flex-col justify-center lg:pr-10">
+            <h1
+              class="text-[clamp(40px,3.2vw+16px,76px)] leading-[1.02]"
             >
-          </h1>
-          <p class="text-lg text-slate-300 mb-10 max-w-2xl mx-auto md:mx-0">
-            Aulas particulares de natação e musculação desenhadas exclusivamente
-            para você em <strong class="text-white">Santos</strong> e
-            <strong class="text-white">São Vicente</strong>. Atendimento
-            personalizado em condomínios residenciais ou na academia de sua
-            preferência (ou que você já faça parte).
-          </p>
-          <div class="text-center md:text-left">
-            <a
-              href="https://wa.me/5513996660817?text=Ol%C3%A1,%20vim%20atrav%C3%A9s%20do%20seu%20site%20para%20bater%20um%20papo%20sobre%20treinamento%20particular."
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center justify-center px-8 py-4 bg-brand hover:bg-brand-light text-slate-900 font-bold rounded-lg shadow-lg shadow-brand/30 transition-all transform hover:-translate-y-1"
-            >
-              <i class="fa-brands fa-whatsapp text-xl mr-2"></i> Falar no
-              WhatsApp
-            </a>
+              Personal trainer e natação em Santos e São Vicente
+            </h1>
+            <p class="lead mt-6 max-w-[44ch]">
+              Aulas individuais na piscina ou na academia do seu condomínio, ou
+              na academia em que você já treina. Para crianças, adultos e
+              idosos.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row gap-3">
+              <a
+                href="https://wa.me/5513996660817?text=Ol%C3%A1,%20vim%20atrav%C3%A9s%20do%20seu%20site%20para%20bater%20um%20papo%20sobre%20treinamento%20particular."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn--primary"
+              >
+                <i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i>
+                Agendar avaliação
+              </a>
+              <a href="#servicos" class="btn btn--secondary">Ver serviços</a>
+            </div>
+            <p class="mt-10 pt-6 border-t border-line text-[15px] text-muted">
+              CREF4/SP 177118-G · Formada pela Unisanta · Atende desde 2019
+            </p>
           </div>
-        </div>
 
-        <div class="md:w-2/5 mt-10 md:mt-0">
-          <div
-            class="img-protected-container relative w-72 h-72 lg:w-96 lg:h-96 mx-auto rounded-full overflow-hidden border-4 border-slate-700 shadow-2xl transition-transform hover:scale-105 duration-300"
-          >
-            <img
-              src="./assets/perfil-lilian.jpeg"
-              alt="Lilian Moreira - Personal Trainer e Treinadora de Natação em Santos e São Vicente"
-              class="w-full h-full object-cover pointer-events-none select-none"
-              draggable="false"
-            />
+          <div class="lg:col-span-6">
             <div
-              class="absolute inset-0 z-10 select-none"
-              aria-hidden="true"
-            ></div>
+              class="img-protected-container relative overflow-hidden rounded-[20px] bg-surface aspect-[4/5] sm:aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-[520px]"
+            >
+              <img
+                src="./assets/perfil-lilian.jpeg"
+                alt="Lilian Moreira - Personal Trainer e Treinadora de Natação em Santos e São Vicente"
+                class="absolute inset-0 w-full h-full object-cover object-[50%_22%] pointer-events-none select-none"
+                fetchpriority="high"
+                draggable="false"
+              />
+              <div
+                class="absolute inset-0 z-10 select-none"
+                aria-hidden="true"
+              ></div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Serviços -->
-    <section id="servicos" class="py-24 bg-slate-900">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-white mb-4">
-            Serviços de Acompanhamento em Santos e São Vicente
+      <!-- Serviços -->
+      <section id="servicos" class="sec">
+        <div class="wrap">
+          <h2 class="h2 max-w-[22ch]">
+            Natação e musculação em Santos e São Vicente
           </h2>
-          <div class="w-20 h-1 bg-brand mx-auto rounded mb-4"></div>
-          <p class="text-slate-400 text-sm max-w-2xl mx-auto">
-            Treinamento presencial sob medida para sua rotina, com atendimento
-            em condomínios ou na academia de sua preferência em Santos e São
-            Vicente.
+          <p class="lead mt-5 max-w-[56ch]">
+            Treino presencial e individual. Você escolhe o local: piscina ou
+            academia do condomínio, clube ou a academia em que já treina.
           </p>
-        </div>
 
-        <div class="grid md:grid-cols-2 gap-8">
-          <div
-            class="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 hover:border-brand/50 transition-colors group"
-          >
+          <div class="mt-12 grid lg:grid-cols-12 gap-6">
             <div
-              class="w-14 h-14 bg-slate-700 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand transition-colors"
+              class="img-protected-container relative overflow-hidden rounded-[20px] bg-surface aspect-[3/2] lg:aspect-auto lg:col-span-4"
             >
-              <i
-                class="fa-solid fa-person-swimming text-2xl text-brand group-hover:text-slate-900"
-              ></i>
+              <img
+                src="./assets/hero-bg.webp"
+                alt="Bola de polo aquático na piscina"
+                class="absolute inset-0 w-full h-full object-cover object-[60%_50%] pointer-events-none select-none"
+                loading="lazy"
+                draggable="false"
+              />
+              <div
+                class="absolute inset-0 z-10 select-none"
+                aria-hidden="true"
+              ></div>
             </div>
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="text-2xl font-bold text-white">Natação Particular</h3>
-              <span
-                class="text-xs bg-slate-700 text-brand-light font-semibold px-2.5 py-1 rounded-md"
-                >Santos & São Vicente</span
+
+            <div class="lg:col-span-8 grid md:grid-cols-2 gap-6">
+              <article class="card flex flex-col">
+                <h3 class="text-[26px] leading-tight">Natação particular</h3>
+                <p class="mt-2 text-muted">
+                  Na piscina do seu condomínio, casa ou clube.
+                </p>
+                <dl class="mt-8 border-t border-line">
+                  <div class="py-5 border-b border-line">
+                    <dt class="font-medium">Iniciação e adaptação</dt>
+                    <dd class="mt-1 leading-relaxed">
+                      Para crianças e adultos, inclusive quem tem medo de água.
+                      Foco em segurança, saúde e autonomia.
+                    </dd>
+                  </div>
+                  <div class="pt-5">
+                    <dt class="font-medium">Técnica e performance</dt>
+                    <dd class="mt-1 leading-relaxed">
+                      Os 4 nados, correção de biomecânica e planilhas para
+                      atletas amadores e competidores.
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+
+              <article class="card flex flex-col">
+                <h3 class="text-[26px] leading-tight">Musculação e academia</h3>
+                <p class="mt-2 text-muted">
+                  Na academia do condomínio ou na academia em que você já
+                  treina.
+                </p>
+                <dl class="mt-8 border-t border-line">
+                  <div class="py-5 border-b border-line">
+                    <dt class="font-medium">Condicionamento e emagrecimento</dt>
+                    <dd class="mt-1 leading-relaxed">
+                      Queima de gordura, fortalecimento das articulações e mais
+                      disposição no dia a dia.
+                    </dd>
+                  </div>
+                  <div class="pt-5">
+                    <dt class="font-medium">Força e hipertrofia</dt>
+                    <dd class="mt-1 leading-relaxed">
+                      Periodização para ganho de massa muscular e força, com a
+                      evolução medida a cada ciclo.
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção de Depoimentos -->
+      <section id="depoimentos" class="sec bg-surface">
+        <div class="wrap">
+          <div
+            class="flex flex-col md:flex-row md:items-end justify-between gap-6"
+          >
+            <div>
+              <h2 class="h2">Depoimentos de alunos e famílias</h2>
+              <p class="lead mt-4 max-w-[52ch]">
+                Enviados por alunos e responsáveis e publicados depois de
+                revisados pela Lilian.
+              </p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button
+                type="button"
+                onclick="abrirModalDepoimento()"
+                class="btn btn--secondary"
               >
-            </div>
-            <p class="text-xs text-slate-400 mb-6 flex items-center gap-1.5">
-              <i class="fa-solid fa-water text-brand"></i> Aulas na piscina do
-              seu condomínio, residência ou clube.
-            </p>
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-semibold text-brand-light">
-                  Iniciação & Baixo Rendimento
-                </h4>
-                <p class="text-sm text-slate-400 mt-1">
-                  Adaptação ao meio aquático para todas as idades (crianças e
-                  adultos). Foco em saúde, segurança, superação do medo e
-                  qualidade de vida.
-                </p>
-              </div>
-              <div class="h-px w-full bg-slate-700"></div>
-              <div>
-                <h4 class="font-semibold text-brand-light">
-                  Performance & Alto Rendimento
-                </h4>
-                <p class="text-sm text-slate-400 mt-1">
-                  Aprimoramento técnico dos 4 nados, correção de biomecânica e
-                  planilhas de condicionamento para competidores e atletas
-                  amadores.
-                </p>
+                Enviar depoimento
+              </button>
+              <div id="navDepoimentos" class="hidden items-center gap-2">
+                <button
+                  id="btnPrevDepoimento"
+                  type="button"
+                  onclick="rolarDepoimentos(-1)"
+                  aria-label="Depoimentos anteriores"
+                  class="btn btn--secondary w-12 px-0"
+                >
+                  <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                </button>
+                <button
+                  id="btnNextDepoimento"
+                  type="button"
+                  onclick="rolarDepoimentos(1)"
+                  aria-label="Próximos depoimentos"
+                  class="btn btn--secondary w-12 px-0"
+                >
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
               </div>
             </div>
           </div>
 
-          <div
-            class="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 hover:border-brand/50 transition-colors group"
-          >
+          <div class="relative mt-12">
             <div
-              class="w-14 h-14 bg-slate-700 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand transition-colors"
+              id="listaDepoimentos"
+              class="flex overflow-x-auto gap-6 scroll-smooth snap-x snap-mandatory pb-4"
             >
-              <i
-                class="fa-solid fa-dumbbell text-2xl text-brand group-hover:text-slate-900"
-              ></i>
-            </div>
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="text-2xl font-bold text-white">
-                Musculação & Academia
-              </h3>
-              <span
-                class="text-xs bg-slate-700 text-brand-light font-semibold px-2.5 py-1 rounded-md"
-                >Santos & São Vicente</span
+              <p
+                class="text-muted w-full py-10"
+                id="msgCarregandoDepoimentos"
               >
-            </div>
-            <p class="text-xs text-slate-400 mb-6 flex items-center gap-1.5">
-              <i class="fa-solid fa-dumbbell text-brand"></i> Treinos na
-              academia do seu condomínio ou na academia de sua preferência (ou
-              que você já faça parte).
-            </p>
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-semibold text-brand-light">
-                  Condicionamento & Emagrecimento
-                </h4>
-                <p class="text-sm text-slate-400 mt-1">
-                  Treinos desenhados para queima de gordura, fortalecimento
-                  articular e melhoria da disposição diária. O foco é a sua
-                  saúde e longevidade.
-                </p>
-              </div>
-              <div class="h-px w-full bg-slate-700"></div>
-              <div>
-                <h4 class="font-semibold text-brand-light">
-                  Força & Hipertrofia
-                </h4>
-                <p class="text-sm text-slate-400 mt-1">
-                  Periodização avançada para ganho de massa muscular, aumento de
-                  força e superação de platôs com métricas exatas de evolução.
-                </p>
-              </div>
+                Carregando depoimentos…
+              </p>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Sobre Mim -->
-    <section id="sobre" class="py-24 bg-slate-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-          <div>
+          <div id="containerCarregarMais" class="mt-6 hidden">
+            <button
+              type="button"
+              onclick="carregarMaisDepoimentos()"
+              class="btn btn--secondary"
+            >
+              Ver mais depoimentos
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sobre Mim -->
+      <section id="sobre" class="sec">
+        <div class="wrap grid lg:grid-cols-12 gap-10 lg:gap-6">
+          <div class="lg:col-span-5">
             <div
-              class="img-protected-container relative rounded-2xl overflow-hidden aspect-[3/4] w-full max-w-md mx-auto shadow-xl border border-slate-600 transition-transform hover:scale-[1.02] duration-300"
+              class="img-protected-container relative overflow-hidden rounded-[20px] bg-surface aspect-[3/4] max-w-[520px]"
             >
               <img
                 src="./assets/foto-sobre-mim.jpeg"
                 alt="Lilian Moreira - Treinadora"
-                class="w-full h-full object-cover pointer-events-none select-none"
+                class="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+                loading="lazy"
                 draggable="false"
               />
               <div
@@ -588,302 +660,441 @@
             </div>
           </div>
 
-          <div>
-            <h2 class="text-3xl font-bold text-white mb-6">
-              Lilian Moreira Farias
-            </h2>
-            <p class="text-slate-300 mb-6 leading-relaxed">
-              Sou especialista em extrair o melhor de você, seja dentro da água
-              ou na musculação. Com foco em
-              <span class="text-brand font-semibold"
-                >Coaching, Comunicação e Fisiologia do exercício</span
-              >, desenvolvo metodologias que respeitam suas limitações e
-              maximizam seus potenciais.
+          <div class="lg:col-span-6 lg:col-start-7">
+            <h2 class="h2">Lilian Moreira Farias</h2>
+            <p class="lead mt-5 max-w-[56ch]">
+              Profissional de educação física formada pela Unisanta, com foco
+              em fisiologia do exercício, comunicação e coaching. Monto cada
+              treino a partir das suas limitações e do seu objetivo, dentro da
+              água ou na musculação.
             </p>
 
             <h3
-              class="text-xl font-bold text-white mb-4 mt-8 border-b border-slate-700 pb-2"
+              class="mt-12 font-sans text-[13px] font-medium tracking-normal text-muted"
             >
-              Trajetória e Experiência
+              Trajetória
             </h3>
-            <div class="space-y-6">
-              <div class="relative pl-6 border-l-2 border-brand">
-                <h4 class="font-bold text-slate-200">
-                  Treinadora de Esportes (Polo Aquático)
-                </h4>
-                <p class="text-sm text-brand-light">
-                  Sesi São Paulo (2024 - 2025) & ADABS (2020 - 2023 | 2026)
-                </p>
-                <p class="text-sm text-slate-400 mt-1">
-                  Desenvolvimento técnico e tático para crianças e adolescentes,
-                  atuando na preparação para campeonatos regionais e
-                  internacionais.
-                </p>
-              </div>
-              <div class="relative pl-6 border-l-2 border-brand">
-                <h4 class="font-bold text-slate-200">Instrutora de Natação</h4>
-                <p class="text-sm text-brand-light">
-                  Ultra Academia (2022 - 2024)
-                </p>
-                <p class="text-sm text-slate-400 mt-1">
-                  Aulas de natação para todas as idades (de bebês a adultos),
-                  focando em adaptação aquática, técnica dos 4 nados e
-                  autonomia.
-                </p>
-              </div>
-              <div class="relative pl-6 border-l-2 border-slate-600">
-                <h4 class="font-bold text-slate-200">Início de Carreira</h4>
-                <p class="text-sm text-brand-light">
-                  Cia Fitness Academia (2019 - 2020)
-                </p>
-              </div>
-            </div>
-
-            <h3
-              class="text-xl font-bold text-white mb-4 mt-8 border-b border-slate-700 pb-2"
-            >
-              Formação & Credenciais
-            </h3>
-            <div class="space-y-3">
+            <dl class="mt-3 border-t border-line">
               <div
-                class="bg-slate-900/50 p-4 rounded-lg border border-slate-700"
+                class="grid sm:grid-cols-[140px_1fr] gap-1 sm:gap-6 py-5 border-b border-line"
               >
-                <div class="flex items-start gap-4">
-                  <div class="mt-1">
-                    <i
-                      class="fa-solid fa-graduation-cap text-brand text-xl"
-                    ></i>
-                  </div>
-                  <div>
-                    <h4 class="font-bold text-slate-200">
-                      Bacharelado e Licenciatura em Saúde e Educação Física
-                    </h4>
-                    <p class="text-sm text-slate-400">
-                      Universidade Santa Cecília - Unisanta (2018 - 2022)
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="bg-slate-900/50 p-4 rounded-lg border border-brand/30 flex items-center justify-between"
-              >
-                <div class="flex items-center gap-4">
-                  <div
-                    class="w-10 h-10 rounded-lg bg-brand/10 border border-brand/20 flex items-center justify-center shrink-0"
+                <dt class="text-muted">2020 – 2026</dt>
+                <dd>
+                  <span class="font-medium">Treinadora de polo aquático</span>
+                  <span class="block text-muted"
+                    >Sesi São Paulo (2024 – 2025) e ADABS (2020 – 2023 |
+                    2026)</span
                   >
-                    <i class="fa-solid fa-id-card text-brand text-lg"></i>
-                  </div>
-                  <div>
-                    <h4 class="font-bold text-slate-200 text-sm">
-                      Registro Profissional CREF
-                    </h4>
-                    <p class="text-xs text-brand-light font-medium">
-                      CREF4/SP • 177118-G/SP
-                    </p>
-                  </div>
-                </div>
-                <span
-                  class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-brand/10 text-brand text-xs font-semibold border border-brand/20"
-                >
-                  <i class="fa-solid fa-circle-check text-[10px]"></i>
-                  Habilitada
-                </span>
+                  <span class="block mt-2 leading-relaxed"
+                    >Desenvolvimento técnico e tático de crianças e
+                    adolescentes para campeonatos regionais e
+                    internacionais.</span
+                  >
+                </dd>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+              <div
+                class="grid sm:grid-cols-[140px_1fr] gap-1 sm:gap-6 py-5 border-b border-line"
+              >
+                <dt class="text-muted">2022 – 2024</dt>
+                <dd>
+                  <span class="font-medium">Instrutora de natação</span>
+                  <span class="block text-muted">Ultra Academia</span>
+                  <span class="block mt-2 leading-relaxed"
+                    >Aulas para todas as idades, de bebês a adultos: adaptação
+                    aquática, técnica dos 4 nados e autonomia.</span
+                  >
+                </dd>
+              </div>
+              <div
+                class="grid sm:grid-cols-[140px_1fr] gap-1 sm:gap-6 py-5 border-b border-line"
+              >
+                <dt class="text-muted">2019 – 2020</dt>
+                <dd>
+                  <span class="font-medium">Início de carreira</span>
+                  <span class="block text-muted">Cia Fitness Academia</span>
+                </dd>
+              </div>
+            </dl>
 
-    <!-- Seção de Depoimentos -->
-    <section
-      id="depoimentos"
-      class="py-24 bg-slate-800 border-t border-slate-700"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          class="flex flex-col sm:flex-row justify-between items-center mb-12 gap-6"
-        >
-          <div class="text-center sm:text-left">
-            <h2 class="text-3xl font-bold text-white mb-3">
-              O que dizem sobre o treino
-            </h2>
-            <div class="w-20 h-1 bg-brand mx-auto sm:mx-0 rounded"></div>
-          </div>
-          <div class="flex items-center gap-3">
-            <button
-              onclick="abrirModalDepoimento()"
-              class="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 text-white font-bold text-sm rounded-lg border border-slate-600 transition-all flex items-center shadow-lg"
+            <h3
+              class="mt-12 font-sans text-[13px] font-medium tracking-normal text-muted"
             >
-              <i class="fa-solid fa-comment-medical mr-2 text-brand"></i> Deixar
-              meu depoimento
-            </button>
-            <div id="navDepoimentos" class="hidden items-center gap-2">
-              <button
-                id="btnPrevDepoimento"
-                onclick="rolarDepoimentos(-1)"
-                aria-label="Depoimentos anteriores"
-                class="w-10 h-10 rounded-full bg-slate-900/80 hover:bg-slate-900 border border-slate-700 hover:border-brand text-slate-300 hover:text-white flex items-center justify-center transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-md"
+              Formação e registro
+            </h3>
+            <dl class="mt-3 border-t border-line">
+              <div
+                class="grid sm:grid-cols-[140px_1fr] gap-1 sm:gap-6 py-5 border-b border-line"
               >
-                <i class="fa-solid fa-chevron-left text-sm"></i>
-              </button>
-              <button
-                id="btnNextDepoimento"
-                onclick="rolarDepoimentos(1)"
-                aria-label="Próximos depoimentos"
-                class="w-10 h-10 rounded-full bg-slate-900/80 hover:bg-slate-900 border border-slate-700 hover:border-brand text-slate-300 hover:text-white flex items-center justify-center transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-md"
+                <dt class="text-muted">2018 – 2022</dt>
+                <dd>
+                  <span class="font-medium"
+                    >Bacharelado e Licenciatura em Saúde e Educação Física</span
+                  >
+                  <span class="block text-muted"
+                    >Universidade Santa Cecília (Unisanta)</span
+                  >
+                </dd>
+              </div>
+              <div
+                class="grid sm:grid-cols-[140px_1fr] gap-1 sm:gap-6 py-5 border-b border-line"
               >
-                <i class="fa-solid fa-chevron-right text-sm"></i>
-              </button>
-            </div>
+                <dt class="text-muted">Registro</dt>
+                <dd>
+                  <span class="font-medium">CREF4/SP 177118-G/SP</span>
+                  <span class="block text-muted"
+                    >Registro profissional ativo no Conselho Regional de
+                    Educação Física</span
+                  >
+                </dd>
+              </div>
+            </dl>
           </div>
         </div>
+      </section>
 
-        <div class="relative">
+      <!-- Comece Agora -->
+      <section id="comeceagora" class="sec">
+        <div class="wrap">
+          <h2 class="h2 max-w-[22ch]">Três passos até a primeira aula</h2>
+          <p class="lead mt-5 max-w-[56ch]">
+            O preenchimento da anamnese e histórico de treinamento é
+            obrigatório: com ele a Lilian conhece sua saúde, seus objetivos e
+            sua rotina antes da primeira aula.
+          </p>
+
+          <ol class="mt-12 grid md:grid-cols-3 gap-6">
+            <li class="card flex flex-col">
+              <span class="font-display text-[44px] leading-none text-brand"
+                >1</span
+              >
+              <h3 class="mt-10 text-[24px] leading-tight">
+                Conversa pelo WhatsApp
+              </h3>
+              <p class="mt-3 leading-relaxed">
+                Combinamos objetivo, local e horários disponíveis em Santos ou
+                São Vicente.
+              </p>
+              <a
+                href="https://wa.me/5513996660817?text=Ol%C3%A1,%20vim%20atrav%C3%A9s%20do%20seu%20site%20para%20bater%20um%20papo%20sobre%20treinamento%20particular."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link mt-auto pt-8 font-medium self-start"
+                >Enviar mensagem</a
+              >
+            </li>
+            <li class="card flex flex-col">
+              <span class="font-display text-[44px] leading-none text-brand"
+                >2</span
+              >
+              <h3 class="mt-10 text-[24px] leading-tight">
+                Anamnese e histórico de treino
+              </h3>
+              <p class="mt-3 leading-relaxed">
+                Histórico de saúde, objetivos (emagrecimento, hipertrofia,
+                saúde) e rotina. A senha de acesso chega pelo WhatsApp.
+              </p>
+              <div class="mt-auto pt-8">
+                <button
+                  type="button"
+                  onclick="abrirModalSenha()"
+                  class="btn btn--secondary"
+                >
+                  <i class="fa-solid fa-lock text-sm" aria-hidden="true"></i>
+                  Acessar formulário
+                </button>
+              </div>
+            </li>
+            <li class="card flex flex-col">
+              <span class="font-display text-[44px] leading-none text-brand"
+                >3</span
+              >
+              <h3 class="mt-10 text-[24px] leading-tight">Primeira aula</h3>
+              <p class="mt-3 leading-relaxed">
+                O treino começa ajustado ao que você respondeu e é revisto
+                conforme sua evolução.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Seção Instagram -->
+      <section id="instagram" class="sec">
+        <div class="wrap">
           <div
-            id="listaDepoimentos"
-            class="flex overflow-x-auto gap-6 scroll-smooth snap-x snap-mandatory py-2 pb-4"
+            class="flex flex-col md:flex-row md:items-end justify-between gap-6"
           >
-            <p
-              class="text-slate-400 text-sm w-full text-center py-10"
-              id="msgCarregandoDepoimentos"
+            <div>
+              <h2 class="h2">Aulas e treinos no Instagram</h2>
+              <p class="lead mt-4 text-muted" id="statsPerfilInsta">
+                Publicações recentes de @lili.wp.
+              </p>
+            </div>
+            <a
+              href="https://www.instagram.com/lili.wp"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--secondary self-start md:self-auto"
             >
-              <i class="fa-solid fa-spinner fa-spin mr-2"></i> Carregando
-              depoimentos...
+              <i class="fa-brands fa-instagram text-lg" aria-hidden="true"></i>
+              Abrir perfil no Instagram
+            </a>
+          </div>
+
+          <div
+            id="gridInstagram"
+            class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6"
+          >
+            <a
+              href="https://www.instagram.com/p/DUG6lgEkcrC/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="zoom aspect-square rounded-[20px] bg-surface"
+              aria-label="Abrir publicação no Instagram"
+            >
+              <img
+                src="https://behold.pictures/eyJ1IjoieXNxZFFJVkJWUVVFVlh3cDZheEhUOG80M3VuMiIsImYiOiJJanJZMFZpVDNCVjdHbmdrUzlkMyIsInAiOiIxODE1MzEwNjM3NTQ0MjA5NSIsImgiOiJ6ZWo1a20ifQ.jpg?class=squareMedium"
+                alt="Projeto social aulas - Lilian Moreira"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                draggable="false"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com/p/DJQAOLIxGX8/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="zoom aspect-square rounded-[20px] bg-surface"
+              aria-label="Abrir publicação no Instagram"
+            >
+              <img
+                src="https://behold.pictures/eyJ1IjoieXNxZFFJVkJWUVVFVlh3cDZheEhUOG80M3VuMiIsImYiOiJJanJZMFZpVDNCVjdHbmdrUzlkMyIsInAiOiIxODI5Mjg2MzQ0MjIxNjI5NCIsImgiOiIxbnY3Z3g5In0.jpg?class=squareMedium"
+                alt="Treinos intensos polo aquático - Lilian Moreira"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                draggable="false"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com/p/DFwO1tkxYe1/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="zoom aspect-square rounded-[20px] bg-surface"
+              aria-label="Abrir publicação no Instagram"
+            >
+              <img
+                src="https://behold.pictures/eyJ1IjoieXNxZFFJVkJWUVVFVlh3cDZheEhUOG80M3VuMiIsImYiOiJJanJZMFZpVDNCVjdHbmdrUzlkMyIsInAiOiIxODA1NjkxNTk3ODA1MTMzMSIsImgiOiJlbTh6aGcifQ.jpg?class=squareMedium"
+                alt="Pré-temporada natação e polo - Lilian Moreira"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                draggable="false"
+              />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ / Perguntas Frequentes -->
+      <section id="faq" class="sec bg-surface">
+        <div class="wrap grid lg:grid-cols-12 gap-10 lg:gap-6">
+          <div class="lg:col-span-4">
+            <h2 class="h2">Perguntas frequentes</h2>
+            <p class="lead mt-5 max-w-[40ch]">
+              Locais de atendimento em Santos e São Vicente, formato das aulas
+              particulares e agendamento.
+            </p>
+            <p class="mt-8">
+              Outra dúvida?
+              <a
+                href="https://wa.me/5513996660817?text=Ol%C3%A1,%20estou%20com%20uma%20d%C3%BAvida%20sobre%20as%20aulas%20de%20personal%20trainer."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link font-medium"
+                >Enviar pergunta pelo WhatsApp</a
+              >
             </p>
           </div>
+
+          <div class="lg:col-span-8 border-t border-line">
+            <!-- Pergunta 1 -->
+            <details name="faq-accordion" open class="border-b border-line">
+              <summary
+                class="flex justify-between items-center gap-6 py-6 cursor-pointer list-none select-none text-[19px] font-medium hover:text-brand transition-colors [&::-webkit-details-marker]:hidden"
+              >
+                <span
+                  >Onde são realizadas as aulas de personal trainer e
+                  natação?</span
+                >
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pb-7 pr-12 text-[17px] leading-relaxed max-w-[62ch]">
+                As aulas presenciais são realizadas exclusivamente nas cidades
+                de <strong class="font-medium">Santos</strong> e
+                <strong class="font-medium">São Vicente</strong>. Os
+                atendimentos acontecem na piscina ou academia do seu condomínio
+                residencial, em sua casa ou na academia de sua preferência (ou
+                que você já faça parte) na Baixada Santista.
+              </div>
+            </details>
+
+            <!-- Pergunta 2 -->
+            <details name="faq-accordion" class="border-b border-line">
+              <summary
+                class="flex justify-between items-center gap-6 py-6 cursor-pointer list-none select-none text-[19px] font-medium hover:text-brand transition-colors [&::-webkit-details-marker]:hidden"
+              >
+                <span>Como funcionam as aulas particulares de natação?</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pb-7 pr-12 text-[17px] leading-relaxed max-w-[62ch]">
+                As aulas são 100% individualizadas e atendem desde alunos com
+                medo de água ou sem experiência (iniciação e adaptação
+                aquática) até nadadores que buscam aprimoramento técnico dos 4
+                nados (crawl, costas, peito e borboleta) para condicionamento
+                físico ou competições.
+              </div>
+            </details>
+
+            <!-- Pergunta 3 -->
+            <details name="faq-accordion" class="border-b border-line">
+              <summary
+                class="flex justify-between items-center gap-6 py-6 cursor-pointer list-none select-none text-[19px] font-medium hover:text-brand transition-colors [&::-webkit-details-marker]:hidden"
+              >
+                <span>As aulas atendem crianças, adultos e idosos?</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pb-7 pr-12 text-[17px] leading-relaxed max-w-[62ch]">
+                Sim. Como profissional graduada em Educação Física pela
+                <strong class="font-medium">Unisanta</strong> e com experiência
+                técnica no <strong class="font-medium">Sesi-SP</strong>, a
+                treinadora Lilian atende bebês, crianças, adultos e idosos,
+                ajustando o volume e a intensidade metodicamente ao perfil e
+                histórico de saúde de cada aluno.
+              </div>
+            </details>
+
+            <!-- Pergunta 4 -->
+            <details name="faq-accordion" class="border-b border-line">
+              <summary
+                class="flex justify-between items-center gap-6 py-6 cursor-pointer list-none select-none text-[19px] font-medium hover:text-brand transition-colors [&::-webkit-details-marker]:hidden"
+              >
+                <span
+                  >Preciso ter piscina ou academia no prédio para treinar?</span
+                >
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pb-7 pr-12 text-[17px] leading-relaxed max-w-[62ch]">
+                Para natação, as aulas são ministradas na piscina do seu próprio
+                condomínio ou clube em Santos e São Vicente. Para musculação e
+                funcional, os treinos podem ser realizados na academia do seu
+                prédio ou na academia de sua preferência (ou que você já faça
+                parte) na região.
+              </div>
+            </details>
+
+            <!-- Pergunta 5 -->
+            <details name="faq-accordion" class="border-b border-line">
+              <summary
+                class="flex justify-between items-center gap-6 py-6 cursor-pointer list-none select-none text-[19px] font-medium hover:text-brand transition-colors [&::-webkit-details-marker]:hidden"
+              >
+                <span>Como agendar uma avaliação inicial com a Lilian?</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pb-7 pr-12 text-[17px] leading-relaxed max-w-[62ch]">
+                Basta clicar em qualquer botão de contato para falar
+                diretamente com a Lilian no WhatsApp. Alinhamos objetivos,
+                locais e horários disponíveis antes da primeira aula.
+              </div>
+            </details>
+          </div>
         </div>
+      </section>
 
-        <div id="containerCarregarMais" class="mt-6 text-center hidden">
-          <button
-            onclick="carregarMaisDepoimentos()"
-            class="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-900/80 hover:bg-slate-900 border border-slate-700 hover:border-brand text-slate-300 hover:text-white rounded-xl text-xs font-bold transition-all shadow-md"
-          >
-            <i class="fa-solid fa-plus text-brand"></i> Ver mais depoimentos
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Comece Agora -->
-    <section
-      id="comeceagora"
-      class="py-24 bg-brand text-slate-900 relative overflow-hidden"
-    >
-      <div
-        class="absolute inset-0 opacity-10 pointer-events-none"
-        style="
-          background-image: radial-gradient(#000 2px, transparent 2px);
-          background-size: 30px 30px;
-        "
-      ></div>
-
-      <div
-        class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
-      >
-        <h2 class="text-3xl md:text-5xl font-black mb-6">
-          O Primeiro Passo para sua Evolução
-        </h2>
-        <p class="text-lg md:text-xl font-medium mb-10 opacity-90">
-          Todo treinamento de sucesso começa com planejamento. O preenchimento
-          da <strong>Anamnese e Histórico de Treinamento</strong> é obrigatório
-          para que eu entenda suas necessidades, saúde e objetivos antes da
-          nossa primeira aula.
-        </p>
-
+      <!-- Fechamento (close-type) -->
+      <section id="agendar" class="sec">
         <div
-          class="bg-white/20 p-6 rounded-2xl backdrop-blur-sm border border-white/30 mb-8 inline-block"
+          class="wrap flex flex-col lg:flex-row lg:items-end justify-between gap-10"
         >
-          <ul class="text-left space-y-3 font-medium">
-            <li>
-              <i class="fa-solid fa-check text-slate-900 mr-2"></i> Avaliação do
-              histórico de saúde
-            </li>
-            <li>
-              <i class="fa-solid fa-check text-slate-900 mr-2"></i> Alinhamento
-              de objetivos (emagrecimento, hipertrofia, saúde)
-            </li>
-            <li>
-              <i class="fa-solid fa-check text-slate-900 mr-2"></i> Avaliação de
-              rotina e disponibilidade
-            </li>
-          </ul>
-        </div>
-
-        <div>
+          <div>
+            <h2 class="h2 max-w-[20ch]">
+              Avaliação inicial em Santos ou São Vicente
+            </h2>
+            <p class="lead mt-5 max-w-[48ch]">
+              Conte seu objetivo pelo WhatsApp e combine local e horário da
+              primeira aula.
+            </p>
+          </div>
           <a
-            href="javascript:void(0)"
-            onclick="abrirModalSenha()"
-            class="inline-block px-10 py-5 bg-slate-900 text-brand-light hover:text-white font-black text-lg rounded-xl shadow-2xl transition-all transform hover:-translate-y-2 hover:shadow-slate-900/50"
+            href="https://wa.me/5513996660817?text=Ol%C3%A1,%20vim%20atrav%C3%A9s%20do%20seu%20site%20para%20bater%20um%20papo%20sobre%20treinamento%20particular."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn--primary btn--xl self-start lg:self-auto"
           >
-            Acessar Formulário <i class="fa-solid fa-lock ml-2"></i>
+            <i class="fa-brands fa-whatsapp text-xl" aria-hidden="true"></i>
+            Agendar avaliação
           </a>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <!-- Modal de Senha -->
     <div
       id="senhaModal"
-      class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4 transition-opacity"
+      class="hidden fixed inset-0 bg-neutral-950/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
     >
       <div
-        class="bg-slate-900 border border-slate-700 rounded-2xl p-8 max-w-sm w-full shadow-2xl relative transform transition-all text-center"
+        class="bg-white rounded-[20px] p-8 max-w-sm w-full relative"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tituloSenha"
       >
         <button
+          type="button"
           onclick="fecharModalSenha()"
-          class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
+          class="absolute top-4 right-4 w-10 h-10 rounded-lg text-muted hover:text-ink hover:bg-surface transition-colors"
+          aria-label="Fechar"
         >
-          <i class="fa-solid fa-xmark text-xl"></i>
+          <i class="fa-solid fa-xmark text-lg" aria-hidden="true"></i>
         </button>
 
-        <div
-          class="w-12 h-12 bg-brand/20 rounded-full flex items-center justify-center mx-auto mb-4"
-        >
-          <i class="fa-solid fa-lock text-brand text-xl"></i>
-        </div>
-        <h3 class="text-2xl font-bold text-white mb-2">Acesso Restrito</h3>
-        <p class="text-sm text-slate-400 mb-6">
-          Insira a senha fornecida pela treinadora Lilian para iniciar sua
-          avaliação.
+        <h3 id="tituloSenha" class="text-[26px] leading-tight pr-10">
+          Acesso à anamnese
+        </h3>
+        <p class="mt-2 text-muted">
+          Digite a senha enviada pela Lilian para iniciar sua avaliação.
         </p>
 
-        <form id="formSenha" class="space-y-4 text-left">
-          <div>
-            <input
-              type="password"
-              id="senhaInput"
-              required
-              placeholder="Digite a senha..."
-              class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors text-center font-mono tracking-widest text-lg"
-            />
-            <p
-              id="erroSenha"
-              class="hidden text-red-400 text-xs mt-2 text-center"
-            >
-              Senha incorreta. Tente novamente.
-            </p>
-          </div>
+        <form id="formSenha" class="mt-6">
+          <label for="senhaInput" class="block text-[13px] font-medium text-muted mb-2"
+            >Senha</label
+          >
+          <input
+            type="password"
+            id="senhaInput"
+            required
+            class="w-full h-12 px-4 bg-white border border-line rounded-lg text-base focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors font-mono tracking-widest"
+          />
+          <p id="erroSenha" class="hidden text-red-700 text-sm mt-2">
+            Senha incorreta. Tente novamente.
+          </p>
           <button
             type="submit"
             id="btnSubmitSenha"
-            class="w-full py-4 bg-brand hover:bg-brand-light text-slate-900 font-bold rounded-lg shadow-lg shadow-brand/30 transition-all mt-4"
+            class="btn btn--primary w-full mt-6"
           >
-            Liberar Acesso <i class="fa-solid fa-arrow-right ml-2"></i>
+            Acessar formulário
+            <i class="fa-solid fa-arrow-right text-sm" aria-hidden="true"></i>
           </button>
         </form>
 
-        <div class="mt-6 pt-6 border-t border-slate-800">
-          <p class="text-xs text-slate-400 mb-3">Ainda não tem a senha?</p>
+        <div class="mt-6 pt-6 border-t border-line">
+          <p class="text-sm text-muted">Ainda não tem a senha?</p>
           <a
             href="https://wa.me/5513996660817?text=Ol%C3%A1,%20estou%20no%20seu%20site%20e%20gostaria%20de%20solicitar%20a%20senha%20para%20preencher%20a%20anamnese."
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm font-medium text-white hover:bg-slate-700 hover:border-slate-600 transition-all"
+            class="link font-medium inline-block mt-1"
           >
-            <i class="fa-brands fa-whatsapp text-brand mr-2"></i> Solicitar
-            Senha
+            Pedir senha pelo WhatsApp
           </a>
         </div>
       </div>
@@ -892,33 +1103,37 @@
     <!-- Modal de Depoimento -->
     <div
       id="depoimentoModal"
-      class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4 transition-opacity"
+      class="hidden fixed inset-0 bg-neutral-950/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
     >
       <div
-        class="bg-slate-900 border border-slate-700 rounded-2xl p-8 max-w-md w-full shadow-2xl relative transform transition-all text-center"
+        class="bg-white rounded-[20px] p-6 sm:p-8 max-w-md w-full relative max-h-[calc(100svh-32px)] overflow-y-auto"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tituloDepoimento"
       >
         <button
+          type="button"
           onclick="fecharModalDepoimento()"
-          class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
+          class="absolute top-4 right-4 w-10 h-10 rounded-lg text-muted hover:text-ink hover:bg-surface transition-colors"
+          aria-label="Fechar"
         >
-          <i class="fa-solid fa-xmark text-xl"></i>
+          <i class="fa-solid fa-xmark text-lg" aria-hidden="true"></i>
         </button>
 
-        <h3 class="text-2xl font-bold text-white mb-2">Seu Depoimento</h3>
-        <p class="text-sm text-slate-400 mb-6">
-          Conte como tem sido sua evolução!
-        </p>
+        <h3 id="tituloDepoimento" class="text-[26px] leading-tight pr-10">
+          Seu depoimento
+        </h3>
+        <p class="mt-2 text-muted">Conte como tem sido sua evolução.</p>
 
-        <form id="formDepoimento" class="space-y-4 text-left">
+        <form id="formDepoimento" class="mt-6 space-y-5">
           <div>
-            <div class="flex items-center justify-between mb-1.5">
+            <div class="flex items-center justify-between mb-2">
               <label
-                class="block text-xs font-semibold text-slate-300 uppercase tracking-wider"
+                for="nomeDepoimento"
+                class="block text-[13px] font-medium text-muted"
                 >Nome</label
               >
-              <span class="text-[11px] text-slate-500 font-normal"
-                >máx. 30 letras</span
-              >
+              <span class="text-[13px] text-muted">máx. 30 letras</span>
             </div>
             <input
               type="text"
@@ -926,18 +1141,17 @@
               required
               maxlength="30"
               placeholder="Como quer ser chamado?"
-              class="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors text-sm"
+              class="w-full h-12 px-4 bg-white border border-line rounded-lg text-base placeholder-neutral-400 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors"
             />
           </div>
 
           <div>
-            <label
-              class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5"
-              >Você é ou foi:</label
+            <span class="block text-[13px] font-medium text-muted mb-2"
+              >Você é ou foi</span
             >
             <div class="grid grid-cols-2 gap-2">
               <label
-                class="relative flex items-center justify-center gap-2 p-2.5 bg-slate-800 border border-slate-700 rounded-lg cursor-pointer text-xs font-medium text-slate-300 hover:border-slate-600 has-[:checked]:border-brand has-[:checked]:bg-brand/10 has-[:checked]:text-brand has-[:checked]:font-bold transition-all"
+                class="flex items-center justify-center h-12 px-3 border border-line rounded-lg cursor-pointer text-[15px] hover:border-neutral-400 has-[:checked]:border-brand has-[:checked]:bg-brand/5 has-[:checked]:text-brand has-[:checked]:font-medium transition-colors"
               >
                 <input
                   type="radio"
@@ -946,11 +1160,10 @@
                   checked
                   class="sr-only"
                 />
-                <i class="fa-solid fa-graduation-cap text-amber-400"></i>
                 Aluno(a)
               </label>
               <label
-                class="relative flex items-center justify-center gap-2 p-2.5 bg-slate-800 border border-slate-700 rounded-lg cursor-pointer text-xs font-medium text-slate-300 hover:border-slate-600 has-[:checked]:border-brand has-[:checked]:bg-brand/10 has-[:checked]:text-brand has-[:checked]:font-bold transition-all"
+                class="flex items-center justify-center h-12 px-3 border border-line rounded-lg cursor-pointer text-[15px] hover:border-neutral-400 has-[:checked]:border-brand has-[:checked]:bg-brand/5 has-[:checked]:text-brand has-[:checked]:font-medium transition-colors"
               >
                 <input
                   type="radio"
@@ -958,26 +1171,25 @@
                   value="Pai, Mãe ou Responsável"
                   class="sr-only"
                 />
-                <i class="fa-solid fa-user-group text-amber-400"></i>
                 Pai/Mãe/Resp.
               </label>
             </div>
           </div>
 
           <div>
-            <div class="flex items-center justify-between mb-1.5">
+            <div class="flex items-center justify-between mb-2">
               <label
-                class="block text-xs font-semibold text-slate-300 uppercase tracking-wider"
-                >Rede Social</label
+                for="perfilSocialDepoimento"
+                class="block text-[13px] font-medium text-muted"
+                >Rede social</label
               >
-              <span class="text-[11px] text-slate-500 font-normal"
-                >Opcional</span
-              >
+              <span class="text-[13px] text-muted">Opcional</span>
             </div>
             <div class="flex gap-2">
               <select
                 id="redeSocialDepoimento"
-                class="w-36 px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-xs font-medium focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors cursor-pointer"
+                aria-label="Rede social"
+                class="w-36 h-12 px-3 bg-white border border-line rounded-lg text-[15px] focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors cursor-pointer"
               >
                 <option value="instagram">Instagram</option>
                 <option value="facebook">Facebook</option>
@@ -985,7 +1197,7 @@
               <div class="relative flex-1">
                 <span
                   id="prefixoRedeSocial"
-                  class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-mono font-semibold select-none"
+                  class="absolute left-3 top-1/2 -translate-y-1/2 text-muted text-sm font-mono select-none"
                   >@</span
                 >
                 <input
@@ -993,519 +1205,82 @@
                   id="perfilSocialDepoimento"
                   maxlength="30"
                   placeholder="seu.usuario"
-                  class="w-full pl-8 pr-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 text-xs focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors font-mono"
+                  class="w-full h-12 pl-9 pr-3 bg-white border border-line rounded-lg text-base placeholder-neutral-400 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors font-mono"
                 />
               </div>
             </div>
-            <p
-              class="text-[11px] text-slate-400 mt-1 flex items-center gap-1.5"
-            >
-              <i class="fa-solid fa-circle-check text-brand text-[10px]"></i>
-              Passa mais credibilidade e comprova que é uma pessoa real.
+            <p class="text-[13px] text-muted mt-2">
+              Mostra que o depoimento é de uma pessoa real.
             </p>
           </div>
 
           <div>
-            <div class="flex items-center justify-between mb-1.5">
+            <div class="flex items-center justify-between mb-2">
               <label
-                class="block text-xs font-semibold text-slate-300 uppercase tracking-wider"
+                for="textoDepoimento"
+                class="block text-[13px] font-medium text-muted"
                 >Mensagem</label
               >
-              <span
-                id="contadorTextoDepoimento"
-                class="text-[11px] text-slate-500 font-normal"
+              <span id="contadorTextoDepoimento" class="text-[13px] text-muted"
                 >0/300</span
               >
             </div>
             <textarea
               id="textoDepoimento"
               required
-              rows="3"
+              rows="4"
               maxlength="300"
-              placeholder="Conte como tem sido seus treinos ou a evolução dos seus filhos... (máx. 300 caracteres)"
-              class="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors text-sm resize-none"
+              placeholder="Conte como tem sido seus treinos ou a evolução dos seus filhos"
+              class="w-full px-4 py-3 bg-white border border-line rounded-lg text-base placeholder-neutral-400 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors resize-none"
             ></textarea>
           </div>
 
           <!-- Cloudflare Turnstile -->
           <div
-            class="cf-turnstile mt-4 flex justify-center"
+            class="cf-turnstile flex justify-center"
             data-sitekey="0x4AAAAAAFD8jSpDJzGLlYk0"
+            data-theme="light"
           ></div>
-          <p id="erroBot" class="hidden text-red-400 text-xs mt-1 text-center">
+          <p id="erroBot" class="hidden text-red-700 text-sm text-center">
             Por favor, complete a verificação de segurança.
           </p>
 
           <button
             type="submit"
             id="btnEnviarDepoimento"
-            class="w-full py-4 bg-brand hover:bg-brand-light text-slate-900 font-bold rounded-lg shadow-lg shadow-brand/30 transition-all mt-4 flex justify-center items-center"
+            class="btn btn--primary w-full"
           >
-            Enviar para Aprovação <i class="fa-solid fa-paper-plane ml-2"></i>
+            Enviar para aprovação
           </button>
         </form>
       </div>
     </div>
 
-    <!-- FAQ / Perguntas Frequentes -->
-    <section id="faq" class="py-24 bg-slate-800 border-t border-slate-700">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-14">
-          <span
-            class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-brand/10 text-brand font-semibold text-xs sm:text-sm mb-4 border border-brand/20"
-          >
-            <i class="fa-solid fa-circle-question"></i> Tire Suas Dúvidas
-          </span>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
-            Perguntas Frequentes
-          </h2>
-          <div class="w-20 h-1 bg-brand mx-auto rounded mb-4"></div>
-          <p class="text-slate-400 text-sm max-w-2xl mx-auto">
-            Respostas claras sobre locais de atendimento em Santos e São
-            Vicente, formato das aulas particulares e agendamento.
-          </p>
-        </div>
-
-        <div class="space-y-4">
-          <!-- Pergunta 1 -->
-          <details
-            name="faq-accordion"
-            open
-            class="group bg-slate-900/60 border border-slate-700/80 rounded-2xl p-5 md:p-6 transition-all duration-300 hover:border-brand/50 open:bg-slate-900 open:border-brand/60 open:shadow-lg open:shadow-brand/5"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none select-none font-semibold text-white text-base md:text-lg gap-4 group-hover:text-brand-light transition-colors [&::-webkit-details-marker]:hidden"
-            >
-              <span class="flex items-center gap-3">
-                <i
-                  class="fa-solid fa-location-dot text-brand text-sm shrink-0"
-                ></i>
-                <span
-                  >Onde são realizadas as aulas de personal trainer e
-                  natação?</span
-                >
-              </span>
-              <span
-                class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 group-hover:text-brand group-hover:border-brand/40 group-open:rotate-180 group-open:bg-brand group-open:text-slate-900 transition-all shrink-0"
-              >
-                <i
-                  class="fa-solid fa-chevron-down text-xs transition-transform duration-300"
-                ></i>
-              </span>
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-800 text-slate-300 text-sm md:text-base leading-relaxed pl-7"
-            >
-              As aulas presenciais são realizadas exclusivamente nas cidades de
-              <strong>Santos</strong> e <strong>São Vicente</strong>. Os
-              atendimentos acontecem na piscina ou academia do seu condomínio
-              residencial, em sua casa ou na academia de sua preferência (ou que
-              você já faça parte) na Baixada Santista.
-            </div>
-          </details>
-
-          <!-- Pergunta 2 -->
-          <details
-            name="faq-accordion"
-            class="group bg-slate-900/60 border border-slate-700/80 rounded-2xl p-5 md:p-6 transition-all duration-300 hover:border-brand/50 open:bg-slate-900 open:border-brand/60 open:shadow-lg open:shadow-brand/5"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none select-none font-semibold text-white text-base md:text-lg gap-4 group-hover:text-brand-light transition-colors [&::-webkit-details-marker]:hidden"
-            >
-              <span class="flex items-center gap-3">
-                <i
-                  class="fa-solid fa-person-swimming text-brand text-sm shrink-0"
-                ></i>
-                <span>Como funcionam as aulas particulares de natação?</span>
-              </span>
-              <span
-                class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 group-hover:text-brand group-hover:border-brand/40 group-open:rotate-180 group-open:bg-brand group-open:text-slate-900 transition-all shrink-0"
-              >
-                <i
-                  class="fa-solid fa-chevron-down text-xs transition-transform duration-300"
-                ></i>
-              </span>
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-800 text-slate-300 text-sm md:text-base leading-relaxed pl-7"
-            >
-              As aulas são 100% individualizadas e atendem desde alunos com medo
-              de água ou sem experiência (iniciação e adaptação aquática) até
-              nadadores que buscam aprimoramento técnico dos 4 nados (crawl,
-              costas, peito e borboleta) para condicionamento físico ou
-              competições.
-            </div>
-          </details>
-
-          <!-- Pergunta 3 -->
-          <details
-            name="faq-accordion"
-            class="group bg-slate-900/60 border border-slate-700/80 rounded-2xl p-5 md:p-6 transition-all duration-300 hover:border-brand/50 open:bg-slate-900 open:border-brand/60 open:shadow-lg open:shadow-brand/5"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none select-none font-semibold text-white text-base md:text-lg gap-4 group-hover:text-brand-light transition-colors [&::-webkit-details-marker]:hidden"
-            >
-              <span class="flex items-center gap-3">
-                <i class="fa-solid fa-users text-brand text-sm shrink-0"></i>
-                <span>As aulas atendem crianças, adultos e idosos?</span>
-              </span>
-              <span
-                class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 group-hover:text-brand group-hover:border-brand/40 group-open:rotate-180 group-open:bg-brand group-open:text-slate-900 transition-all shrink-0"
-              >
-                <i
-                  class="fa-solid fa-chevron-down text-xs transition-transform duration-300"
-                ></i>
-              </span>
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-800 text-slate-300 text-sm md:text-base leading-relaxed pl-7"
-            >
-              Sim! Como profissional graduada em Educação Física pela
-              <strong>Unisanta</strong> e com experiência técnica no
-              <strong>Sesi-SP</strong>, a treinadora Lilian atende bebês,
-              crianças, adultos e idosos, ajustando o volume e a intensidade
-              metodicamente ao perfil e histórico de saúde de cada aluno.
-            </div>
-          </details>
-
-          <!-- Pergunta 4 -->
-          <details
-            name="faq-accordion"
-            class="group bg-slate-900/60 border border-slate-700/80 rounded-2xl p-5 md:p-6 transition-all duration-300 hover:border-brand/50 open:bg-slate-900 open:border-brand/60 open:shadow-lg open:shadow-brand/5"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none select-none font-semibold text-white text-base md:text-lg gap-4 group-hover:text-brand-light transition-colors [&::-webkit-details-marker]:hidden"
-            >
-              <span class="flex items-center gap-3">
-                <i class="fa-solid fa-dumbbell text-brand text-sm shrink-0"></i>
-                <span
-                  >Preciso ter piscina ou academia no prédio para treinar?</span
-                >
-              </span>
-              <span
-                class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 group-hover:text-brand group-hover:border-brand/40 group-open:rotate-180 group-open:bg-brand group-open:text-slate-900 transition-all shrink-0"
-              >
-                <i
-                  class="fa-solid fa-chevron-down text-xs transition-transform duration-300"
-                ></i>
-              </span>
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-800 text-slate-300 text-sm md:text-base leading-relaxed pl-7"
-            >
-              Para natação, as aulas são ministradas na piscina do seu próprio
-              condomínio ou clube em Santos e São Vicente. Para musculação e
-              funcional, os treinos podem ser realizados na academia do seu
-              prédio ou na academia de sua preferência (ou que você já faça
-              parte) na região.
-            </div>
-          </details>
-
-          <!-- Pergunta 5 -->
-          <details
-            name="faq-accordion"
-            class="group bg-slate-900/60 border border-slate-700/80 rounded-2xl p-5 md:p-6 transition-all duration-300 hover:border-brand/50 open:bg-slate-900 open:border-brand/60 open:shadow-lg open:shadow-brand/5"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none select-none font-semibold text-white text-base md:text-lg gap-4 group-hover:text-brand-light transition-colors [&::-webkit-details-marker]:hidden"
-            >
-              <span class="flex items-center gap-3">
-                <i
-                  class="fa-solid fa-calendar-check text-brand text-sm shrink-0"
-                ></i>
-                <span>Como agendar uma avaliação inicial com a Lilian?</span>
-              </span>
-              <span
-                class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 group-hover:text-brand group-hover:border-brand/40 group-open:rotate-180 group-open:bg-brand group-open:text-slate-900 transition-all shrink-0"
-              >
-                <i
-                  class="fa-solid fa-chevron-down text-xs transition-transform duration-300"
-                ></i>
-              </span>
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-800 text-slate-300 text-sm md:text-base leading-relaxed pl-7"
-            >
-              Basta clicar em qualquer botão de contato para falar diretamente
-              com a Lilian no WhatsApp. Alinhamos objetivos, locais e horários
-              disponíveis antes da primeira aula.
-            </div>
-          </details>
-        </div>
-
-        <!-- Card de Contato de Apoio -->
-        <div
-          class="mt-12 text-center p-8 bg-slate-900/50 rounded-2xl border border-slate-700/80 max-w-xl mx-auto"
-        >
-          <p class="text-white font-bold text-base mb-1.5">
-            Ainda ficou com alguma dúvida?
-          </p>
-          <p class="text-slate-400 text-xs sm:text-sm mb-6">
-            Estou à disposição para entender sua rotina e planejar a melhor
-            abordagem para seus treinos.
-          </p>
-          <a
-            href="https://wa.me/5513996660817?text=Ol%C3%A1,%20estou%20com%20uma%20d%C3%BAvida%20sobre%20as%20aulas%20de%20personal%20trainer."
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center px-6 py-3.5 bg-brand hover:bg-brand-light text-slate-900 font-bold rounded-lg text-sm shadow-lg shadow-brand/20 transition-all transform hover:-translate-y-0.5"
-          >
-            <i class="fa-brands fa-whatsapp text-lg mr-2"></i> Tirar Dúvidas
-            pelo WhatsApp
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Seção Instagram -->
-    <section
-      id="instagram"
-      class="py-20 bg-slate-900 border-t border-slate-800"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div
-          class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800 border border-slate-700 text-brand text-sm font-semibold mb-4"
-        >
-          <i class="fa-brands fa-instagram text-lg text-pink-500"></i> @lili.wp
-        </div>
-
-        <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
-          Feed do Instagram
-        </h2>
-        <p class="text-slate-400 max-w-xl mx-auto mb-10 text-sm md:text-base">
-          Acompanhe as postagens mais recentes, bastidores das aulas e a rotina
-          da treinadora Lilian Moreira diretamente do Instagram.
-        </p>
-
-        <!-- Card Principal do Perfil e Feed Dinâmico -->
-        <div
-          class="bg-slate-800/80 rounded-3xl p-6 md:p-8 border border-slate-700/80 shadow-2xl backdrop-blur-sm max-w-5xl mx-auto"
-        >
-          <!-- Perfil Header -->
-          <div
-            class="flex flex-col sm:flex-row items-center justify-between gap-6 mb-8 pb-6 border-b border-slate-700/60"
-          >
-            <div class="flex items-center gap-4 text-left">
-              <div class="relative">
-                <img
-                  src="./assets/perfil-lilian.jpeg"
-                  id="imgPerfilInsta"
-                  alt="Lilian Moreira Instagram"
-                  class="w-16 h-16 rounded-full object-cover border-2 border-brand shadow-md"
-                />
-                <span
-                  class="absolute -bottom-1 -right-1 bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 text-white rounded-full p-1 text-[10px] flex items-center justify-center"
-                >
-                  <i class="fa-brands fa-instagram"></i>
-                </span>
-              </div>
-              <div>
-                <div class="flex items-center gap-2">
-                  <h3 class="text-lg font-bold text-white" id="nomePerfilInsta">
-                    Lilian Moreira Farias
-                  </h3>
-                  <i
-                    class="fa-solid fa-circle-check text-brand text-xs"
-                    title="Perfil Oficial"
-                  ></i>
-                </div>
-                <p class="text-xs text-brand-light font-medium">
-                  @lili.wp • Personal Trainer & Swim Coach
-                </p>
-                <p
-                  class="text-xs text-slate-400 font-medium mt-0.5"
-                  id="statsPerfilInsta"
-                >
-                  Atualizando postagens em tempo real...
-                </p>
-              </div>
-            </div>
-            <div>
-              <a
-                href="https://www.instagram.com/lili.wp"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 hover:opacity-95 text-white font-bold text-sm rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5"
-              >
-                <i class="fa-brands fa-instagram text-lg mr-2"></i> Ver Perfil
-                Completo
-              </a>
-            </div>
-          </div>
-
-          <div
-            id="gridInstagram"
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
-          >
-            <a
-              href="https://www.instagram.com/p/DUG6lgEkcrC/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group relative rounded-2xl overflow-hidden aspect-square border border-slate-700/80 bg-slate-900 block shadow-xl transition-all duration-300 hover:border-brand/60 hover:-translate-y-1"
-            >
-              <img
-                src="https://behold.pictures/eyJ1IjoieXNxZFFJVkJWUVVFVlh3cDZheEhUOG80M3VuMiIsImYiOiJJanJZMFZpVDNCVjdHbmdrUzlkMyIsInAiOiIxODE1MzEwNjM3NTQ0MjA5NSIsImgiOiJ6ZWo1a20ifQ.jpg?class=squareMedium"
-                alt="Projeto social aulas - Lilian Moreira"
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-85 group-hover:opacity-95 transition-opacity"
-              ></div>
-              <div
-                class="absolute inset-0 p-4 flex flex-col justify-between text-left"
-              >
-                <div class="flex justify-between items-center text-white">
-                  <span
-                    class="bg-slate-900/80 backdrop-blur-xs px-2.5 py-1 rounded text-xs font-bold text-brand border border-slate-700"
-                    ><i class="fa-solid fa-camera text-[10px] mr-1"></i>
-                    Post</span
-                  >
-                  <i class="fa-brands fa-instagram text-pink-500 text-sm"></i>
-                </div>
-                <div>
-                  <p
-                    class="text-xs text-slate-200 font-medium line-clamp-2 mb-2 leading-snug"
-                  >
-                    #tbt Da oportunidade que tive de dar aulas no projeto social
-                    e incentivar o esporte aquático...
-                  </p>
-                  <div
-                    class="flex items-center justify-between text-xs text-slate-400 font-semibold pt-2 border-t border-slate-800"
-                  >
-                    <span
-                      ><i class="fa-solid fa-heart text-red-500 mr-1"></i>
-                      38</span
-                    >
-                    <span
-                      class="text-brand-light group-hover:underline font-bold"
-                      >Ver Post
-                      <i
-                        class="fa-solid fa-arrow-up-right-from-square text-[9px]"
-                      ></i
-                    ></span>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <a
-              href="https://www.instagram.com/p/DJQAOLIxGX8/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group relative rounded-2xl overflow-hidden aspect-square border border-slate-700/80 bg-slate-900 block shadow-xl transition-all duration-300 hover:border-brand/60 hover:-translate-y-1"
-            >
-              <img
-                src="https://behold.pictures/eyJ1IjoieXNxZFFJVkJWUVVFVlh3cDZheEhUOG80M3VuMiIsImYiOiJJanJZMFZpVDNCVjdHbmdrUzlkMyIsInAiOiIxODI5Mjg2MzQ0MjIxNjI5NCIsImgiOiIxbnY3Z3g5In0.jpg?class=squareMedium"
-                alt="Treinos intensos polo aquático - Lilian Moreira"
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-85 group-hover:opacity-95 transition-opacity"
-              ></div>
-              <div
-                class="absolute inset-0 p-4 flex flex-col justify-between text-left"
-              >
-                <div class="flex justify-between items-center text-white">
-                  <span
-                    class="bg-slate-900/80 backdrop-blur-xs px-2.5 py-1 rounded text-xs font-bold text-brand border border-slate-700"
-                    ><i class="fa-solid fa-camera text-[10px] mr-1"></i>
-                    Post</span
-                  >
-                  <i class="fa-brands fa-instagram text-pink-500 text-sm"></i>
-                </div>
-                <div>
-                  <p
-                    class="text-xs text-slate-200 font-medium line-clamp-2 mb-2 leading-snug"
-                  >
-                    Foram dias intensos e muito cansativos, mas também
-                    extremamente gratificantes no polo aquático!
-                  </p>
-                  <div
-                    class="flex items-center justify-between text-xs text-slate-400 font-semibold pt-2 border-t border-slate-800"
-                  >
-                    <span
-                      ><i class="fa-solid fa-heart text-red-500 mr-1"></i>
-                      116</span
-                    >
-                    <span
-                      class="text-brand-light group-hover:underline font-bold"
-                      >Ver Post
-                      <i
-                        class="fa-solid fa-arrow-up-right-from-square text-[9px]"
-                      ></i
-                    ></span>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <a
-              href="https://www.instagram.com/p/DFwO1tkxYe1/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group relative rounded-2xl overflow-hidden aspect-square border border-slate-700/80 bg-slate-900 block shadow-xl transition-all duration-300 hover:border-brand/60 hover:-translate-y-1"
-            >
-              <img
-                src="https://behold.pictures/eyJ1IjoieXNxZFFJVkJWUVVFVlh3cDZheEhUOG80M3VuMiIsImYiOiJJanJZMFZpVDNCVjdHbmdrUzlkMyIsInAiOiIxODA1NjkxNTk3ODA1MTMzMSIsImgiOiJlbTh6aGcifQ.jpg?class=squareMedium"
-                alt="Pré-temporada natação e polo - Lilian Moreira"
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-85 group-hover:opacity-95 transition-opacity"
-              ></div>
-              <div
-                class="absolute inset-0 p-4 flex flex-col justify-between text-left"
-              >
-                <div class="flex justify-between items-center text-white">
-                  <span
-                    class="bg-slate-900/80 backdrop-blur-xs px-2.5 py-1 rounded text-xs font-bold text-brand border border-slate-700"
-                    ><i class="fa-solid fa-camera text-[10px] mr-1"></i>
-                    Post</span
-                  >
-                  <i class="fa-brands fa-instagram text-pink-500 text-sm"></i>
-                </div>
-                <div>
-                  <p
-                    class="text-xs text-slate-200 font-medium line-clamp-2 mb-2 leading-snug"
-                  >
-                    O #tbt de hoje é dedicado à pré-temporada. Superando limites
-                    e evoluindo a cada dia na piscina.
-                  </p>
-                  <div
-                    class="flex items-center justify-between text-xs text-slate-400 font-semibold pt-2 border-t border-slate-800"
-                  >
-                    <span
-                      ><i class="fa-solid fa-heart text-red-500 mr-1"></i>
-                      146</span
-                    >
-                    <span
-                      class="text-brand-light group-hover:underline font-bold"
-                      >Ver Post
-                      <i
-                        class="fa-solid fa-arrow-up-right-from-square text-[9px]"
-                      ></i
-                    ></span>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Footer -->
     <site-footer></site-footer>
 
     <script>
-      // Navbar scroll
-      window.addEventListener("scroll", () => {
-        const navbar = document.getElementById("navbar");
-        if (window.scrollY > 20) {
-          navbar.classList.add("shadow-lg");
-        } else {
-          navbar.classList.remove("shadow-lg");
-        }
+      // ==========================================
+      // MENU MOBILE
+      // ==========================================
+      const btnMenu = document.getElementById("btnMenu");
+      const menuMobile = document.getElementById("menuMobile");
+
+      function alternarMenu(abrir) {
+        menuMobile.classList.toggle("hidden", !abrir);
+        btnMenu.setAttribute("aria-expanded", String(abrir));
+        btnMenu.setAttribute("aria-label", abrir ? "Fechar menu" : "Abrir menu");
+        btnMenu.innerHTML = abrir
+          ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>'
+          : '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+        document.body.style.overflow = abrir ? "hidden" : "";
+      }
+
+      btnMenu.addEventListener("click", () =>
+        alternarMenu(menuMobile.classList.contains("hidden")),
+      );
+      menuMobile.addEventListener("click", (e) => {
+        if (e.target.closest("a")) alternarMenu(false);
       });
 
       // ==========================================
@@ -1564,7 +1339,7 @@
           } catch (e) {
             alert("Erro ao validar senha. Tente novamente.");
           } finally {
-            btnSubmit.disabled = false;
+            btnSubmit.disabled = bloqueado;
             btnSubmit.innerHTML = btnTextoOriginal;
           }
         });
@@ -1574,7 +1349,6 @@
           bloqueado = true;
           inputSenha.disabled = true;
           btnSubmit.disabled = true;
-          btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
 
           let tempoRestante = 60;
           erroSenha.classList.remove("hidden");
@@ -1590,7 +1364,6 @@
               tentativas = 0;
               inputSenha.disabled = false;
               btnSubmit.disabled = false;
-              btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
               erroSenha.textContent = "Senha incorreta. Tente novamente.";
               erroSenha.classList.add("hidden");
             }
@@ -1714,7 +1487,6 @@
           btn.disabled = true;
           btn.innerHTML =
             '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
-          btn.classList.add("opacity-70", "cursor-not-allowed");
 
           const payload = {
             nome: nome.slice(0, 30),
@@ -1751,7 +1523,6 @@
           } finally {
             btn.disabled = false;
             btn.innerHTML = conteudoOriginalBtn;
-            btn.classList.remove("opacity-70", "cursor-not-allowed");
           }
         });
 
@@ -1776,7 +1547,7 @@
 
           if (!Array.isArray(depoimentos) || depoimentos.length === 0) {
             lista.innerHTML =
-              '<p class="text-slate-400 text-sm w-full text-center py-10">Ainda não há depoimentos publicados.</p>';
+              '<p class="text-muted w-full py-10">Ainda não há depoimentos publicados.</p>';
             if (nav) nav.classList.add("hidden");
             if (containerMais) containerMais.classList.add("hidden");
             return;
@@ -1791,7 +1562,7 @@
           renderizarDepoimentos();
         } catch (error) {
           lista.innerHTML =
-            '<p class="text-red-400 text-sm w-full text-center py-10">Não foi possível carregar os depoimentos no momento.</p>';
+            '<p class="text-red-700 w-full py-10">Não foi possível carregar os depoimentos no momento.</p>';
           if (nav) nav.classList.add("hidden");
           if (containerMais) containerMais.classList.add("hidden");
         }
@@ -1808,9 +1579,6 @@
         fatia.forEach((dep) => {
           const papel = dep.papel || dep.categoria || dep.relacao || "Aluno(a)";
           const isPaiMae = /pai|m[aã]e|respons[aá]vel/i.test(papel);
-          const iconePapel = isPaiMae
-            ? "fa-solid fa-user-group text-amber-400"
-            : "fa-solid fa-graduation-cap text-amber-400";
           const papelTexto = isPaiMae ? "Pai/Mãe/Resp." : "Aluno(a)";
 
           // Higienização estrita contra XSS
@@ -1841,36 +1609,31 @@
             if (rede === "facebook") {
               redeHtml = `
                             <a href="https://facebook.com/${encodeURIComponent(perfilLimpo)}" target="_blank" rel="noopener noreferrer"
-                               class="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-400 hover:text-blue-300 transition-colors mt-0.5">
-                                <i class="fa-brands fa-facebook text-blue-500 text-xs"></i> ${perfilSeguro}
+                               class="link inline-flex items-center gap-1.5 text-sm text-muted mt-1">
+                                <i class="fa-brands fa-facebook" aria-hidden="true"></i> ${perfilSeguro}
                             </a>
                         `;
             } else {
               redeHtml = `
                             <a href="https://instagram.com/${encodeURIComponent(perfilLimpo)}" target="_blank" rel="noopener noreferrer"
-                               class="inline-flex items-center gap-1 text-[11px] font-semibold text-pink-400 hover:text-pink-300 transition-colors mt-0.5">
-                                <i class="fa-brands fa-instagram text-pink-500 text-xs"></i> @${perfilSeguro}
+                               class="link inline-flex items-center gap-1.5 text-sm text-muted mt-1">
+                                <i class="fa-brands fa-instagram" aria-hidden="true"></i> @${perfilSeguro}
                             </a>
                         `;
             }
           }
 
           html += `
-                    <div class="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 snap-start bg-slate-900/50 p-6 rounded-2xl border border-slate-700 relative flex flex-col justify-between hover:border-brand/40 transition-colors shadow-lg">
-                        <div>
-                            <i class="fa-solid fa-quote-left text-3xl text-brand/20 absolute top-4 left-4"></i>
-                            <p class="text-slate-300 relative z-10 italic text-sm mb-6 mt-4 leading-relaxed">"${mensagemSegura}"</p>
-                        </div>
-                        <div class="border-t border-slate-800 pt-4 flex items-center justify-between gap-3">
-                            <div class="flex flex-col text-left">
-                                <span class="font-bold text-white text-sm leading-tight">${nomeSeguro}</span>
+                    <figure class="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 snap-start bg-white rounded-[20px] p-6 sm:p-8 flex flex-col justify-between gap-8 m-0">
+                        <blockquote class="text-[17px] leading-relaxed">“${mensagemSegura}”</blockquote>
+                        <figcaption class="pt-5 border-t border-line flex items-end justify-between gap-3">
+                            <div class="flex flex-col">
+                                <span class="font-medium leading-tight">${nomeSeguro}</span>
                                 ${redeHtml}
                             </div>
-                            <span class="text-xs text-brand-light font-medium inline-flex items-center gap-1.5 bg-slate-800/80 border border-slate-700/80 px-2.5 py-1 rounded-full whitespace-nowrap">
-                                <i class="${iconePapel}"></i> ${papelTextoSeguro}
-                            </span>
-                        </div>
-                    </div>
+                            <span class="text-[13px] text-muted whitespace-nowrap">${papelTextoSeguro}</span>
+                        </figcaption>
+                    </figure>
                 `;
         });
 
@@ -1880,13 +1643,10 @@
           const restantes = todosDepoimentos.length - limiteDepoimentos;
           const proximos = Math.min(PASSO_CARREGAR_DEPOIMENTOS, restantes);
           html += `
-                    <div onclick="carregarMaisDepoimentos()" class="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 snap-start bg-slate-900/40 hover:bg-slate-900/80 p-6 rounded-2xl border-2 border-dashed border-slate-700 hover:border-brand/70 cursor-pointer transition-all flex flex-col items-center justify-center text-center group shadow-lg min-h-[180px]">
-                        <div class="w-12 h-12 rounded-full bg-brand/10 border border-brand/30 flex items-center justify-center text-brand mb-3 group-hover:scale-110 group-hover:bg-brand group-hover:text-slate-900 transition-all">
-                            <i class="fa-solid fa-plus text-lg"></i>
-                        </div>
-                        <span class="text-white font-bold text-sm mb-1 group-hover:text-brand transition-colors">Ver mais depoimentos</span>
-                        <span class="text-xs text-slate-400">Carregar mais ${proximos} (${fatia.length} de ${todosDepoimentos.length})</span>
-                    </div>
+                    <button type="button" onclick="carregarMaisDepoimentos()" class="lift w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 snap-start bg-transparent border border-line rounded-[20px] p-8 flex flex-col items-center justify-center text-center min-h-[180px]">
+                        <span class="font-medium">Ver mais depoimentos</span>
+                        <span class="text-sm text-muted mt-1">Carregar mais ${proximos} (${fatia.length} de ${todosDepoimentos.length})</span>
+                    </button>
                 `;
         }
 
@@ -1899,9 +1659,8 @@
             const proximos = Math.min(PASSO_CARREGAR_DEPOIMENTOS, restantes);
             containerMais.classList.remove("hidden");
             containerMais.innerHTML = `
-                        <button onclick="carregarMaisDepoimentos()"
-                            class="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-900/80 hover:bg-slate-900 border border-slate-700 hover:border-brand text-slate-300 hover:text-white rounded-xl text-xs font-bold transition-all shadow-md group">
-                            <i class="fa-solid fa-plus text-brand group-hover:rotate-90 transition-transform"></i> Carregar mais ${proximos} depoimentos (${fatia.length} de ${todosDepoimentos.length})
+                        <button type="button" onclick="carregarMaisDepoimentos()" class="btn btn--secondary">
+                            Carregar mais ${proximos} depoimentos (${fatia.length} de ${todosDepoimentos.length})
                         </button>
                     `;
           } else {
@@ -1966,6 +1725,19 @@
 
       carregarDepoimentos();
 
+      // ==========================================
+      // FEED DO INSTAGRAM (somente posts /p/, cache diário)
+      // ==========================================
+      function cardInstagram(url, img, alt) {
+        return `
+                <a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer"
+                   class="zoom aspect-square rounded-[20px] bg-surface" aria-label="Abrir publicação no Instagram">
+                    <img src="${escapeHtml(img)}" alt="${escapeHtml(String(alt).slice(0, 120))}" loading="lazy" draggable="false"
+                         class="w-full h-full object-cover">
+                </a>
+            `;
+      }
+
       async function carregarFeedInstagram() {
         const gridContainer = document.getElementById("gridInstagram");
         if (!gridContainer) return;
@@ -2022,35 +1794,17 @@
 
         const stats = document.getElementById("statsPerfilInsta");
         if (stats) {
-          stats.innerHTML =
-            '<span class="text-brand font-semibold"><i class="fa-solid fa-circle-dot text-[9px] mr-1 animate-pulse"></i> Feed sincronizado diariamente</span>';
+          stats.textContent =
+            "Publicações recentes de @lili.wp, atualizadas uma vez por dia.";
         }
 
         gridContainer.innerHTML = dados.posts
-          .map(
-            (post) => `
-                <a href="${post.url}" target="_blank" rel="noopener noreferrer"
-                   class="group relative rounded-2xl overflow-hidden aspect-square border border-slate-700/80 bg-slate-900 block shadow-xl transition-all duration-300 hover:border-brand/60 hover:-translate-y-1">
-                    <img src="${post.display_url}" alt="Post Instagram @lili.wp" 
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-85 group-hover:opacity-95 transition-opacity"></div>
-                    <div class="absolute inset-0 p-4 flex flex-col justify-between text-left">
-                        <div class="flex justify-between items-center text-white">
-                            <span class="bg-slate-900/80 backdrop-blur-xs px-2.5 py-1 rounded text-xs font-bold text-brand border border-slate-700">
-                                <i class="fa-solid fa-camera text-[10px] mr-1"></i> Post
-                            </span>
-                            <i class="fa-brands fa-instagram text-pink-500 text-sm"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-200 font-medium line-clamp-2 mb-2 leading-snug">${post.caption || "Ver publicação no Instagram @lili.wp"}</p>
-                            <div class="flex items-center justify-between text-xs text-slate-400 font-semibold pt-2 border-t border-slate-800">
-                                <span><i class="fa-solid fa-heart text-red-500 mr-1"></i> ${post.likes || "@lili.wp"}</span>
-                                <span class="text-brand-light group-hover:underline font-bold">Ver Post <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            `,
+          .map((post) =>
+            cardInstagram(
+              post.url,
+              post.display_url,
+              post.caption || "Publicação de @lili.wp no Instagram",
+            ),
           )
           .join("");
       }
@@ -2061,60 +1815,24 @@
 
         const postagensExemplo = [
           {
-            titulo: "#tbt Projeto Social",
-            desc: "#tbt Da oportunidade que tive de dar aulas no projeto social e incentivar o esporte aquático.",
+            alt: "Projeto social aulas - Lilian Moreira",
             url: "https://www.instagram.com/p/DUG6lgEkcrC/",
             img: "https://behold.pictures/eyJ1IjoieXNxZFFJVkJWUVVFVlh3cDZheEhUOG80M3VuMiIsImYiOiJJanJZMFZpVDNCVjdHbmdrUzlkMyIsInAiOiIxODE1MzEwNjM3NTQ0MjA5NSIsImgiOiJ6ZWo1a20ifQ.jpg?class=squareMedium",
-            tag: "Post",
-            is_video: false,
-            likes: 38,
           },
           {
-            titulo: "Dias Intensos de Treino",
-            desc: "Foram dias intensos e muito cansativos, mas também extremamente gratificantes no polo aquático!",
+            alt: "Treinos intensos polo aquático - Lilian Moreira",
             url: "https://www.instagram.com/p/DJQAOLIxGX8/",
             img: "https://behold.pictures/eyJ1IjoieXNxZFFJVkJWUVVFVlh3cDZheEhUOG80M3VuMiIsImYiOiJJanJZMFZpVDNCVjdHbmdrUzlkMyIsInAiOiIxODI5Mjg2MzQ0MjIxNjI5NCIsImgiOiIxbnY3Z3g5In0.jpg?class=squareMedium",
-            tag: "Post",
-            is_video: false,
-            likes: 116,
           },
           {
-            titulo: "#tbt Pré-Temporada",
-            desc: "O #tbt de hoje é dedicado à pré-temporada. Superando limites e evoluindo a cada dia na piscina.",
+            alt: "Pré-temporada natação e polo - Lilian Moreira",
             url: "https://www.instagram.com/p/DFwO1tkxYe1/",
             img: "https://behold.pictures/eyJ1IjoieXNxZFFJVkJWUVVFVlh3cDZheEhUOG80M3VuMiIsImYiOiJJanJZMFZpVDNCVjdHbmdrUzlkMyIsInAiOiIxODA1NjkxNTk3ODA1MTMzMSIsImgiOiJlbTh6aGcifQ.jpg?class=squareMedium",
-            tag: "Post",
-            is_video: false,
-            likes: 146,
           },
         ];
 
         gridContainer.innerHTML = postagensExemplo
-          .map(
-            (post) => `
-                <a href="${post.url}" target="_blank" rel="noopener noreferrer"
-                   class="group relative rounded-2xl overflow-hidden aspect-square border border-slate-700/80 bg-slate-900 block shadow-xl transition-all duration-300 hover:border-brand/60 hover:-translate-y-1">
-                    <img src="${post.img}" alt="${post.titulo}" 
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-85 group-hover:opacity-95 transition-opacity"></div>
-                    <div class="absolute inset-0 p-4 flex flex-col justify-between text-left">
-                        <div class="flex justify-between items-center text-white">
-                            <span class="bg-slate-900/80 backdrop-blur-xs px-2.5 py-1 rounded text-xs font-bold text-brand border border-slate-700">
-                                <i class="fa-solid fa-camera text-[10px] mr-1"></i> ${post.tag}
-                            </span>
-                            <i class="fa-brands fa-instagram text-pink-500 text-sm"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-200 font-medium line-clamp-2 mb-2 leading-snug">${post.desc}</p>
-                            <div class="flex items-center justify-between text-xs text-slate-400 font-semibold pt-2 border-t border-slate-800">
-                                <span><i class="fa-solid fa-heart text-red-500 mr-1"></i> ${post.likes || "@lili.wp"}</span>
-                                <span class="text-brand-light group-hover:underline font-bold">Ver Post <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            `,
-          )
+          .map((post) => cardInstagram(post.url, post.img, post.alt))
           .join("");
       }
       carregarFeedInstagram();

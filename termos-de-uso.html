@@ -25,7 +25,10 @@
     <meta name="description" content="Termos de Uso e condições gerais dos serviços de treinamento físico, musculação e natação de Lilian Moreira.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://lilianpersonal.com.br/termos-de-uso">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💪</text></svg>">
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f6b3a'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,sans-serif' font-size='34' fill='%23fff'%3EL%3C/text%3E%3C/svg%3E"
+    />
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -35,10 +38,19 @@
                 extend: {
                     colors: {
                         brand: {
-                            light: '#2dd4bf',
-                            DEFAULT: '#10b981',
-                            dark: '#047857',
-                        }
+                            light: "#2b8a4d",
+                            DEFAULT: "#1f6b3a",
+                            dark: "#17542d",
+                        },
+                        paper: "#f8f8f8",
+                        surface: "#eeeeee",
+                        ink: "#0a0a0a",
+                        muted: "#6a6a6a",
+                        line: "rgb(10 10 10 / 0.12)",
+                    },
+                    fontFamily: {
+                        sans: ["Figtree", "system-ui", "sans-serif"],
+                        display: ['"Bricolage Grotesque"', "system-ui", "sans-serif"],
                     }
                 }
             }
@@ -46,15 +58,17 @@
     </script>
 
     <!-- Google Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Figtree:wght@400..600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/site.css" />
     <script src="./assets/site-footer.js" defer></script>
-
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
 </head>
-<body class="bg-slate-900 text-slate-200 antialiased selection:bg-brand selection:text-white">
+<body class="bg-paper text-ink antialiased">
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe
@@ -67,72 +81,71 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Header Simples -->
-    <header class="w-full bg-slate-950 border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="./index.html" class="text-2xl font-extrabold text-white tracking-tighter">
-                LILIAN<span class="text-brand">MOREIRA</span>
+    <header class="w-full bg-paper border-b border-line">
+        <div class="wrap h-[72px] flex items-center justify-between">
+            <a href="./index.html" class="font-display text-[22px] leading-none tracking-tight">
+                Lilian Moreira
             </a>
-            <a href="./index.html" class="text-sm font-medium text-slate-300 hover:text-brand transition-colors inline-flex items-center">
-                <i class="fa-solid fa-arrow-left mr-2"></i> Voltar ao Início
+            <a href="./index.html" class="link text-sm font-medium inline-flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left text-xs" aria-hidden="true"></i> Voltar ao início
             </a>
         </div>
     </header>
 
     <!-- Conteúdo dos Termos -->
-    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-16 min-h-screen">
-        <div class="mb-10 border-b border-slate-800 pb-8">
-            <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">Termos de Uso e Condições</h1>
-            <p class="text-slate-400">Última atualização: Setembro de 2026</p>
-        </div>
+    <main class="wrap py-16 min-h-[70vh]">
+        <div class="max-w-3xl">
+            <div class="mb-10 border-b border-line pb-8">
+                <h1 class="text-3xl md:text-4xl leading-tight mb-3">Termos de Uso e Condições</h1>
+                <p class="text-muted text-sm">Última atualização: Setembro de 2026</p>
+            </div>
 
-        <div class="space-y-8 text-slate-300 leading-relaxed">
-            
-            <section>
-                <h2 class="text-xl font-bold text-white mb-3">1. Aceitação dos Termos</h2>
-                <p>Ao contratar os serviços de treinamento físico (natação ou musculação) da personal trainer Lilian Moreira Farias, o aluno declara ter lido, compreendido e concordado com as regras e condições estabelecidas neste documento. O preenchimento da Anamnese inicial configura o aceite formal destes termos.</p>
-            </section>
+            <div class="space-y-8 leading-relaxed">
+                <section>
+                    <h2 class="text-xl font-medium mb-3">1. Aceitação dos Termos</h2>
+                    <p>Ao contratar os serviços de treinamento físico (natação ou musculação) da personal trainer Lilian Moreira Farias, o aluno declara ter lido, compreendido e concordado com as regras e condições estabelecidas neste documento. O preenchimento da Anamnese inicial configura o aceite formal destes termos.</p>
+                </section>
 
-            <section>
-                <h2 class="text-xl font-bold text-white mb-3">2. Condições de Saúde e Responsabilidade</h2>
-                <p class="mb-2">A prática de atividades físicas envolve riscos inerentes. O aluno compreende e concorda que:</p>
-                <ul class="list-disc pl-6 space-y-1 text-slate-400">
-                    <li>As orientações físicas fornecidas <strong>não substituem acompanhamento, diagnóstico ou tratamento médico</strong>.</li>
-                    <li>É de inteira responsabilidade do aluno fornecer informações verídicas e completas no formulário de Anamnese.</li>
-                    <li>O aluno deve relatar imediatamente à treinadora qualquer desconforto, dor atípica ou alteração em seu estado de saúde durante os treinos.</li>
-                    <li>Recomenda-se fortemente a realização de exames cardiológicos e liberação médica prévia ao início do programa de exercícios.</li>
-                </ul>
-            </section>
+                <section>
+                    <h2 class="text-xl font-medium mb-3">2. Condições de Saúde e Responsabilidade</h2>
+                    <p class="mb-2">A prática de atividades físicas envolve riscos inerentes. O aluno compreende e concorda que:</p>
+                    <ul class="list-disc pl-6 space-y-1.5 text-neutral-700">
+                        <li>As orientações físicas fornecidas <strong>não substituem acompanhamento, diagnóstico ou tratamento médico</strong>.</li>
+                        <li>É de inteira responsabilidade do aluno fornecer informações verídicas e completas no formulário de Anamnese.</li>
+                        <li>O aluno deve relatar imediatamente à treinadora qualquer desconforto, dor atípica ou alteração em seu estado de saúde durante os treinos.</li>
+                        <li>Recomenda-se fortemente a realização de exames cardiológicos e liberação médica prévia ao início do programa de exercícios.</li>
+                    </ul>
+                </section>
 
-            <section>
-                <h2 class="text-xl font-bold text-white mb-3">3. Agendamentos, Cancelamentos e Reposições</h2>
-                <p class="mb-2">Para garantir o compromisso mútuo e a organização da agenda de aulas particulares:</p>
-                <ul class="list-disc pl-6 space-y-1 text-slate-400">
-                    <li><strong class="text-slate-200">Antecedência:</strong> Cancelamentos ou solicitações de reagendamento devem ser feitos com, no mínimo, <strong>24 horas de antecedência</strong>.</li>
-                    <li><strong class="text-slate-200">Aulas Cobradas:</strong> Cancelamentos feitos com menos de 24 horas, bem como a ausência no momento da aula (no-show) sem aviso prévio, resultarão na contagem normal da aula, sendo a mesma considerada dada e cobrada integralmente.</li>
-                    <li><strong class="text-slate-200">Atrasos:</strong> Em caso de atraso por parte do aluno, a aula será encerrada no horário originalmente programado, não havendo prorrogação ou compensação do tempo perdido.</li>
-                </ul>
-            </section>
+                <section>
+                    <h2 class="text-xl font-medium mb-3">3. Agendamentos, Cancelamentos e Reposições</h2>
+                    <p class="mb-2">Para garantir o compromisso mútuo e a organização da agenda de aulas particulares:</p>
+                    <ul class="list-disc pl-6 space-y-1.5 text-neutral-700">
+                        <li><strong>Antecedência:</strong> Cancelamentos ou solicitações de reagendamento devem ser feitos com, no mínimo, <strong>24 horas de antecedência</strong>.</li>
+                        <li><strong>Aulas Cobradas:</strong> Cancelamentos feitos com menos de 24 horas, bem como a ausência no momento da aula (no-show) sem aviso prévio, resultarão na contagem normal da aula, sendo a mesma considerada dada e cobrada integralmente.</li>
+                        <li><strong>Atrasos:</strong> Em caso de atraso por parte do aluno, a aula será encerrada no horário originalmente programado, não havendo prorrogação ou compensação do tempo perdido.</li>
+                    </ul>
+                </section>
 
-            <section>
-                <h2 class="text-xl font-bold text-white mb-3">4. Propriedade Intelectual</h2>
-                <p>As planilhas, métodos, cronogramas e estruturação dos treinos fornecidos ao aluno são de propriedade intelectual da treinadora Lilian Moreira Farias. Este material é para <strong>uso estritamente pessoal e intransferível</strong> do aluno contratante, sendo expressamente proibida a sua comercialização, reprodução, compartilhamento com terceiros ou distribuição na internet.</p>
-            </section>
+                <section>
+                    <h2 class="text-xl font-medium mb-3">4. Propriedade Intelectual</h2>
+                    <p>As planilhas, métodos, cronogramas e estruturação dos treinos fornecidos ao aluno são de propriedade intelectual da treinadora Lilian Moreira Farias. Este material é para <strong>uso estritamente pessoal e intransferível</strong> do aluno contratante, sendo expressamente proibida a sua comercialização, reprodução, compartilhamento com terceiros ou distribuição na internet.</p>
+                </section>
 
-            <section>
-                <h2 class="text-xl font-bold text-white mb-3">5. Direito de Imagem</h2>
-                <p>Ocasionalmente, fotos ou vídeos podem ser registrados durante as aulas para acompanhamento de evolução técnica ou divulgação do trabalho profissional nas redes sociais (como o Instagram). A publicação de qualquer material que identifique o aluno só será feita mediante o <strong>consentimento prévio (verbal ou escrito)</strong> do mesmo. O aluno tem total liberdade para recusar gravações ou solicitar a remoção de imagens a qualquer momento.</p>
-            </section>
+                <section>
+                    <h2 class="text-xl font-medium mb-3">5. Direito de Imagem</h2>
+                    <p>Ocasionalmente, fotos ou vídeos podem ser registrados durante as aulas para acompanhamento de evolução técnica ou divulgação do trabalho profissional nas redes sociais (como o Instagram). A publicação de qualquer material que identifique o aluno só será feita mediante o <strong>consentimento prévio (verbal ou escrito)</strong> do mesmo. O aluno tem total liberdade para recusar gravações ou solicitar a remoção de imagens a qualquer momento.</p>
+                </section>
 
-            <section>
-                <h2 class="text-xl font-bold text-white mb-3">6. Suspensão de Serviços</h2>
-                <p>A prestação dos serviços poderá ser suspensa ou encerrada caso o aluno apresente comportamento inadequado, desrespeitoso, ou caso as condições de saúde do aluno (avaliadas pela treinadora ou por recomendação médica) representem risco à sua integridade física caso o treinamento prossiga.</p>
-            </section>
-
+                <section>
+                    <h2 class="text-xl font-medium mb-3">6. Suspensão de Serviços</h2>
+                    <p>A prestação dos serviços poderá ser suspensa ou encerrada caso o aluno apresente comportamento inadequado, desrespeitoso, ou caso as condições de saúde do aluno (avaliadas pela treinadora ou por recomendação médica) representem risco à sua integridade física caso o treinamento prossiga.</p>
+                </section>
+            </div>
         </div>
     </main>
 
     <!-- Footer -->
     <site-footer></site-footer>
-
 </body>
 </html>

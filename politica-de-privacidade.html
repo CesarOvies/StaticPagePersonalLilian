@@ -25,7 +25,10 @@
     <meta name="description" content="Política de Privacidade e termos de proteção de dados (LGPD) dos serviços de personal trainer e natação de Lilian Moreira.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://lilianpersonal.com.br/politica-de-privacidade">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💪</text></svg>">
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f6b3a'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,sans-serif' font-size='34' fill='%23fff'%3EL%3C/text%3E%3C/svg%3E"
+    />
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -35,10 +38,19 @@
                 extend: {
                     colors: {
                         brand: {
-                            light: '#2dd4bf',
-                            DEFAULT: '#10b981',
-                            dark: '#047857',
-                        }
+                            light: "#2b8a4d",
+                            DEFAULT: "#1f6b3a",
+                            dark: "#17542d",
+                        },
+                        paper: "#f8f8f8",
+                        surface: "#eeeeee",
+                        ink: "#0a0a0a",
+                        muted: "#6a6a6a",
+                        line: "rgb(10 10 10 / 0.12)",
+                    },
+                    fontFamily: {
+                        sans: ["Figtree", "system-ui", "sans-serif"],
+                        display: ['"Bricolage Grotesque"', "system-ui", "sans-serif"],
                     }
                 }
             }
@@ -46,15 +58,17 @@
     </script>
 
     <!-- Google Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Figtree:wght@400..600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/site.css" />
     <script src="./assets/site-footer.js" defer></script>
-
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
 </head>
-<body class="bg-slate-900 text-slate-200 antialiased selection:bg-brand selection:text-white">
+<body class="bg-paper text-ink antialiased">
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe
@@ -67,65 +81,64 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Header Simples -->
-    <header class="w-full bg-slate-950 border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="./index.html" class="text-2xl font-extrabold text-white tracking-tighter">
-                LILIAN<span class="text-brand">MOREIRA</span>
+    <header class="w-full bg-paper border-b border-line">
+        <div class="wrap h-[72px] flex items-center justify-between">
+            <a href="./index.html" class="font-display text-[22px] leading-none tracking-tight">
+                Lilian Moreira
             </a>
-            <a href="./index.html" class="text-sm font-medium text-slate-300 hover:text-brand transition-colors inline-flex items-center">
-                <i class="fa-solid fa-arrow-left mr-2"></i> Voltar ao Início
+            <a href="./index.html" class="link text-sm font-medium inline-flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left text-xs" aria-hidden="true"></i> Voltar ao início
             </a>
         </div>
     </header>
 
     <!-- Conteúdo da Política -->
-    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-16 min-h-screen">
-        <div class="mb-10 border-b border-slate-800 pb-8">
-            <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">Política de Privacidade</h1>
-            <p class="text-slate-400">Última atualização: Setembro de 2026</p>
-        </div>
+    <main class="wrap py-16 min-h-[70vh]">
+        <div class="max-w-3xl">
+            <div class="mb-10 border-b border-line pb-8">
+                <h1 class="text-3xl md:text-4xl leading-tight mb-3">Política de Privacidade</h1>
+                <p class="text-muted text-sm">Última atualização: Setembro de 2026</p>
+            </div>
 
-        <div class="space-y-8 text-slate-300 leading-relaxed">
-            
-            <section>
-                <h2 class="text-xl font-bold text-white mb-3">1. Compromisso com sua Privacidade</h2>
-                <p>A personal trainer e treinadora esportiva Lilian Moreira Farias compromete-se a proteger a sua privacidade. Esta política explica como coletamos, usamos e protegemos os seus dados pessoais, em total conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).</p>
-            </section>
+            <div class="space-y-8 leading-relaxed">
+                <section>
+                    <h2 class="text-xl font-medium mb-3">1. Compromisso com sua Privacidade</h2>
+                    <p>A personal trainer e treinadora esportiva Lilian Moreira Farias compromete-se a proteger a sua privacidade. Esta política explica como coletamos, usamos e protegemos os seus dados pessoais, em total conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).</p>
+                </section>
 
-            <section>
-                <h2 class="text-xl font-bold text-white mb-3">2. Dados que Coletamos</h2>
-                <p class="mb-2">Para a prestação segura e eficiente dos serviços de treinamento físico e natação, coletamos os seguintes dados:</p>
-                <ul class="list-disc pl-6 space-y-1 text-slate-400">
-                    <li><strong class="text-slate-200">Dados de Contato:</strong> Nome e número de telefone (WhatsApp) ao iniciar uma conversa.</li>
-                    <li><strong class="text-slate-200">Dados Sensíveis de Saúde:</strong> Informações médicas, histórico de lesões, rotina, biometria e objetivos físicos informados estritamente através do formulário de "Anamnese e Histórico de Treinamento".</li>
-                </ul>
-            </section>
+                <section>
+                    <h2 class="text-xl font-medium mb-3">2. Dados que Coletamos</h2>
+                    <p class="mb-2">Para a prestação segura e eficiente dos serviços de treinamento físico e natação, coletamos os seguintes dados:</p>
+                    <ul class="list-disc pl-6 space-y-1.5 text-neutral-700">
+                        <li><strong>Dados de Contato:</strong> Nome e número de telefone (WhatsApp) ao iniciar uma conversa.</li>
+                        <li><strong>Dados Sensíveis de Saúde:</strong> Informações médicas, histórico de lesões, rotina, biometria e objetivos físicos informados estritamente através do formulário de "Anamnese e Histórico de Treinamento".</li>
+                    </ul>
+                </section>
 
-            <section>
-                <h2 class="text-xl font-bold text-white mb-3">3. Como Usamos seus Dados</h2>
-                <p>O tratamento de dados relacionados à sua saúde tem caráter estritamente profissional e de segurança. A coleta via formulário de Anamnese serve única e exclusivamente para avaliar sua aptidão física, prevenir lesões durante as aulas e elaborar um programa de treinamento personalizado (seja para musculação ou natação). Seus dados de contato são utilizados apenas para o agendamento de aulas e suporte direto.</p>
-            </section>
+                <section>
+                    <h2 class="text-xl font-medium mb-3">3. Como Usamos seus Dados</h2>
+                    <p>O tratamento de dados relacionados à sua saúde tem caráter estritamente profissional e de segurança. A coleta via formulário de Anamnese serve única e exclusivamente para avaliar sua aptidão física, prevenir lesões durante as aulas e elaborar um programa de treinamento personalizado (seja para musculação ou natação). Seus dados de contato são utilizados apenas para o agendamento de aulas e suporte direto.</p>
+                </section>
 
-            <section>
-                <h2 class="text-xl font-bold text-white mb-3">4. Proteção e Armazenamento</h2>
-                <p>As informações fornecidas no formulário de Anamnese (Google Forms) são mantidas em ambiente seguro, protegido por senha e acessível única e exclusivamente pela treinadora Lilian Moreira. Estes dados <strong>jamais serão vendidos, alugados ou compartilhados</strong> com terceiros ou empresas de marketing.</p>
-            </section>
+                <section>
+                    <h2 class="text-xl font-medium mb-3">4. Proteção e Armazenamento</h2>
+                    <p>As informações fornecidas no formulário de Anamnese (Google Forms) são mantidas em ambiente seguro, protegido por senha e acessível única e exclusivamente pela treinadora Lilian Moreira. Estes dados <strong>jamais serão vendidos, alugados ou compartilhados</strong> com terceiros ou empresas de marketing.</p>
+                </section>
 
-            <section>
-                <h2 class="text-xl font-bold text-white mb-3">5. Seus Direitos (LGPD)</h2>
-                <p>A qualquer momento, você pode solicitar a confirmação da existência de tratamento dos seus dados, a alteração de informações incompletas ou desatualizadas, bem como a exclusão total do seu histórico de saúde e contatos de nossos registros, bastando entrar em contato pelos canais oficiais.</p>
-            </section>
+                <section>
+                    <h2 class="text-xl font-medium mb-3">5. Seus Direitos (LGPD)</h2>
+                    <p>A qualquer momento, você pode solicitar a confirmação da existência de tratamento dos seus dados, a alteração de informações incompletas ou desatualizadas, bem como a exclusão total do seu histórico de saúde e contatos de nossos registros, bastando entrar em contato pelos canais oficiais.</p>
+                </section>
 
-            <section>
-                <h2 class="text-xl font-bold text-white mb-3">6. Contato</h2>
-                <p>Se você tiver qualquer dúvida sobre o uso de seus dados ou desejar exercer seus direitos sob a LGPD, entre em contato através do e-mail: <a href="mailto:lilianmoreira2@icloud.com" class="text-brand hover:underline">lilianmoreira2@icloud.com</a> ou diretamente pelo WhatsApp.</p>
-            </section>
-
+                <section>
+                    <h2 class="text-xl font-medium mb-3">6. Contato</h2>
+                    <p>Se você tiver qualquer dúvida sobre o uso de seus dados ou desejar exercer seus direitos sob a LGPD, entre em contato através do e-mail: <a href="mailto:lilianmoreira2@icloud.com" class="link">lilianmoreira2@icloud.com</a> ou diretamente pelo WhatsApp.</p>
+                </section>
+            </div>
         </div>
     </main>
 
     <!-- Footer -->
     <site-footer></site-footer>
-
 </body>
 </html>
