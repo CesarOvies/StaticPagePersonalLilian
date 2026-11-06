@@ -2,3 +2,6 @@
 .env
 *.wrangler*
 scriptDepoimentos.gs
+.taste-skill/
+.github/context-mode/
+

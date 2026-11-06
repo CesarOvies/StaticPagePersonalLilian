@@ -1,0 +1,216 @@
+/* Sistema visual compartilhado (index, termos, privacidade).
+   Tokens do taste-skill: page-kind service, paleta mint-pink-accounts, pairing Bricolage Grotesque / Figtree, radius soft, buttons tonal. */
+:root {
+  --bg: #f8f8f8;
+  --surface: #eeeeee;
+  --ink: #0a0a0a;
+  --muted: #6a6a6a;
+  --accent: #1f6b3a;
+  --line: rgb(10 10 10 / 0.12);
+  --nav: 72px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: var(--nav);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Figtree", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  font-stretch: 96%;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Container: 1280 de conteúdo a 1440, bordas iguais */
+.wrap {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+@media (min-width: 1024px) {
+  .wrap {
+    padding-inline: 80px;
+  }
+}
+
+.sec {
+  padding-block: 96px 48px;
+}
+@media (min-width: 640px) {
+  .sec {
+    padding-block: 120px 72px;
+  }
+}
+
+.h2 {
+  font-size: clamp(32px, 1.6vw + 20px, 48px);
+  line-height: 1.06;
+}
+
+.lead {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 32px;
+}
+@media (max-width: 639px) {
+  .card {
+    padding: 24px;
+  }
+}
+
+/* Botões: um par só (primário preenchido, secundário tonal) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 8px;
+  font: 500 16px/1.2 "Figtree", system-ui, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    transform 200ms ease;
+}
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn--primary:hover {
+  background: color-mix(in oklab, var(--accent) 86%, var(--ink));
+}
+.btn--secondary {
+  background: color-mix(in oklab, var(--ink) 7%, transparent);
+  color: var(--ink);
+}
+.btn--secondary:hover {
+  background: color-mix(in oklab, var(--ink) 13%, transparent);
+}
+.btn--xl {
+  min-height: 56px;
+  padding: 0 32px;
+  font-size: 18px;
+}
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn:not(:disabled):hover {
+    transform: translateY(-1px);
+    transition-duration: 140ms;
+  }
+  .btn--xl:not(:disabled):hover {
+    transform: translateY(-2px);
+  }
+}
+.btn:not(:disabled):active {
+  transform: translateY(1px) scale(0.985);
+  transition-duration: 90ms;
+}
+
+/* Link de texto: sublinhado que escurece */
+.link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: rgb(10 10 10 / 0.3);
+  transition:
+    text-decoration-color 140ms,
+    color 140ms;
+}
+.link:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+
+/* Foto com link: zoom dentro da moldura */
+.zoom {
+  display: block;
+  overflow: hidden;
+}
+.zoom img {
+  transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.zoom:hover img {
+  transform: scale(1.03);
+}
+
+/* Card com link: sobe 2px */
+.lift {
+  transition:
+    transform 180ms ease,
+    border-color 140ms ease;
+}
+.lift:hover {
+  transform: translateY(-2px);
+  border-color: rgb(10 10 10 / 0.24);
+}
+
+.skip {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.skip:focus {
+  width: auto;
+  height: auto;
+  clip-path: none;
+  top: 12px;
+  left: 24px;
+  z-index: 60;
+  padding: 8px 12px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
