@@ -268,39 +268,48 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <script src="./assets/site-footer.js" defer></script>
 
     <style>
+      :root {
+        color-scheme: dark;
+        accent-color: #10b981;
+      }
+
       body {
         font-family: "Inter", sans-serif;
       }
 
       .hero-bg {
         background-image:
-          linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)),
+          linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.96)),
           url("./assets/hero-bg.webp");
         background-size: cover;
         background-position: center;
       }
 
-      /* Scrollbar suave para o carrossel de depoimentos */
+      /* Scrollbar acessível e contenção de scroll para o carrossel */
       #listaDepoimentos {
-        scrollbar-width: thin;
-        scrollbar-color: rgba(51, 65, 85, 0.7) transparent;
+        overscroll-behavior-x: contain;
+        scrollbar-width: auto;
+        scrollbar-color: rgba(51, 65, 85, 0.8) rgba(15, 23, 42, 0.5);
       }
 
       #listaDepoimentos::-webkit-scrollbar {
-        height: 6px;
+        height: 8px;
       }
 
       #listaDepoimentos::-webkit-scrollbar-track {
-        background: rgba(15, 23, 42, 0.5);
+        background: rgba(15, 23, 42, 0.6);
         border-radius: 9999px;
       }
 
       #listaDepoimentos::-webkit-scrollbar-thumb {
-        background: rgba(51, 65, 85, 0.8);
+        background: rgba(51, 65, 85, 0.85);
         border-radius: 9999px;
       }
 
@@ -308,12 +317,46 @@
         background: #10b981;
       }
 
-      img {
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        -webkit-user-drag: none;
+      /* Estilização e transições nativas para <dialog> (Modern Web Guidance) */
+      dialog:modal {
+        overscroll-behavior: contain;
+        border: none;
+        padding: 0;
+        background: transparent;
+      }
+
+      dialog::backdrop {
+        background-color: rgba(2, 6, 23, 0.82);
+        backdrop-filter: blur(8px);
+        overscroll-behavior: contain;
+      }
+
+      dialog {
+        transition:
+          opacity 0.25s ease-out,
+          transform 0.25s ease-out,
+          display 0.25s allow-discrete,
+          overlay 0.25s allow-discrete;
+        opacity: 0;
+        transform: scale(0.96);
+      }
+
+      dialog[open] {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      @starting-style {
+        dialog[open] {
+          opacity: 0;
+          transform: scale(0.96);
+        }
+      }
+
+      #textoDepoimento {
+        field-sizing: content;
+        min-height: 80px;
+        max-height: 240px;
       }
     </style>
   </head>
@@ -400,27 +443,24 @@
         class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full flex flex-col md:flex-row items-center"
       >
         <div class="md:w-3/5 text-center md:text-left">
-          <span
-            class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-brand/10 text-brand font-semibold text-xs sm:text-sm mb-4 border border-brand/20"
+          <div
+            class="inline-flex items-center gap-2 py-1.5 px-3.5 rounded-full bg-slate-800/90 text-slate-300 text-xs sm:text-sm font-medium mb-6 border border-slate-700/80 shadow-inner"
           >
-            <i class="fa-solid fa-location-dot"></i> Santos & São Vicente •
-            Personal Trainer & Natação
-          </span>
+            <span class="w-2 h-2 rounded-full bg-brand"></span>
+            <span class="text-white font-semibold">Santos & São Vicente</span>
+            <span class="text-slate-500">•</span>
+            <span>Personal Trainer & Natação Particular</span>
+          </div>
           <h1
-            class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6"
+            class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] mb-6"
           >
-            Treinamento que respeita seu corpo e
-            <span
-              class="text-brand text-transparent bg-clip-text bg-gradient-to-r from-brand to-brand-light"
-              >transforma seus resultados.</span
-            >
+            Metodologia individualizada para
+            <span class="text-brand">evoluir na água</span> e na
+            <span class="text-brand-light">musculação</span>.
           </h1>
-          <p class="text-lg text-slate-300 mb-10 max-w-2xl mx-auto md:mx-0">
-            Aulas particulares de natação e musculação desenhadas exclusivamente
-            para você em <strong class="text-white">Santos</strong> e
-            <strong class="text-white">São Vicente</strong>. Atendimento
-            personalizado em condomínios residenciais ou na academia de sua
-            preferência (ou que você já faça parte).
+          <p class="text-base sm:text-lg text-slate-300 mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed">
+            Aulas particulares de natação e musculação com metodologia esportiva para sua saúde, segurança e performance em <strong class="text-white font-semibold">Santos</strong> e
+            <strong class="text-white font-semibold">São Vicente</strong>. Atendimento exclusivo em condomínios residenciais ou na academia de sua preferência.
           </p>
           <div class="text-center md:text-left">
             <a
@@ -433,134 +473,185 @@
               WhatsApp
             </a>
           </div>
+          <div
+            class="flex flex-wrap items-center justify-center md:justify-start gap-4 mt-8 pt-6 border-t border-slate-800/80 text-xs text-slate-400"
+          >
+            <span class="flex items-center gap-1.5"
+              ><i class="fa-solid fa-id-card text-brand"></i> CREF4
+              177118-G/SP</span
+            >
+            <span class="flex items-center gap-1.5"
+              ><i class="fa-solid fa-graduation-cap text-brand"></i> Graduada
+              Unisanta</span
+            >
+            <span class="flex items-center gap-1.5"
+              ><i class="fa-solid fa-water text-brand"></i> Ex-Atleta Polo
+              Aquático</span
+            >
+          </div>
         </div>
 
-        <div class="md:w-2/5 mt-10 md:mt-0">
+        <div class="md:w-2/5 mt-10 md:mt-0 flex justify-center">
           <div
-            class="img-protected-container relative w-72 h-72 lg:w-96 lg:h-96 mx-auto rounded-full overflow-hidden border-4 border-slate-700 shadow-2xl transition-transform hover:scale-105 duration-300"
+            class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-slate-700/80 shadow-2xl shadow-brand/10 transition-transform hover:scale-[1.02] duration-500"
           >
             <img
               src="./assets/perfil-lilian.jpeg"
               alt="Lilian Moreira - Personal Trainer e Treinadora de Natação em Santos e São Vicente"
-              class="w-full h-full object-cover pointer-events-none select-none"
-              draggable="false"
+              class="w-full h-full object-cover"
+              fetchpriority="high"
+              decoding="async"
             />
-            <div
-              class="absolute inset-0 z-10 select-none"
-              aria-hidden="true"
-            ></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Serviços -->
-    <section id="servicos" class="py-24 bg-slate-900">
+    <section id="servicos" class="py-24 bg-slate-900 border-t border-slate-800/60">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-white mb-4">
-            Serviços de Acompanhamento em Santos e São Vicente
+          <span
+            class="text-xs uppercase tracking-widest text-brand font-bold bg-brand/10 border border-brand/20 px-3 py-1 rounded-full inline-block mb-3"
+          >
+            Metodologia & Especialidades
+          </span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+            Acompanhamento Presencial em Santos e São Vicente
           </h2>
-          <div class="w-20 h-1 bg-brand mx-auto rounded mb-4"></div>
-          <p class="text-slate-400 text-sm max-w-2xl mx-auto">
-            Treinamento presencial sob medida para sua rotina, com atendimento
-            em condomínios ou na academia de sua preferência em Santos e São
-            Vicente.
+          <div class="w-16 h-1 bg-brand mx-auto rounded-full mb-4"></div>
+          <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto">
+            Treinamento técnico estruturado para a sua fisiologia e rotina, com atendimento
+            exclusivo em condomínios residenciais ou na academia de sua preferência.
           </p>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-8">
+        <div class="grid md:grid-cols-2 gap-8 items-stretch">
+          <!-- Card Natação -->
           <div
-            class="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 hover:border-brand/50 transition-colors group"
+            class="bg-gradient-to-b from-slate-800/70 to-slate-900 rounded-3xl p-8 border border-cyan-900/40 hover:border-cyan-500/50 transition-all duration-300 shadow-xl group flex flex-col justify-between relative overflow-hidden"
           >
             <div
-              class="w-14 h-14 bg-slate-700 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand transition-colors"
-            >
-              <i
-                class="fa-solid fa-person-swimming text-2xl text-brand group-hover:text-slate-900"
-              ></i>
-            </div>
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="text-2xl font-bold text-white">Natação Particular</h3>
-              <span
-                class="text-xs bg-slate-700 text-brand-light font-semibold px-2.5 py-1 rounded-md"
-                >Santos & São Vicente</span
-              >
-            </div>
-            <p class="text-xs text-slate-400 mb-6 flex items-center gap-1.5">
-              <i class="fa-solid fa-water text-brand"></i> Aulas na piscina do
-              seu condomínio, residência ou clube.
-            </p>
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-semibold text-brand-light">
-                  Iniciação & Baixo Rendimento
-                </h4>
-                <p class="text-sm text-slate-400 mt-1">
-                  Adaptação ao meio aquático para todas as idades (crianças e
-                  adultos). Foco em saúde, segurança, superação do medo e
-                  qualidade de vida.
-                </p>
+              class="absolute -right-16 -top-16 w-44 h-44 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"
+            ></div>
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div
+                  class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform"
+                >
+                  <i class="fa-solid fa-person-swimming"></i>
+                </div>
+                <span
+                  class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-800/40 text-cyan-300"
+                >
+                  Piscina Residencial • Clube
+                </span>
               </div>
-              <div class="h-px w-full bg-slate-700"></div>
-              <div>
-                <h4 class="font-semibold text-brand-light">
-                  Performance & Alto Rendimento
-                </h4>
-                <p class="text-sm text-slate-400 mt-1">
-                  Aprimoramento técnico dos 4 nados, correção de biomecânica e
-                  planilhas de condicionamento para competidores e atletas
-                  amadores.
-                </p>
+              <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                Natação Particular
+              </h3>
+              <p class="text-xs text-slate-400 mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-water text-cyan-400"></i>
+                Santos & São Vicente • Aulas individuais na piscina do seu condomínio.
+              </p>
+              <div class="space-y-5 pt-2 border-t border-slate-800/80">
+                <div class="flex gap-3">
+                  <div class="mt-1 text-cyan-400 shrink-0">
+                    <i class="fa-solid fa-circle-check text-sm"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white text-sm">
+                      Adaptação, Autonomia & Superação do Medo
+                    </h4>
+                    <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                      Metodologia acolhedora para bebês, crianças e adultos. Foco em segurança aquática, respiração controlada e confiança total dentro da água.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex gap-3">
+                  <div class="mt-1 text-cyan-400 shrink-0">
+                    <i class="fa-solid fa-circle-check text-sm"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white text-sm">
+                      Técnica dos 4 Nados & Alto Rendimento
+                    </h4>
+                    <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                      Correção biomecânica precisa (crawl, costas, peito e borboleta), ganho de eficiência propulsiva e condicionamento cardiorrespiratório para atletas e amadores.
+                    </p>
+                  </div>
+                </div>
               </div>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-800/60">
+              <span class="text-xs text-cyan-400 font-medium flex items-center gap-1.5">
+                <i class="fa-solid fa-medal text-[11px]"></i>
+                Supervisão de ex-atleta e treinadora de polo aquático (Sesi-SP / ADABS)
+              </span>
             </div>
           </div>
 
+          <!-- Card Musculação -->
           <div
-            class="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 hover:border-brand/50 transition-colors group"
+            class="bg-gradient-to-b from-slate-800/70 to-slate-900 rounded-3xl p-8 border border-emerald-900/40 hover:border-brand/50 transition-all duration-300 shadow-xl group flex flex-col justify-between relative overflow-hidden"
           >
             <div
-              class="w-14 h-14 bg-slate-700 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand transition-colors"
-            >
-              <i
-                class="fa-solid fa-dumbbell text-2xl text-brand group-hover:text-slate-900"
-              ></i>
-            </div>
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="text-2xl font-bold text-white">
-                Musculação & Academia
+              class="absolute -right-16 -top-16 w-44 h-44 bg-brand/5 rounded-full blur-3xl pointer-events-none"
+            ></div>
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div
+                  class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 text-brand flex items-center justify-center text-xl group-hover:scale-110 transition-transform"
+                >
+                  <i class="fa-solid fa-dumbbell"></i>
+                </div>
+                <span
+                  class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-850/40 text-brand-light"
+                >
+                  Condomínio • Academia
+                </span>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-brand-light transition-colors">
+                Personal Trainer & Musculação
               </h3>
-              <span
-                class="text-xs bg-slate-700 text-brand-light font-semibold px-2.5 py-1 rounded-md"
-                >Santos & São Vicente</span
-              >
+              <p class="text-xs text-slate-400 mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-dumbbell text-brand"></i>
+                Santos & São Vicente • No espaço fitness do seu prédio ou na academia de sua escolha.
+              </p>
+              <div class="space-y-5 pt-2 border-t border-slate-800/80">
+                <div class="flex gap-3">
+                  <div class="mt-1 text-brand shrink-0">
+                    <i class="fa-solid fa-circle-check text-sm"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white text-sm">
+                      Saúde, Emagrecimento & Reabilitação Funcional
+                    </h4>
+                    <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                      Prescrição segura focada em queima de gordura, alívio de dores posturais, estabilidade articular e longevidade física com respeito aos seus limites.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex gap-3">
+                  <div class="mt-1 text-brand shrink-0">
+                    <i class="fa-solid fa-circle-check text-sm"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white text-sm">
+                      Hipertrofia Muscular & Ganho de Força
+                    </h4>
+                    <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                      Periodização avançada com controle de volume e sobrecarga progressiva para construir massa magra, vencer platôs e consolidar resultados estéticos sustentáveis.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p class="text-xs text-slate-400 mb-6 flex items-center gap-1.5">
-              <i class="fa-solid fa-dumbbell text-brand"></i> Treinos na
-              academia do seu condomínio ou na academia de sua preferência (ou
-              que você já faça parte).
-            </p>
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-semibold text-brand-light">
-                  Condicionamento & Emagrecimento
-                </h4>
-                <p class="text-sm text-slate-400 mt-1">
-                  Treinos desenhados para queima de gordura, fortalecimento
-                  articular e melhoria da disposição diária. O foco é a sua
-                  saúde e longevidade.
-                </p>
-              </div>
-              <div class="h-px w-full bg-slate-700"></div>
-              <div>
-                <h4 class="font-semibold text-brand-light">
-                  Força & Hipertrofia
-                </h4>
-                <p class="text-sm text-slate-400 mt-1">
-                  Periodização avançada para ganho de massa muscular, aumento de
-                  força e superação de platôs com métricas exatas de evolução.
-                </p>
-              </div>
+            <div class="mt-8 pt-4 border-t border-slate-800/60">
+              <span class="text-xs text-brand-light font-medium flex items-center gap-1.5">
+                <i class="fa-solid fa-award text-[11px]"></i>
+                Prescrição científica por graduada em Educação Física (CREF 177118-G/SP)
+              </span>
             </div>
           </div>
         </div>
@@ -573,18 +664,15 @@
         <div class="grid md:grid-cols-2 gap-16 items-center">
           <div>
             <div
-              class="img-protected-container relative rounded-2xl overflow-hidden aspect-[3/4] w-full max-w-md mx-auto shadow-xl border border-slate-600 transition-transform hover:scale-[1.02] duration-300"
+              class="relative rounded-2xl overflow-hidden aspect-[3/4] w-full max-w-md mx-auto shadow-2xl border border-slate-700/80 transition-transform hover:scale-[1.01] duration-500"
             >
               <img
                 src="./assets/foto-sobre-mim.jpeg"
-                alt="Lilian Moreira - Treinadora"
-                class="w-full h-full object-cover pointer-events-none select-none"
-                draggable="false"
+                alt="Lilian Moreira - Treinadora e Personal Trainer em Santos e São Vicente"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
-              <div
-                class="absolute inset-0 z-10 select-none"
-                aria-hidden="true"
-              ></div>
             </div>
           </div>
 
@@ -769,283 +857,314 @@
     <!-- Comece Agora -->
     <section
       id="comeceagora"
-      class="py-24 bg-brand text-slate-900 relative overflow-hidden"
+      class="py-24 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 border-t border-slate-800 text-white relative overflow-hidden"
     >
       <div
-        class="absolute inset-0 opacity-10 pointer-events-none"
-        style="
-          background-image: radial-gradient(#000 2px, transparent 2px);
-          background-size: 30px 30px;
-        "
+        class="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-brand/10 blur-[130px] pointer-events-none rounded-full"
       ></div>
 
       <div
         class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
       >
-        <h2 class="text-3xl md:text-5xl font-black mb-6">
-          O Primeiro Passo para sua Evolução
+        <span
+          class="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-brand/10 border border-brand/20 text-brand-light text-xs font-semibold uppercase tracking-wider mb-4"
+        >
+          <i class="fa-solid fa-clipboard-check"></i> Avaliação Prévia Obrigatória
+        </span>
+        <h2 class="text-3xl md:text-5xl font-black mb-6 tracking-tight">
+          O Ponto de Partida: Anamnese & Diagnóstico Físico
         </h2>
-        <p class="text-lg md:text-xl font-medium mb-10 opacity-90">
-          Todo treinamento de sucesso começa com planejamento. O preenchimento
-          da <strong>Anamnese e Histórico de Treinamento</strong> é obrigatório
-          para que eu entenda suas necessidades, saúde e objetivos antes da
-          nossa primeira aula.
+        <p class="text-base md:text-lg text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+          Nenhum treino começa sem diagnóstico. A anamnese detalhada é indispensável para que a treinadora Lilian compreenda seu histórico de saúde, restrições e objetivos antes do primeiro atendimento.
         </p>
 
-        <div
-          class="bg-white/20 p-6 rounded-2xl backdrop-blur-sm border border-white/30 mb-8 inline-block"
-        >
-          <ul class="text-left space-y-3 font-medium">
-            <li>
-              <i class="fa-solid fa-check text-slate-900 mr-2"></i> Avaliação do
-              histórico de saúde
-            </li>
-            <li>
-              <i class="fa-solid fa-check text-slate-900 mr-2"></i> Alinhamento
-              de objetivos (emagrecimento, hipertrofia, saúde)
-            </li>
-            <li>
-              <i class="fa-solid fa-check text-slate-900 mr-2"></i> Avaliação de
-              rotina e disponibilidade
-            </li>
-          </ul>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 text-left">
+          <div
+            class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800 shadow-lg hover:border-slate-700 transition-colors"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4"
+            >
+              <i class="fa-solid fa-notes-medical"></i>
+            </div>
+            <h4 class="font-bold text-white text-base mb-1.5">
+              1. Mapeamento Clínico
+            </h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Histórico cardiovascular, cirurgias, dores articulares e histórico esportivo pregresso.
+            </p>
+          </div>
+
+          <div
+            class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800 shadow-lg hover:border-slate-700 transition-colors"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4"
+            >
+              <i class="fa-solid fa-bullseye"></i>
+            </div>
+            <h4 class="font-bold text-white text-base mb-1.5">
+              2. Definição de Metas
+            </h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Alinhamento de prioridades: adaptação ao meio aquático, hipertrofia, emagrecimento ou performance.
+            </p>
+          </div>
+
+          <div
+            class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800 shadow-lg hover:border-slate-700 transition-colors"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4"
+            >
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <h4 class="font-bold text-white text-base mb-1.5">
+              3. Rotina & Logística
+            </h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Estruturação dos horários e locais dos treinos em Santos ou São Vicente conforme sua agenda.
+            </p>
+          </div>
         </div>
 
         <div>
-          <a
-            href="javascript:void(0)"
+          <button
+            type="button"
             onclick="abrirModalSenha()"
-            class="inline-block px-10 py-5 bg-slate-900 text-brand-light hover:text-white font-black text-lg rounded-xl shadow-2xl transition-all transform hover:-translate-y-2 hover:shadow-slate-900/50"
+            class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-brand hover:bg-brand-light text-slate-950 font-black text-lg rounded-xl shadow-2xl shadow-brand/20 hover:shadow-brand/30 transition-all transform hover:-translate-y-1 cursor-pointer"
           >
-            Acessar Formulário <i class="fa-solid fa-lock ml-2"></i>
-          </a>
+            <span>Acessar Anamnese com Senha</span>
+            <i class="fa-solid fa-lock text-sm"></i>
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- Modal de Senha -->
-    <div
+    <!-- Modal de Senha (Native Dialog com Modern Web Guidance) -->
+    <dialog
       id="senhaModal"
-      class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4 transition-opacity"
+      closedby="any"
+      aria-labelledby="tituloModalSenha"
+      class="fixed inset-0 m-auto bg-slate-900 border border-slate-700/80 rounded-2xl p-6 sm:p-8 max-w-sm w-[calc(100%-2rem)] max-h-[90vh] overflow-y-auto shadow-2xl text-center text-slate-200"
     >
-      <div
-        class="bg-slate-900 border border-slate-700 rounded-2xl p-8 max-w-sm w-full shadow-2xl relative transform transition-all text-center"
+      <button
+        type="button"
+        onclick="fecharModalSenha()"
+        aria-label="Fechar modal de acesso"
+        class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
       >
-        <button
-          onclick="fecharModalSenha()"
-          class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
-        >
-          <i class="fa-solid fa-xmark text-xl"></i>
-        </button>
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
 
-        <div
-          class="w-12 h-12 bg-brand/20 rounded-full flex items-center justify-center mx-auto mb-4"
-        >
-          <i class="fa-solid fa-lock text-brand text-xl"></i>
-        </div>
-        <h3 class="text-2xl font-bold text-white mb-2">Acesso Restrito</h3>
-        <p class="text-sm text-slate-400 mb-6">
-          Insira a senha fornecida pela treinadora Lilian para iniciar sua
-          avaliação.
-        </p>
-
-        <form id="formSenha" class="space-y-4 text-left">
-          <div>
-            <input
-              type="password"
-              id="senhaInput"
-              required
-              placeholder="Digite a senha..."
-              class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors text-center font-mono tracking-widest text-lg"
-            />
-            <p
-              id="erroSenha"
-              class="hidden text-red-400 text-xs mt-2 text-center"
-            >
-              Senha incorreta. Tente novamente.
-            </p>
-          </div>
-          <button
-            type="submit"
-            id="btnSubmitSenha"
-            class="w-full py-4 bg-brand hover:bg-brand-light text-slate-900 font-bold rounded-lg shadow-lg shadow-brand/30 transition-all mt-4"
-          >
-            Liberar Acesso <i class="fa-solid fa-arrow-right ml-2"></i>
-          </button>
-        </form>
-
-        <div class="mt-6 pt-6 border-t border-slate-800">
-          <p class="text-xs text-slate-400 mb-3">Ainda não tem a senha?</p>
-          <a
-            href="https://wa.me/5513996660817?text=Ol%C3%A1,%20estou%20no%20seu%20site%20e%20gostaria%20de%20solicitar%20a%20senha%20para%20preencher%20a%20anamnese."
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm font-medium text-white hover:bg-slate-700 hover:border-slate-600 transition-all"
-          >
-            <i class="fa-brands fa-whatsapp text-brand mr-2"></i> Solicitar
-            Senha
-          </a>
-        </div>
+      <div
+        class="w-12 h-12 bg-brand/20 rounded-full flex items-center justify-center mx-auto mb-4"
+      >
+        <i class="fa-solid fa-lock text-brand text-xl"></i>
       </div>
-    </div>
+      <h3 id="tituloModalSenha" class="text-2xl font-bold text-white mb-2">
+        Acesso Restrito
+      </h3>
+      <p class="text-sm text-slate-400 mb-6">
+        Insira a senha fornecida pela treinadora Lilian para iniciar sua avaliação.
+      </p>
 
-    <!-- Modal de Depoimento -->
-    <div
-      id="depoimentoModal"
-      class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4 transition-opacity"
-    >
-      <div
-        class="bg-slate-900 border border-slate-700 rounded-2xl p-8 max-w-md w-full shadow-2xl relative transform transition-all text-center"
-      >
-        <button
-          onclick="fecharModalDepoimento()"
-          class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
-        >
-          <i class="fa-solid fa-xmark text-xl"></i>
-        </button>
-
-        <h3 class="text-2xl font-bold text-white mb-2">Seu Depoimento</h3>
-        <p class="text-sm text-slate-400 mb-6">
-          Conte como tem sido sua evolução!
-        </p>
-
-        <form id="formDepoimento" class="space-y-4 text-left">
-          <div>
-            <div class="flex items-center justify-between mb-1.5">
-              <label
-                class="block text-xs font-semibold text-slate-300 uppercase tracking-wider"
-                >Nome</label
-              >
-              <span class="text-[11px] text-slate-500 font-normal"
-                >máx. 30 letras</span
-              >
-            </div>
-            <input
-              type="text"
-              id="nomeDepoimento"
-              required
-              maxlength="30"
-              placeholder="Como quer ser chamado?"
-              class="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors text-sm"
-            />
-          </div>
-
-          <div>
-            <label
-              class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5"
-              >Você é ou foi:</label
-            >
-            <div class="grid grid-cols-2 gap-2">
-              <label
-                class="relative flex items-center justify-center gap-2 p-2.5 bg-slate-800 border border-slate-700 rounded-lg cursor-pointer text-xs font-medium text-slate-300 hover:border-slate-600 has-[:checked]:border-brand has-[:checked]:bg-brand/10 has-[:checked]:text-brand has-[:checked]:font-bold transition-all"
-              >
-                <input
-                  type="radio"
-                  name="papelDepoimento"
-                  value="Aluno(a)"
-                  checked
-                  class="sr-only"
-                />
-                <i class="fa-solid fa-graduation-cap text-amber-400"></i>
-                Aluno(a)
-              </label>
-              <label
-                class="relative flex items-center justify-center gap-2 p-2.5 bg-slate-800 border border-slate-700 rounded-lg cursor-pointer text-xs font-medium text-slate-300 hover:border-slate-600 has-[:checked]:border-brand has-[:checked]:bg-brand/10 has-[:checked]:text-brand has-[:checked]:font-bold transition-all"
-              >
-                <input
-                  type="radio"
-                  name="papelDepoimento"
-                  value="Pai, Mãe ou Responsável"
-                  class="sr-only"
-                />
-                <i class="fa-solid fa-user-group text-amber-400"></i>
-                Pai/Mãe/Resp.
-              </label>
-            </div>
-          </div>
-
-          <div>
-            <div class="flex items-center justify-between mb-1.5">
-              <label
-                class="block text-xs font-semibold text-slate-300 uppercase tracking-wider"
-                >Rede Social</label
-              >
-              <span class="text-[11px] text-slate-500 font-normal"
-                >Opcional</span
-              >
-            </div>
-            <div class="flex gap-2">
-              <select
-                id="redeSocialDepoimento"
-                class="w-36 px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-xs font-medium focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors cursor-pointer"
-              >
-                <option value="instagram">Instagram</option>
-                <option value="facebook">Facebook</option>
-              </select>
-              <div class="relative flex-1">
-                <span
-                  id="prefixoRedeSocial"
-                  class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-mono font-semibold select-none"
-                  >@</span
-                >
-                <input
-                  type="text"
-                  id="perfilSocialDepoimento"
-                  maxlength="30"
-                  placeholder="seu.usuario"
-                  class="w-full pl-8 pr-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 text-xs focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors font-mono"
-                />
-              </div>
-            </div>
-            <p
-              class="text-[11px] text-slate-400 mt-1 flex items-center gap-1.5"
-            >
-              <i class="fa-solid fa-circle-check text-brand text-[10px]"></i>
-              Passa mais credibilidade e comprova que é uma pessoa real.
-            </p>
-          </div>
-
-          <div>
-            <div class="flex items-center justify-between mb-1.5">
-              <label
-                class="block text-xs font-semibold text-slate-300 uppercase tracking-wider"
-                >Mensagem</label
-              >
-              <span
-                id="contadorTextoDepoimento"
-                class="text-[11px] text-slate-500 font-normal"
-                >0/300</span
-              >
-            </div>
-            <textarea
-              id="textoDepoimento"
-              required
-              rows="3"
-              maxlength="300"
-              placeholder="Conte como tem sido seus treinos ou a evolução dos seus filhos... (máx. 300 caracteres)"
-              class="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors text-sm resize-none"
-            ></textarea>
-          </div>
-
-          <!-- Cloudflare Turnstile -->
-          <div
-            class="cf-turnstile mt-4 flex justify-center"
-            data-sitekey="0x4AAAAAAFD8jSpDJzGLlYk0"
-          ></div>
-          <p id="erroBot" class="hidden text-red-400 text-xs mt-1 text-center">
-            Por favor, complete a verificação de segurança.
+      <form id="formSenha" class="space-y-4 text-left">
+        <div>
+          <input
+            type="password"
+            id="senhaInput"
+            required
+            autocomplete="current-password"
+            placeholder="Digite a senha..."
+            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors text-center font-mono tracking-widest text-lg"
+          />
+          <p
+            id="erroSenha"
+            class="hidden text-red-400 text-xs mt-2 text-center"
+          >
+            Senha incorreta. Tente novamente.
           </p>
+        </div>
+        <button
+          type="submit"
+          id="btnSubmitSenha"
+          class="w-full py-4 bg-brand hover:bg-brand-light text-slate-900 font-bold rounded-lg shadow-lg shadow-brand/30 transition-all mt-4 cursor-pointer"
+        >
+          Liberar Acesso <i class="fa-solid fa-arrow-right ml-2"></i>
+        </button>
+      </form>
 
-          <button
-            type="submit"
-            id="btnEnviarDepoimento"
-            class="w-full py-4 bg-brand hover:bg-brand-light text-slate-900 font-bold rounded-lg shadow-lg shadow-brand/30 transition-all mt-4 flex justify-center items-center"
-          >
-            Enviar para Aprovação <i class="fa-solid fa-paper-plane ml-2"></i>
-          </button>
-        </form>
+      <div class="mt-6 pt-6 border-t border-slate-800">
+        <p class="text-xs text-slate-400 mb-3">Ainda não tem a senha?</p>
+        <a
+          href="https://wa.me/5513996660817?text=Ol%C3%A1,%20estou%20no%20seu%20site%20e%20gostaria%20de%20solicitar%20a%20senha%20para%20preencher%20a%20anamnese."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm font-medium text-white hover:bg-slate-700 hover:border-slate-600 transition-all"
+        >
+          <i class="fa-brands fa-whatsapp text-brand mr-2"></i> Solicitar Senha
+        </a>
       </div>
-    </div>
+    </dialog>
+
+    <!-- Modal de Depoimento (Native Dialog com Modern Web Guidance) -->
+    <dialog
+      id="depoimentoModal"
+      closedby="any"
+      aria-labelledby="tituloModalDepoimento"
+      class="fixed inset-0 m-auto bg-slate-900 border border-slate-700/80 rounded-2xl p-6 sm:p-8 max-w-md w-[calc(100%-2rem)] max-h-[90vh] overflow-y-auto shadow-2xl text-center text-slate-200"
+    >
+      <button
+        type="button"
+        onclick="fecharModalDepoimento()"
+        aria-label="Fechar modal de depoimento"
+        class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
+      >
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+
+      <h3 id="tituloModalDepoimento" class="text-2xl font-bold text-white mb-2">
+        Seu Depoimento
+      </h3>
+      <p class="text-sm text-slate-400 mb-6">
+        Conte como tem sido sua evolução nos treinos ou na natação!
+      </p>
+
+      <form id="formDepoimento" class="space-y-4 text-left">
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label
+              class="block text-xs font-semibold text-slate-300 uppercase tracking-wider"
+              >Nome</label
+            >
+            <span class="text-[11px] text-slate-500 font-normal"
+              >máx. 30 letras</span
+            >
+          </div>
+          <input
+            type="text"
+            id="nomeDepoimento"
+            required
+            maxlength="30"
+            placeholder="Como quer ser chamado?"
+            class="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors text-sm"
+          />
+        </div>
+
+        <div>
+          <label
+            class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5"
+            >Você é ou foi:</label
+          >
+          <div class="grid grid-cols-2 gap-2">
+            <label
+              class="relative flex items-center justify-center gap-2 p-2.5 bg-slate-800 border border-slate-700 rounded-lg cursor-pointer text-xs font-medium text-slate-300 hover:border-slate-600 has-[:checked]:border-brand has-[:checked]:bg-brand/10 has-[:checked]:text-brand has-[:checked]:font-bold transition-all"
+            >
+              <input
+                type="radio"
+                name="papelDepoimento"
+                value="Aluno(a)"
+                checked
+                class="sr-only"
+              />
+              <i class="fa-solid fa-graduation-cap text-amber-400"></i>
+              Aluno(a)
+            </label>
+            <label
+              class="relative flex items-center justify-center gap-2 p-2.5 bg-slate-800 border border-slate-700 rounded-lg cursor-pointer text-xs font-medium text-slate-300 hover:border-slate-600 has-[:checked]:border-brand has-[:checked]:bg-brand/10 has-[:checked]:text-brand has-[:checked]:font-bold transition-all"
+            >
+              <input
+                type="radio"
+                name="papelDepoimento"
+                value="Pai, Mãe ou Responsável"
+                class="sr-only"
+              />
+              <i class="fa-solid fa-user-group text-amber-400"></i>
+              Pai/Mãe/Resp.
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label
+              class="block text-xs font-semibold text-slate-300 uppercase tracking-wider"
+              >Rede Social</label
+            >
+            <span class="text-[11px] text-slate-500 font-normal">Opcional</span>
+          </div>
+          <div class="flex gap-2">
+            <select
+              id="redeSocialDepoimento"
+              class="w-36 px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-xs font-medium focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors cursor-pointer"
+            >
+              <option value="instagram">Instagram</option>
+              <option value="facebook">Facebook</option>
+            </select>
+            <div class="relative flex-1">
+              <span
+                id="prefixoRedeSocial"
+                class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-mono font-semibold select-none"
+                >@</span
+              >
+              <input
+                type="text"
+                id="perfilSocialDepoimento"
+                maxlength="30"
+                placeholder="seu.usuario"
+                class="w-full pl-8 pr-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 text-xs focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors font-mono"
+              />
+            </div>
+          </div>
+          <p
+            class="text-[11px] text-slate-400 mt-1 flex items-center gap-1.5"
+          >
+            <i class="fa-solid fa-circle-check text-brand text-[10px]"></i>
+            Passa mais credibilidade e comprova que é uma pessoa real.
+          </p>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label
+              class="block text-xs font-semibold text-slate-300 uppercase tracking-wider"
+              >Mensagem</label
+            >
+            <span
+              id="contadorTextoDepoimento"
+              class="text-[11px] text-slate-500 font-normal"
+              >0/300</span
+            >
+          </div>
+          <textarea
+            id="textoDepoimento"
+            required
+            rows="3"
+            maxlength="300"
+            placeholder="Conte como tem sido seus treinos ou a evolução dos seus filhos... (máx. 300 caracteres)"
+            class="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors text-sm resize-none"
+          ></textarea>
+        </div>
+
+        <!-- Cloudflare Turnstile -->
+        <div
+          class="cf-turnstile mt-4 flex justify-center"
+          data-sitekey="0x4AAAAAAFD8jSpDJzGLlYk0"
+        ></div>
+        <p id="erroBot" class="hidden text-red-400 text-xs mt-1 text-center">
+          Por favor, complete a verificação de segurança.
+        </p>
+
+        <button
+          type="submit"
+          id="btnEnviarDepoimento"
+          class="w-full py-4 bg-brand hover:bg-brand-light text-slate-900 font-bold rounded-lg shadow-lg shadow-brand/30 transition-all mt-4 flex justify-center items-center cursor-pointer"
+        >
+          Enviar para Aprovação <i class="fa-solid fa-paper-plane ml-2"></i>
+        </button>
+      </form>
+    </dialog>
 
     <!-- FAQ / Perguntas Frequentes -->
     <section id="faq" class="py-24 bg-slate-800 border-t border-slate-700">
@@ -1520,15 +1639,24 @@
       let bloqueado = false;
 
       function abrirModalSenha() {
-        modalSenha.classList.remove("hidden");
+        if (typeof modalSenha.showModal === "function") {
+          modalSenha.showModal();
+        } else {
+          modalSenha.classList.remove("hidden");
+        }
         inputSenha.value = "";
         if (!bloqueado) {
           erroSenha.classList.add("hidden");
         }
+        setTimeout(() => inputSenha.focus(), 50);
       }
 
       function fecharModalSenha() {
-        modalSenha.classList.add("hidden");
+        if (typeof modalSenha.close === "function") {
+          modalSenha.close();
+        } else {
+          modalSenha.classList.add("hidden");
+        }
       }
 
       document
@@ -1607,19 +1735,46 @@
       const modalDepoimento = document.getElementById("depoimentoModal");
 
       function abrirModalDepoimento() {
-        modalDepoimento.classList.remove("hidden");
+        if (typeof modalDepoimento.showModal === "function") {
+          modalDepoimento.showModal();
+        } else {
+          modalDepoimento.classList.remove("hidden");
+        }
         if (typeof turnstile !== "undefined") {
           turnstile.reset();
         }
       }
 
       function fecharModalDepoimento() {
-        modalDepoimento.classList.add("hidden");
+        if (typeof modalDepoimento.close === "function") {
+          modalDepoimento.close();
+        } else {
+          modalDepoimento.classList.add("hidden");
+        }
         document.getElementById("formDepoimento").reset();
         const contador = document.getElementById("contadorTextoDepoimento");
         if (contador) contador.textContent = "0/300";
         const prefixoRede = document.getElementById("prefixoRedeSocial");
         if (prefixoRede) prefixoRede.textContent = "@";
+      }
+
+      // Light-dismiss fallback para navegadores sem closedby nativo
+      if (!("closedBy" in HTMLDialogElement.prototype)) {
+        [modalSenha, modalDepoimento].forEach((dlg) => {
+          if (!dlg) return;
+          dlg.addEventListener("click", (e) => {
+            if (e.target !== dlg) return;
+            const rect = dlg.getBoundingClientRect();
+            const clickedInside =
+              rect.top <= e.clientY &&
+              e.clientY <= rect.top + rect.height &&
+              rect.left <= e.clientX &&
+              e.clientX <= rect.left + rect.width;
+            if (!clickedInside) {
+              dlg.close();
+            }
+          });
+        });
       }
 
       const selectRede = document.getElementById("redeSocialDepoimento");
@@ -1783,7 +1938,7 @@
           }
 
           // Inverte para exibir os depoimentos mais recentes primeiro
-          todosDepoimentos = [...depoimentos].reverse();
+          todosDepoimentos = depoimentos.toReversed();
           limiteDepoimentos =
             todosDepoimentos.length > LIMITE_INICIAL_DEPOIMENTOS
               ? LIMITE_INICIAL_DEPOIMENTOS
@@ -2118,17 +2273,6 @@
           .join("");
       }
       carregarFeedInstagram();
-
-      // Blindagem contra cópia via clique direito em imagens
-      document.addEventListener("contextmenu", function (e) {
-        if (
-          e.target &&
-          (e.target.tagName === "IMG" ||
-            e.target.closest(".img-protected-container"))
-        ) {
-          e.preventDefault();
-        }
-      });
     </script>
   </body>
 </html>
