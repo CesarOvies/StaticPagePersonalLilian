@@ -87,11 +87,11 @@ class SiteFooter extends HTMLElement {
                 <div class="space-y-2">
                     <p>&copy; 2026 Lilian Moreira Farias • CREF 177118-G/SP. Todos os direitos reservados.</p>
                     <p>
-                        Feito com <i class="fa-solid fa-heart text-red-500 mx-1"></i> por 
+                        Desenvolvido por 
                         <a href="https://linkedin.com/in/cesarovies" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-brand transition-colors font-semibold">
                         Ovies Tech
                         </a> 
-                        & <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-brand transition-colors font-semibold">Gemini</a> <i class="fa-solid fa-wand-magic-sparkles text-brand ml-1"></i>
+                        • Engenharia de Software de Alta Performance
                     </p>
                 </div>
                 <div class="mt-4 md:mt-0 space-x-4">
